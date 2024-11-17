@@ -33,6 +33,10 @@ CREATE TABLE [Movie] (
   PRIMARY KEY ([movieID])
 );
 
+CREATE SEQUENCE AccountNumberSeq
+START WITH 100
+INCREMENT BY 1;
+
 CREATE TABLE [Customer] (
   [customerID] int identity(1,1),
   [firstName] varchar(50) not null,
@@ -42,7 +46,7 @@ CREATE TABLE [Customer] (
   [cusState] varchar(2),
   [cusZipCode] varchar(10),
   [Email] varchar(50) not null,
-  [AccountNumber] int not null identity(100,1),
+  [AccountNumber] int not null default (NEXT VALUE FOR AccountNumberSeq),
   [AccountCreationDate] date not null default current_timestamp,
   [CreditCard] bigint not null,
   PRIMARY KEY ([customerID])
@@ -92,9 +96,6 @@ CREATE TABLE [EmployeePhone] (
   PRIMARY KEY ([employeeID], [Number])
 );
 
-
-
-
 CREATE TABLE [MovieRate] (
   [Rate] int,
   [MovieOrderID] int not null FOREIGN KEY REFERENCES PlacedOrder(orderID),
@@ -120,4 +121,3 @@ CREATE TABLE [MovieQueue] (
   [QueuePosition] int
   PRIMARY KEY ([customerID], [movieID])
 );
-
