@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            tabControl1 = new TabControl();
+            DashboardTabs = new TabControl();
             tabPage1 = new TabPage();
-            tabPage2 = new TabPage();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            splitContainer1 = new SplitContainer();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            ModifyCustButton = new Button();
+            NewCustButton = new Button();
+            tabPage2 = new TabPage();
+            splitContainer1 = new SplitContainer();
+            button5 = new Button();
+            button4 = new Button();
+            button3 = new Button();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
-            tabControl1.SuspendLayout();
+            DashboardTabs.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -52,39 +52,70 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(558, 25);
+            label1.Location = new Point(488, 19);
             label1.Name = "label1";
-            label1.Size = new Size(287, 28);
+            label1.Size = new Size(233, 21);
             label1.TabIndex = 0;
             label1.Text = "Employee Name's Dashboard";
-            label1.Click += label1_Click;
             // 
-            // tabControl1
+            // DashboardTabs
             // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage3);
-            tabControl1.Controls.Add(tabPage4);
-            tabControl1.Location = new Point(12, 81);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1322, 550);
-            tabControl1.TabIndex = 2;
+            DashboardTabs.Controls.Add(tabPage1);
+            DashboardTabs.Controls.Add(tabPage2);
+            DashboardTabs.Controls.Add(tabPage3);
+            DashboardTabs.Controls.Add(tabPage4);
+            DashboardTabs.Location = new Point(10, 61);
+            DashboardTabs.Margin = new Padding(3, 2, 3, 2);
+            DashboardTabs.Name = "DashboardTabs";
+            DashboardTabs.SelectedIndex = 0;
+            DashboardTabs.Size = new Size(1157, 412);
+            DashboardTabs.TabIndex = 2;
             // 
             // tabPage1
             // 
             tabPage1.BackColor = Color.FromArgb(192, 192, 255);
             tabPage1.Controls.Add(flowLayoutPanel1);
-            tabPage1.Controls.Add(button2);
-            tabPage1.Controls.Add(button1);
+            tabPage1.Controls.Add(ModifyCustButton);
+            tabPage1.Controls.Add(NewCustButton);
             tabPage1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tabPage1.ForeColor = Color.Black;
-            tabPage1.Location = new Point(4, 29);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Margin = new Padding(3, 2, 3, 2);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1314, 517);
+            tabPage1.Padding = new Padding(3, 2, 3, 2);
+            tabPage1.Size = new Size(1149, 384);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Customer Management";
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Location = new Point(438, 16);
+            flowLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(697, 368);
+            flowLayoutPanel1.TabIndex = 2;
+            // 
+            // ModifyCustButton
+            // 
+            ModifyCustButton.Location = new Point(19, 52);
+            ModifyCustButton.Margin = new Padding(3, 2, 3, 2);
+            ModifyCustButton.Name = "ModifyCustButton";
+            ModifyCustButton.Size = new Size(217, 51);
+            ModifyCustButton.TabIndex = 1;
+            ModifyCustButton.Text = "Update/Retrieve/Delete Customer Information";
+            ModifyCustButton.UseVisualStyleBackColor = true;
+            ModifyCustButton.Click += ModifyCustButton_Click;
+            // 
+            // NewCustButton
+            // 
+            NewCustButton.Location = new Point(19, 16);
+            NewCustButton.Margin = new Padding(3, 2, 3, 2);
+            NewCustButton.Name = "NewCustButton";
+            NewCustButton.Size = new Size(217, 32);
+            NewCustButton.TabIndex = 0;
+            NewCustButton.Text = "Add New Customer";
+            NewCustButton.UseVisualStyleBackColor = true;
+            NewCustButton.Click += NewCustButtonClick;
             // 
             // tabPage2
             // 
@@ -93,110 +124,97 @@
             tabPage2.Controls.Add(button5);
             tabPage2.Controls.Add(button4);
             tabPage2.Controls.Add(button3);
-            tabPage2.Location = new Point(4, 29);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Margin = new Padding(3, 2, 3, 2);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1314, 517);
+            tabPage2.Padding = new Padding(3, 2, 3, 2);
+            tabPage2.Size = new Size(1149, 384);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Movie Management";
             // 
-            // button1
+            // splitContainer1
             // 
-            button1.Location = new Point(22, 21);
-            button1.Name = "button1";
-            button1.Size = new Size(248, 43);
-            button1.TabIndex = 0;
-            button1.Text = "Add New Customer";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            splitContainer1.Location = new Point(320, 25);
+            splitContainer1.Margin = new Padding(3, 2, 3, 2);
+            splitContainer1.Name = "splitContainer1";
             // 
-            // button2
+            // splitContainer1.Panel1
             // 
-            button2.Location = new Point(22, 70);
-            button2.Name = "button2";
-            button2.Size = new Size(248, 68);
-            button2.TabIndex = 1;
-            button2.Text = "Update/Retrieve/Delete Customer Information";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            splitContainer1.Panel1.RightToLeft = RightToLeft.No;
             // 
-            // button3
+            // splitContainer1.Panel2
             // 
-            button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(29, 33);
-            button3.Name = "button3";
-            button3.Size = new Size(248, 43);
-            button3.TabIndex = 1;
-            button3.Text = "Add New Movie";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.Location = new Point(29, 82);
-            button4.Name = "button4";
-            button4.Size = new Size(248, 43);
-            button4.TabIndex = 2;
-            button4.Text = "Search/Modify Movie";
-            button4.UseVisualStyleBackColor = true;
+            splitContainer1.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer1.Size = new Size(780, 344);
+            splitContainer1.SplitterDistance = 259;
+            splitContainer1.TabIndex = 4;
             // 
             // button5
             // 
             button5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.Location = new Point(29, 131);
+            button5.Location = new Point(25, 98);
+            button5.Margin = new Padding(3, 2, 3, 2);
             button5.Name = "button5";
-            button5.Size = new Size(248, 43);
+            button5.Size = new Size(217, 32);
             button5.TabIndex = 3;
             button5.Text = "Assign Actor to Movie";
             button5.UseVisualStyleBackColor = true;
             // 
-            // splitContainer1
+            // button4
             // 
-            splitContainer1.Location = new Point(366, 33);
-            splitContainer1.Name = "splitContainer1";
-            splitContainer1.Size = new Size(892, 459);
-            splitContainer1.SplitterDistance = 297;
-            splitContainer1.TabIndex = 4;
+            button4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button4.Location = new Point(25, 62);
+            button4.Margin = new Padding(3, 2, 3, 2);
+            button4.Name = "button4";
+            button4.Size = new Size(217, 32);
+            button4.TabIndex = 2;
+            button4.Text = "Search/Modify Movie";
+            button4.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanel1
+            // button3
             // 
-            flowLayoutPanel1.Location = new Point(500, 21);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(797, 490);
-            flowLayoutPanel1.TabIndex = 2;
+            button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.Location = new Point(25, 25);
+            button3.Margin = new Padding(3, 2, 3, 2);
+            button3.Name = "button3";
+            button3.Size = new Size(217, 32);
+            button3.TabIndex = 1;
+            button3.Text = "Add New Movie";
+            button3.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
             tabPage3.BackColor = Color.FromArgb(255, 192, 192);
-            tabPage3.Location = new Point(4, 29);
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Margin = new Padding(3, 2, 3, 2);
             tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1314, 517);
+            tabPage3.Padding = new Padding(3, 2, 3, 2);
+            tabPage3.Size = new Size(1149, 384);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Rental Management";
-            tabPage3.Click += tabPage3_Click;
             // 
             // tabPage4
             // 
             tabPage4.BackColor = Color.FromArgb(192, 255, 192);
-            tabPage4.Location = new Point(4, 29);
+            tabPage4.Location = new Point(4, 24);
+            tabPage4.Margin = new Padding(3, 2, 3, 2);
             tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1314, 517);
+            tabPage4.Padding = new Padding(3, 2, 3, 2);
+            tabPage4.Size = new Size(1149, 384);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Report";
-            tabPage4.Click += tabPage4_Click;
             // 
             // Form2
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1359, 663);
-            Controls.Add(tabControl1);
+            ClientSize = new Size(1189, 497);
+            Controls.Add(DashboardTabs);
             Controls.Add(label1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Form2";
             Text = "Employee Homescreen ";
-            tabControl1.ResumeLayout(false);
+            DashboardTabs.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
@@ -208,11 +226,11 @@
         #endregion
 
         private Label label1;
-        private TabControl tabControl1;
+        private TabControl DashboardTabs;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private Button button1;
-        private Button button2;
+        private Button NewCustButton;
+        private Button ModifyCustButton;
         private SplitContainer splitContainer1;
         private Button button5;
         private Button button4;
