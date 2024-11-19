@@ -12,8 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\halo2\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\halo2\\.nuget\\packages",
+      "C:\\Users\\kamil\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\kamil\\.nuget\\packages",
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
     "configProperties": {

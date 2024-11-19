@@ -14,6 +14,7 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CMPT291_Project
+build_property.ProjectDir = C:\Users\kamil\Desktop\cmpt 291\CMPT291_Project\
 build_property.ProjectDir = C:\Users\halo2\Source\Repos\CMPT291Project\CMPT291_Project\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

@@ -7,46 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CMPT291_Project
 {
     public partial class Form1 : Form
     {
-        /*
         public SqlConnection myConnection;
         public SqlCommand myCommand;
         public SqlDataReader myReader;
-        */
+
         public Form1()
         {
-
             InitializeComponent();
-            /*
-            ///////////////////////////////
-            operation.Items.Clear();
-            operation.Items.Add("Show all");
-            operation.Items.Add("Show with starting grade: ");
-            //////////////////////////////////
-            ///
-            String connectionString = "Server = LAPTOP-6TEGHEN2; Database = ConnectTutorial; Trusted_Connection = yes;";
 
-            SqlConnection myConnection = new SqlConnection(connectionString); // Timeout in seconds
+            // Initialize the connection
+            myConnection = new SqlConnection("user id=admin3;" + // Username
+                                              "password=admin;" + // Password
+                                              "server=Kamil\\MSSQLSERVER03;" + // Server name
+                                              "TrustServerCertificate=True;" +
+                                              "database=project291; " + // Database
+                                              "connection timeout=30"); // Timeout in seconds
 
             try
             {
-                myConnection.Open(); // Open connection
+                myConnection.Open(); // Open the connection
                 myCommand = new SqlCommand();
-                myCommand.Connection = myConnection; // Link the command stream to the connection
+                myCommand.Connection = myConnection; // Link the command to the connection
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString(), "Error");
                 this.Close();
             }
-            */
-            //String connectionString = "Server = LAPTOP-6TEGHEN2; Database = ConnectTutorial; Trusted_Connection = yes;";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -56,80 +50,58 @@ namespace CMPT291_Project
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            /*
-             if (username in database AND password = database.password)
-                login --> show homescreen
-            */
+            // Get input from text fields
             string username = usernameInput.Text;
             string password = passwordInput.Text;
 
-            int loginCheck = 0;
-            
-            while (loginCheck == 0)
+            // Check if fields are empty
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                //loginButton.Enabled = false;
-                /*
-                if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                {
-                    loginButton.Enabled = false;
-                }
-                */
-                if (!string.IsNullOrEmpty(username) || !string.IsNullOrEmpty(password))
-                {
-                    loginButton.Enabled = true;
-                    Form2 homeScreen = new Form2();
-                    homeScreen.Show();
-                    loginCheck = 1;
-                }
+                MessageBox.Show("Please enter both username and password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                /*
-                if (loginButton.Enabled)
+            try
+            {
+                // Query to check username and password
+                string query = "SELECT COUNT(*) FROM UsernamePassword WHERE Username = @username AND Password = @password";
+
+                // Create SQL command
+                using (SqlCommand command = new SqlCommand(query, myConnection))
                 {
-                    if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", password);
+
+                    // Execute query
+                    int result = (int)command.ExecuteScalar();
+
+                    if (result > 0)
                     {
-                        loginButton.Enabled = false;
-                    }
-                    else if (!string.IsNullOrEmpty(username) || !string.IsNullOrEmpty(password))
-                    {
-                        loginButton.Enabled = true;
+                        // Login successful
+                        MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Form2 homeScreen = new Form2();
                         homeScreen.Show();
-                        break;
+                        this.Hide();
+                    }
+                    else
+                    {
+                        // Login failed
+                        MessageBox.Show("Invalid username or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                */
             }
-                    
-                
-                /*
-                else
-                {
-                    loginButton.Enabled = true;
-                    Form2 homeScreen = new Form2();
-                    homeScreen.Show();
-                }
-                */
-                    
-            
-            /*
-
-            if (string.IsNullOrEmpty(usernameInput.Text) || string.IsNullOrEmpty(passwordInput.Text))
+            catch (Exception ex)
             {
-
-                Form2 homeScreen = new Form2();
-                homeScreen.Show();
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (string.IsNullOrEmpty(usernameInput.Text) && string.IsNullOrEmpty(passwordInput.Text))
-            {
-                loginButton.Enabled = false;
-            }
-            */
- 
         }
+
+
 
         private void usernameInput_TextChanged(object sender, EventArgs e)
         {
 
         }
+        
     }
 }
