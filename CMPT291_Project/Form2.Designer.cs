@@ -31,21 +31,18 @@
             label1 = new Label();
             DashboardTabs = new TabControl();
             tabPage1 = new TabPage();
-            flowLayoutPanel1 = new FlowLayoutPanel();
             ModifyCustButton = new Button();
             NewCustButton = new Button();
             tabPage2 = new TabPage();
-            splitContainer1 = new SplitContainer();
-            button5 = new Button();
-            button4 = new Button();
-            button3 = new Button();
+            AssignActorButton = new Button();
+            ModifyMovieButton = new Button();
+            AddMovieButton = new Button();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
+            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             DashboardTabs.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
-            splitContainer1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -68,13 +65,12 @@
             DashboardTabs.Margin = new Padding(3, 2, 3, 2);
             DashboardTabs.Name = "DashboardTabs";
             DashboardTabs.SelectedIndex = 0;
-            DashboardTabs.Size = new Size(1157, 412);
+            DashboardTabs.Size = new Size(1160, 412);
             DashboardTabs.TabIndex = 2;
             // 
             // tabPage1
             // 
             tabPage1.BackColor = Color.FromArgb(192, 192, 255);
-            tabPage1.Controls.Add(flowLayoutPanel1);
             tabPage1.Controls.Add(ModifyCustButton);
             tabPage1.Controls.Add(NewCustButton);
             tabPage1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -82,18 +78,9 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Margin = new Padding(3, 2, 3, 2);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3, 2, 3, 2);
-            tabPage1.Size = new Size(1149, 384);
+            tabPage1.Size = new Size(1152, 384);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Customer Management";
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Location = new Point(438, 16);
-            flowLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(697, 368);
-            flowLayoutPanel1.TabIndex = 2;
             // 
             // ModifyCustButton
             // 
@@ -104,7 +91,7 @@
             ModifyCustButton.TabIndex = 1;
             ModifyCustButton.Text = "Update/Retrieve/Delete Customer Information";
             ModifyCustButton.UseVisualStyleBackColor = true;
-            ModifyCustButton.Click += ModifyCustButton_Click;
+            ModifyCustButton.Click += ModifyCustButtonClick;
             // 
             // NewCustButton
             // 
@@ -120,67 +107,52 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.FromArgb(255, 192, 128);
-            tabPage2.Controls.Add(splitContainer1);
-            tabPage2.Controls.Add(button5);
-            tabPage2.Controls.Add(button4);
-            tabPage2.Controls.Add(button3);
+            tabPage2.Controls.Add(AssignActorButton);
+            tabPage2.Controls.Add(ModifyMovieButton);
+            tabPage2.Controls.Add(AddMovieButton);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Margin = new Padding(3, 2, 3, 2);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3, 2, 3, 2);
-            tabPage2.Size = new Size(1149, 384);
+            tabPage2.Size = new Size(1152, 384);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Movie Management";
             // 
-            // splitContainer1
+            // AssignActorButton
             // 
-            splitContainer1.Location = new Point(320, 25);
-            splitContainer1.Margin = new Padding(3, 2, 3, 2);
-            splitContainer1.Name = "splitContainer1";
+            AssignActorButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            AssignActorButton.Location = new Point(25, 98);
+            AssignActorButton.Margin = new Padding(3, 2, 3, 2);
+            AssignActorButton.Name = "AssignActorButton";
+            AssignActorButton.Size = new Size(217, 32);
+            AssignActorButton.TabIndex = 3;
+            AssignActorButton.Text = "Assign Actor to Movie";
+            AssignActorButton.UseVisualStyleBackColor = true;
+            AssignActorButton.Click += AssignActorButton_Click;
             // 
-            // splitContainer1.Panel1
+            // ModifyMovieButton
             // 
-            splitContainer1.Panel1.RightToLeft = RightToLeft.No;
+            ModifyMovieButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ModifyMovieButton.Location = new Point(25, 62);
+            ModifyMovieButton.Margin = new Padding(3, 2, 3, 2);
+            ModifyMovieButton.Name = "ModifyMovieButton";
+            ModifyMovieButton.Size = new Size(217, 32);
+            ModifyMovieButton.TabIndex = 2;
+            ModifyMovieButton.Text = "Search/Modify Movie";
+            ModifyMovieButton.UseVisualStyleBackColor = true;
+            ModifyMovieButton.Click += ModifyMovieButton_Click;
             // 
-            // splitContainer1.Panel2
+            // AddMovieButton
             // 
-            splitContainer1.Panel2.RightToLeft = RightToLeft.No;
-            splitContainer1.Size = new Size(780, 344);
-            splitContainer1.SplitterDistance = 259;
-            splitContainer1.TabIndex = 4;
-            // 
-            // button5
-            // 
-            button5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.Location = new Point(25, 98);
-            button5.Margin = new Padding(3, 2, 3, 2);
-            button5.Name = "button5";
-            button5.Size = new Size(217, 32);
-            button5.TabIndex = 3;
-            button5.Text = "Assign Actor to Movie";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.Location = new Point(25, 62);
-            button4.Margin = new Padding(3, 2, 3, 2);
-            button4.Name = "button4";
-            button4.Size = new Size(217, 32);
-            button4.TabIndex = 2;
-            button4.Text = "Search/Modify Movie";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(25, 25);
-            button3.Margin = new Padding(3, 2, 3, 2);
-            button3.Name = "button3";
-            button3.Size = new Size(217, 32);
-            button3.TabIndex = 1;
-            button3.Text = "Add New Movie";
-            button3.UseVisualStyleBackColor = true;
+            AddMovieButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            AddMovieButton.Location = new Point(25, 25);
+            AddMovieButton.Margin = new Padding(3, 2, 3, 2);
+            AddMovieButton.Name = "AddMovieButton";
+            AddMovieButton.Size = new Size(217, 32);
+            AddMovieButton.TabIndex = 1;
+            AddMovieButton.Text = "Add New Movie";
+            AddMovieButton.UseVisualStyleBackColor = true;
+            AddMovieButton.Click += AddMovieButton_Click;
             // 
             // tabPage3
             // 
@@ -189,7 +161,7 @@
             tabPage3.Margin = new Padding(3, 2, 3, 2);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3, 2, 3, 2);
-            tabPage3.Size = new Size(1149, 384);
+            tabPage3.Size = new Size(1152, 384);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Rental Management";
             // 
@@ -200,15 +172,20 @@
             tabPage4.Margin = new Padding(3, 2, 3, 2);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3, 2, 3, 2);
-            tabPage4.Size = new Size(1149, 384);
+            tabPage4.Size = new Size(1152, 384);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Report";
+            // 
+            // sqlCommand1
+            // 
+            sqlCommand1.CommandTimeout = 30;
+            sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1189, 497);
+            ClientSize = new Size(1182, 499);
             Controls.Add(DashboardTabs);
             Controls.Add(label1);
             Margin = new Padding(3, 2, 3, 2);
@@ -217,26 +194,178 @@
             DashboardTabs.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
+        // *******************************
+        //   Customer Tab Functionality
+        // *******************************
+        private void InitializeCustomerInputComponents()
+        {
+            CustInputPanel = new Panel
+            {
+                Size = new System.Drawing.Size(799, 364),
+                Location = new System.Drawing.Point(336, 15),
+                BackColor = System.Drawing.Color.White,
+            };
+            tabPage1.Controls.Add(CustInputPanel);
+            Label lblFirstName = new Label { Text = "First Name:", Location = new Point(20, 20) };
+            txtFirstName = new TextBox { Location = new Point(170, 20), Width = 300 };
+            Label lblLastName = new Label { Text = "Last Name:", Location = new Point(20, 60) };
+            txtLastName = new TextBox { Location = new Point(170, 60), Width = 300 };
+            Label lblAddress = new Label { Text = "Address:", Location = new Point(20, 100) };
+            txtAddress = new TextBox { Location = new Point(170, 100), Width = 300 };
+            Label lblCity = new Label { Text = "City:", Location = new Point(20, 140) };
+            txtCity = new TextBox { Location = new Point(170, 140), Width = 300 };
+            Label lblState = new Label { Text = "State:", Location = new Point(20, 180) };
+            //
+            ComboBox cmbState = new ComboBox
+            {
+                Location = new Point(170, 180),
+                Width = 50,
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                FlatStyle = FlatStyle.Popup,
+                BackColor = Color.White
+            };
+            // Add provinces
+            cmbState.Items.AddRange(new string[]
+            {
+                "AB", "BC", "MB", "NB", "NL", "NS", "NT", "NU", "ON", "PE", "QC", "SK", "YT"
+            });
+            //
+            Label lblZip = new Label { Text = "Zip Code:", Location = new Point(20, 220) };
+            txtZip = new TextBox { Location = new Point(170, 220), Width = 100 };
+            Label lblEmail = new Label { Text = "Email:", Location = new Point(20, 260)};
+            txtEmail = new TextBox { Location = new Point(170, 260), Width = 300 };
+            Label lblAccountNumber = new Label { Text = "Account Number:", Location = new Point(20, 300)};
+            txtAccountNumber = new TextBox { Location = new Point(170, 300), Width = 100 };
+            Label lblCreditCard = new Label { Text = "Credit Card:", Location = new Point(20, 340)};
+            txtCreditCard = new TextBox { Location = new Point(170, 340), Width = 150 };
+
+            CustInputPanel.Controls.Add(cmbState);
+            CustInputPanel.Controls.Add(lblFirstName);
+            CustInputPanel.Controls.Add(txtFirstName);
+            CustInputPanel.Controls.Add(lblLastName);
+            CustInputPanel.Controls.Add(txtLastName);
+            CustInputPanel.Controls.Add(lblAddress);
+            CustInputPanel.Controls.Add(txtAddress);
+            CustInputPanel.Controls.Add(lblCity);
+            CustInputPanel.Controls.Add(txtCity);
+            CustInputPanel.Controls.Add(lblState);
+            CustInputPanel.Controls.Add(lblZip);
+            CustInputPanel.Controls.Add(txtZip);
+            CustInputPanel.Controls.Add(lblEmail);
+            CustInputPanel.Controls.Add(txtEmail);
+            CustInputPanel.Controls.Add(lblAccountNumber);
+            CustInputPanel.Controls.Add(txtAccountNumber);
+            CustInputPanel.Controls.Add(lblCreditCard);
+            CustInputPanel.Controls.Add(txtCreditCard);
+        }
+
+        // *******************************
+        //    Movie Tab Functionality
+        // *******************************
+
+        // For the Add Movie and Modify Movie Buttons
+        private void InitializeMovieInputComponents()
+        {
+            MovieInputPanel = new Panel
+            {
+                Size = new Size(799, 364),
+                Location = new Point(336, 15),
+                BackColor = Color.White
+            };
+            tabPage2.Controls.Add(MovieInputPanel);
+
+            Label lblMovieName = new Label { Text = "Movie Name:", Location = new Point(20, 20), AutoSize = true };
+            txtMovieName = new TextBox { Location = new Point(170, 20), Width = 300 };
+
+            Label lblMovieType = new Label { Text = "Movie Type:", Location = new Point(20, 60), AutoSize = true };
+            cmbMovieType = new ComboBox
+            {
+                Location = new Point(170, 60),
+                Width = 150,
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                FlatStyle = FlatStyle.Popup,
+                BackColor = Color.White
+            };
+            cmbMovieType.Items.AddRange(new string[] { "Comedy", "Drama", "Action", "Foreign" });
+
+            Label lblDistFee = new Label { Text = "Distribution Fee:", Location = new Point(20, 100), AutoSize = true };
+            txtDistFee = new TextBox { Location = new Point(170, 100), Width = 150 };
+
+            Label lblNumCopies = new Label { Text = "Number of Copies:", Location = new Point(20, 140), AutoSize = true };
+            txtNumCopies = new TextBox { Location = new Point(170, 140), Width = 100 };
+
+            MovieInputPanel.Controls.Add(lblMovieName);
+            MovieInputPanel.Controls.Add(txtMovieName);
+            MovieInputPanel.Controls.Add(lblMovieType);
+            MovieInputPanel.Controls.Add(cmbMovieType);
+            MovieInputPanel.Controls.Add(lblDistFee);
+            MovieInputPanel.Controls.Add(txtDistFee);
+            MovieInputPanel.Controls.Add(lblNumCopies);
+            MovieInputPanel.Controls.Add(txtNumCopies);
+        }
+
+        // For the Assign Actor button
+        private void InitializeAssignActorComponents()
+        {
+            AssignActorPanel = new Panel
+            {
+                Size = new Size(799, 364),
+                Location = new Point(336, 15),
+                BackColor = Color.White
+            };
+            tabPage2.Controls.Add(AssignActorPanel);
+
+            Label lblMovieName = new Label { Text = "Movie Name:", Location = new Point(20, 20), AutoSize = true };
+            txtAssignMovieName = new TextBox { Location = new Point(170, 20), Width = 300 };
+
+            Label lblActorName = new Label { Text = "Actor Name:", Location = new Point(20, 60), AutoSize = true };
+            txtAssignActorName = new TextBox { Location = new Point(170, 60), Width = 300 };
+
+            AssignActorPanel.Controls.Add(lblMovieName);
+            AssignActorPanel.Controls.Add(txtAssignMovieName);
+            AssignActorPanel.Controls.Add(lblActorName);
+            AssignActorPanel.Controls.Add(txtAssignActorName);
+        }
         #endregion
 
         private Label label1;
         private TabControl DashboardTabs;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
-        private Button NewCustButton;
-        private Button ModifyCustButton;
-        private SplitContainer splitContainer1;
-        private Button button5;
-        private Button button4;
-        private Button button3;
-        private FlowLayoutPanel flowLayoutPanel1;
         private TabPage tabPage3;
         private TabPage tabPage4;
+        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
+
+        // Customer Tab
+        private TabPage tabPage1;
+        private Button NewCustButton;
+        private Button ModifyCustButton;
+        private ComboBox cmbState;
+        private TextBox txtFirstName;
+        private TextBox txtLastName;
+        private TextBox txtAddress;
+        private TextBox txtCity;
+        private TextBox txtZip;
+        private TextBox txtEmail;
+        private TextBox txtAccountNumber;
+        private TextBox txtCreditCard;
+        private Panel CustInputPanel;
+        private GroupBox groupBox1;
+
+        // Movie Tab
+        private TabPage tabPage2;
+        private Button AssignActorButton;
+        private Button ModifyMovieButton;
+        private Button AddMovieButton;
+        private Panel MovieInputPanel;
+        private TextBox txtDistFee;
+        private TextBox txtNumCopies;
+        private TextBox txtMovieName;
+        private ComboBox cmbMovieType;
+        private Panel AssignActorPanel;
+        private TextBox txtAssignActorName;
+        private TextBox txtAssignMovieName;
     }
 }
