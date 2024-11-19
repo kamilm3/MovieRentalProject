@@ -46,7 +46,7 @@
             loginButton.ForeColor = Color.White;
             loginButton.Name = "loginButton";
             loginButton.UseVisualStyleBackColor = false;
-            loginButton.Click += button1_Click;
+            loginButton.Click += loginButton_Click;
             // 
             // contextMenuStrip1
             // 
@@ -58,13 +58,11 @@
             // 
             resources.ApplyResources(usernameText, "usernameText");
             usernameText.Name = "usernameText";
-            usernameText.Click += label1_Click;
             // 
             // label2
             // 
             resources.ApplyResources(label2, "label2");
             label2.Name = "label2";
-            label2.Click += label2_Click;
             // 
             // usernameInput
             // 

@@ -23,9 +23,9 @@ namespace CMPT291_Project
             InitializeComponent();
 
             // Initialize the connection
-            myConnection = new SqlConnection("user id=admin3;" + // Username
-                                              "password=admin;" + // Password
-                                              "server=Kamil\\MSSQLSERVER03;" + // Server name
+            myConnection = new SqlConnection("user id=Memoh;" + // Username
+                                              "password=memoh4321;" + // Password
+                                              "server=DESKTOP-H6FU9US\\MSSQLSERVER01;" + // Server name
                                               "TrustServerCertificate=True;" +
                                               "database=project291; " + // Database
                                               "connection timeout=30"); // Timeout in seconds
@@ -43,33 +43,12 @@ namespace CMPT291_Project
             }
         }
 
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void loginButton_Click(object sender, EventArgs e)
         {
             // Get input from text fields
             string username = usernameInput.Text;
