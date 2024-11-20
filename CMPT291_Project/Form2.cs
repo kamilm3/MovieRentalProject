@@ -15,101 +15,25 @@ namespace CMPT291_Project
         // *********************************
         private void NewCustButtonClick(object sender, EventArgs e)
         {
-            ClearPanels();
-            InitializeCustomerInputComponents();
-            CustInputPanel.Visible = true;
-
-            // Add "Submit" and "Cancel" buttons for new customer functionality
-            Button btnSubmit = new Button
-            {
-                Text = "Submit",
-                Location = new Point(500, 300),
-                Width = 100,
-                Height = 40
-            };
-            btnSubmit.Click += BtnSubmit_Click;
-
-            Button btnCancel = new Button
-            {
-                Text = "Cancel",
-                Location = new Point(620, 300),
-                Width = 100,
-                Height = 40
-            };
-            btnCancel.Click += BtnCancel_Click;
-
-            CustInputPanel.Controls.Add(btnSubmit);
-            CustInputPanel.Controls.Add(btnCancel);
+            ModifyCustBox.Visible = false;
+            AddCustBox.Visible = true;
         }
 
         private void ModifyCustButtonClick(object sender, EventArgs e)
         {
-            ClearPanels();
-            InitializeCustomerInputComponents();
-
-            Label lblCustomerID = new Label
-            {
-                Name = "lblCustomerID",
-                Text = "Customer ID:",
-                Location = new Point(500, 20),
-                AutoSize = true
-            };
-
-            TextBox txtCustomerID = new TextBox
-            {
-                Name = "txtCustomerID",
-                Location = new Point(650, 20),
-                Width = 100
-            };
-
-            CustInputPanel.Controls.Add(lblCustomerID);
-            CustInputPanel.Controls.Add(txtCustomerID);
-
-            CustInputPanel.Visible = true;
-
-            // Add "Update" and "Delete" buttons for modify customer functionality
-            Button btnUpdate = new Button
-            {
-                Text = "Update",
-                Location = new Point(500, 300),
-                Width = 100,
-                Height = 40
-            };
-            btnUpdate.Click += BtnUpdate_Click;
-
-            Button btnDelete = new Button
-            {
-                Text = "Delete",
-                Location = new Point(620, 300),
-                Width = 100,
-                Height = 40
-            };
-            btnDelete.Click += BtnDelete_Click;
-
-            Button btnCancel = new Button
-            {
-                Text = "Cancel",
-                Location = new Point(620, 250),
-                Width = 100,
-                Height = 40
-            };
-            btnCancel.Click += BtnCancel_Click;
-
-            CustInputPanel.Controls.Add(btnCancel);
-            CustInputPanel.Controls.Add(btnUpdate);
-            CustInputPanel.Controls.Add(btnDelete);
+            AddCustBox.Visible = false;
+            ModifyCustBox.Visible = true;
         }
 
-
-        private void BtnSubmit_Click(object sender, EventArgs e)
+        private void AddCustButton_Click(object sender, EventArgs e)
         {
             // Collect input that will be validated
-            string firstName = txtFirstName.Text.Trim();
-            string lastName = txtLastName.Text.Trim();
-            string email = txtEmail.Text.Trim();
-            string state = cmbState?.SelectedItem?.ToString();
-            string accountNumber = txtAccountNumber.Text.Trim();
-            string creditCard = txtCreditCard.Text.Trim();
+            string firstName = FirstNameCustText.Text.Trim();
+            string lastName = LastNameCustText.Text.Trim();
+            string email = EmailCustText.Text.Trim();
+            string state = StateCustComboBox?.SelectedItem?.ToString();
+            string accountNumber = AccountCustText.Text.Trim();
+            string creditCard = CreditCustText.Text.Trim();
             // Will add rest of info later...
 
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(email) ||
@@ -123,25 +47,10 @@ namespace CMPT291_Project
             MessageBox.Show("Customer added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void BtnCancel_Click(object sender, EventArgs e)
-        {
-            CustInputPanel.Visible = false;
-        }
-        private void BtnCancelMovie_Click(object sender, EventArgs e)
-        {
-            MovieInputPanel.Visible = false;
-        }
-
-        private void BtnCancelActor_Click(object sender, EventArgs e)
-        {
-            AssignActorPanel.Visible = false;
-        }
-
-        private void BtnUpdate_Click(object sender, EventArgs e)
+        private void UpdateCustButton_Click(object sender, EventArgs e)
         {
             // CustomerID field
-            TextBox txtCustomerID = CustInputPanel.Controls["txtCustomerID"] as TextBox;
-            string customerID = txtCustomerID?.Text.Trim();
+            string customerID = CustIDText?.Text.Trim();
 
             // Validate CustomerID
             if (string.IsNullOrEmpty(customerID))
@@ -151,14 +60,14 @@ namespace CMPT291_Project
             }
 
             // Collect input data from user input
-            string firstName = txtFirstName.Text.Trim();
-            string lastName = txtLastName.Text.Trim();
-            string address = txtAddress.Text.Trim();
-            string city = txtCity.Text.Trim();
-            string state = cmbState?.SelectedItem?.ToString();
-            string zip = txtZip.Text.Trim();
-            string email = txtEmail.Text.Trim();
-            string accountNumber = txtAccountNumber.Text.Trim();
+            string firstName = FirstNameModText.Text.Trim();
+            string lastName = LastNameModText.Text.Trim();
+            string address = AddressModText.Text.Trim();
+            string city = CityModText.Text.Trim();
+            string state = StateModComboBox?.SelectedItem?.ToString();
+            string zip = ZipModText.Text.Trim();
+            string email = EmailModText.Text.Trim();
+            string accountNumber = AccountModText.Text.Trim();
             // Will add rest of info later...
 
             // Validate inputs
@@ -173,11 +82,10 @@ namespace CMPT291_Project
             MessageBox.Show("Customer modified successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void BtnDelete_Click(object sender, EventArgs e)
+        private void DeleteCustButton_Click(object sender, EventArgs e)
         {
             // CustomerID field
-            TextBox txtCustomerID = CustInputPanel.Controls["txtCustomerID"] as TextBox;
-            string customerID = txtCustomerID?.Text.Trim();
+            string customerID = CustIDText?.Text.Trim();
 
             // Validate CustomerID
             if (string.IsNullOrEmpty(customerID))
@@ -202,85 +110,24 @@ namespace CMPT291_Project
         // *********************************
         private void AddMovieButton_Click(object sender, EventArgs e)
         {
-            ClearPanels();
-            InitializeMovieInputComponents();
-            MovieInputPanel.Visible = true;
-
-            Button btnSubmit = new Button
-            {
-                Text = "Submit",
-                Location = new Point(500, 300),
-                Width = 100,
-                Height = 40
-            };
-            btnSubmit.Click += BtnSubmitMovie_Click;
-
-            Button btnCancel = new Button
-            {
-                Text = "Cancel",
-                Location = new Point(620, 300),
-                Width = 100,
-                Height = 40
-            };
-            btnCancel.Click += BtnCancelMovie_Click;
-
-            MovieInputPanel.Controls.Add(btnSubmit);
-            MovieInputPanel.Controls.Add(btnCancel);
+            AssignActorBox.Visible = false;
+            ModifyMovieBox.Visible = false;
+            AddMovieBox.Visible = true;
         }
 
         private void ModifyMovieButton_Click(object sender, EventArgs e)
         {
-            ClearPanels();
-            InitializeMovieInputComponents();
-            MovieInputPanel.Visible = true;
-
-            if (MovieInputPanel.Controls["lblMovieID"] == null)
-            {
-                Label lblMovieID = new Label { Text = "Movie ID:", Location = new Point(20, 180), AutoSize = true, Name = "lblMovieID" };
-                TextBox txtMovieID = new TextBox { Location = new Point(170, 180), Width = 100, Name = "txtMovieID" };
-
-                MovieInputPanel.Controls.Add(lblMovieID);
-                MovieInputPanel.Controls.Add(txtMovieID);
-            }
-
-            Button btnUpdate = new Button
-            {
-                Text = "Update",
-                Location = new Point(500, 300),
-                Width = 100,
-                Height = 40
-            };
-            btnUpdate.Click += BtnUpdateMovie_Click;
-
-            Button btnDelete = new Button
-            {
-                Text = "Delete",
-                Location = new Point(620, 300),
-                Width = 100,
-                Height = 40
-            };
-            btnDelete.Click += BtnDeleteMovie_Click;
-
-            Button btnCancel = new Button
-            {
-                Text = "Cancel",
-                Location = new Point(620, 250),
-                Width = 100,
-                Height = 40
-            };
-            btnCancel.Click += BtnCancelMovie_Click;
-
-            MovieInputPanel.Controls.Add(btnUpdate);
-            MovieInputPanel.Controls.Add(btnDelete);
-            MovieInputPanel.Controls.Add(btnCancel);
+            AssignActorBox.Visible = false;
+            AddMovieBox.Visible = false;
+            ModifyMovieBox.Visible = true;
         }
 
-        private void BtnSubmitMovie_Click(object sender, EventArgs e)
+        private void MovieAddButton_Click(object sender, EventArgs e)
         {
-            string movieName = txtMovieName.Text.Trim();
-            string movieType = cmbMovieType.SelectedItem?.ToString();
-            string distFee = txtDistFee.Text.Trim();
-            string numCopies = txtNumCopies.Text.Trim();
+            string movieName = NameAddText.Text.Trim();
+            string movieType = TypeAddComboBox.SelectedItem?.ToString();
+            string distFee = FeeAddText.Text.Trim();
+            string numCopies = CopiesAddText.Text.Trim();
 
             // Validate inputs
             if (string.IsNullOrEmpty(movieName) || string.IsNullOrEmpty(movieType) || string.IsNullOrEmpty(distFee) || string.IsNullOrEmpty(numCopies))
@@ -293,14 +140,13 @@ namespace CMPT291_Project
             MessageBox.Show("Movie added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void BtnUpdateMovie_Click(object sender, EventArgs e)
+        private void MovieModifyButton_Click(object sender, EventArgs e)
         {
-            TextBox txtMovieID = MovieInputPanel.Controls["txtMovieID"] as TextBox;
-            string movieID = txtMovieID?.Text.Trim();
-            string movieName = txtMovieName.Text.Trim();
-            string movieType = cmbMovieType.SelectedItem?.ToString();
-            string distFee = txtDistFee.Text.Trim();
-            string numCopies = txtNumCopies.Text.Trim();
+            string movieID = MovieIDText?.Text.Trim();
+            string movieName = NameModText.Text.Trim();
+            string movieType = TypeModComboBox.SelectedItem?.ToString();
+            string distFee = FeeModText.Text.Trim();
+            string numCopies = CopiesModText.Text.Trim();
 
             // Validate inputs
             if (string.IsNullOrEmpty(movieID))
@@ -313,10 +159,9 @@ namespace CMPT291_Project
             MessageBox.Show("Movie updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void BtnDeleteMovie_Click(object sender, EventArgs e)
+        private void DeleteMovieButton_Click(object sender, EventArgs e)
         {
-            TextBox txtMovieID = MovieInputPanel.Controls["txtMovieID"] as TextBox;
-            string movieID = txtMovieID?.Text.Trim();
+            string movieID = MovieIDText?.Text.Trim();
 
             if (string.IsNullOrEmpty(movieID))
             {
@@ -330,38 +175,16 @@ namespace CMPT291_Project
 
         private void AssignActorButton_Click(object sender, EventArgs e)
         {
-            ClearPanels();
-            InitializeAssignActorComponents();
-
-            Button btnAssignActor = new Button
-            {
-                Text = "Assign Actor",
-                Location = new Point(170, 100),
-                Width = 120,
-                Height = 40
-            };
-            btnAssignActor.Click += BtnAssignActor_Click;
-
-            Button btnCancel = new Button
-            {
-                Text = "Cancel",
-                Location = new Point(290, 100),
-                Width = 100,
-                Height = 40
-            };
-            btnCancel.Click += BtnCancelActor_Click;
-
-            AssignActorPanel.Controls.Add(btnCancel);
-            AssignActorPanel.Controls.Add(btnAssignActor);
-
-            AssignActorPanel.Visible = true;
+            AddMovieBox.Visible = false;
+            ModifyMovieBox.Visible = false;
+            AssignActorBox.Visible = true;
         }
 
-        private void BtnAssignActor_Click(object sender, EventArgs e)
+        private void AssignButton_Click(object sender, EventArgs e)
         {
             // Collect input data
-            string movieName = txtAssignMovieName.Text.Trim();
-            string actorName = txtAssignActorName.Text.Trim();
+            string movieName = MovieAssignText.Text.Trim();
+            string actorName = ActorAssignText.Text.Trim();
 
             // Validate inputs
             if (string.IsNullOrEmpty(movieName) || string.IsNullOrEmpty(actorName))
@@ -373,30 +196,6 @@ namespace CMPT291_Project
 
             // NEED TO ADD IN DATABASE FUNCTIONALITY HERE
             MessageBox.Show("Actor successfully assigned to the movie!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void ClearPanels()
-        {
-            // Hide and clear the Customer Input Panel
-            if (CustInputPanel != null)
-            {
-                CustInputPanel.Visible = false;
-                CustInputPanel.Controls.Clear();
-            }
-
-            // Hide and clear the Movie Input Panel
-            if (MovieInputPanel != null)
-            {
-                MovieInputPanel.Visible = false;
-                MovieInputPanel.Controls.Clear();
-            }
-
-            // Hide and clear the Assign Actor Panel
-            if (AssignActorPanel != null)
-            {
-                AssignActorPanel.Visible = false;
-                AssignActorPanel.Controls.Clear();
-            }
         }
     }
 }
