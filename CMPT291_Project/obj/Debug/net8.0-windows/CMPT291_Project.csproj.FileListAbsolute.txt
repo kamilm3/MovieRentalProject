@@ -122,3 +122,4 @@ C:\Users\halo2\Source\Repos\CMPT291Project\CMPT291_Project\bin\Debug\net8.0-wind
 C:\Users\halo2\Source\Repos\CMPT291Project\CMPT291_Project\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Runtime.Caching.dll
 C:\Users\halo2\Source\Repos\CMPT291Project\CMPT291_Project\obj\Debug\net8.0-windows\CMPT291_Project.csproj.AssemblyReference.cache
 C:\Users\halo2\Source\Repos\CMPT291Project\CMPT291_Project\obj\Debug\net8.0-windows\CMPT291_.8D977A01.Up2Date
+C:\Users\halo2\Source\Repos\CMPT291Project\CMPT291_Project\obj\Debug\net8.0-windows\CMPT291_Project.Properties.Resources.resources
