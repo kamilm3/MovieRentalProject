@@ -111,12 +111,14 @@
             NameAddLabel = new Label();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
-            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
             button5 = new Button();
+            button4 = new Button();
+            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
+            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            button6 = new Button();
+            button7 = new Button();
             DashboardTabs.SuspendLayout();
             tabPage1.SuspendLayout();
             ModifyCustBox.SuspendLayout();
@@ -125,6 +127,7 @@
             AssignActorBox.SuspendLayout();
             ModifyMovieBox.SuspendLayout();
             AddMovieBox.SuspendLayout();
+            tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
             SuspendLayout();
             // 
@@ -621,7 +624,7 @@
             tabPage2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 3, 3, 3);
+            tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(1318, 516);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Movie Management";
@@ -960,9 +963,10 @@
             // tabPage3
             // 
             tabPage3.BackColor = Color.FromArgb(255, 192, 192);
+            tabPage3.Controls.Add(button6);
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3, 3, 3, 3);
+            tabPage3.Padding = new Padding(3);
             tabPage3.Size = new Size(1318, 516);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Rental Management";
@@ -977,55 +981,10 @@
             tabPage4.Controls.Add(button1);
             tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3, 3, 3, 3);
+            tabPage4.Padding = new Padding(3);
             tabPage4.Size = new Size(1318, 516);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Report";
-            // 
-            // sqlCommand1
-            // 
-            sqlCommand1.CommandTimeout = 30;
-            sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(35, 33);
-            button1.Name = "button1";
-            button1.Size = new Size(248, 43);
-            button1.TabIndex = 2;
-            button1.Text = "Report 1";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(35, 107);
-            button2.Name = "button2";
-            button2.Size = new Size(248, 43);
-            button2.TabIndex = 3;
-            button2.Text = "Report 2";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(35, 186);
-            button3.Name = "button3";
-            button3.Size = new Size(248, 43);
-            button3.TabIndex = 4;
-            button3.Text = "Report 3";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.Location = new Point(35, 270);
-            button4.Name = "button4";
-            button4.Size = new Size(248, 43);
-            button4.TabIndex = 5;
-            button4.Text = "Report 4";
-            button4.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
@@ -1037,11 +996,75 @@
             button5.Text = "Report 5";
             button5.UseVisualStyleBackColor = true;
             // 
+            // button4
+            // 
+            button4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button4.Location = new Point(35, 270);
+            button4.Name = "button4";
+            button4.Size = new Size(248, 43);
+            button4.TabIndex = 5;
+            button4.Text = "Report 4";
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.Location = new Point(35, 186);
+            button3.Name = "button3";
+            button3.Size = new Size(248, 43);
+            button3.TabIndex = 4;
+            button3.Text = "Report 3";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.Location = new Point(35, 107);
+            button2.Name = "button2";
+            button2.Size = new Size(248, 43);
+            button2.TabIndex = 3;
+            button2.Text = "Report 2";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Location = new Point(35, 33);
+            button1.Name = "button1";
+            button1.Size = new Size(248, 43);
+            button1.TabIndex = 2;
+            button1.Text = "Report 1";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // sqlCommand1
+            // 
+            sqlCommand1.CommandTimeout = 30;
+            sqlCommand1.EnableOptimizedParameterBinding = false;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(68, 59);
+            button6.Name = "button6";
+            button6.Size = new Size(94, 29);
+            button6.TabIndex = 0;
+            button6.Text = "button6";
+            button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(458, 40);
+            button7.Name = "button7";
+            button7.Size = new Size(94, 29);
+            button7.TabIndex = 3;
+            button7.Text = "button7";
+            button7.UseVisualStyleBackColor = true;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1351, 665);
+            Controls.Add(button7);
             Controls.Add(DashboardTabs);
             Controls.Add(label1);
             Name = "Form2";
@@ -1059,6 +1082,7 @@
             ModifyMovieBox.PerformLayout();
             AddMovieBox.ResumeLayout(false);
             AddMovieBox.PerformLayout();
+            tabPage3.ResumeLayout(false);
             tabPage4.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -1163,5 +1187,7 @@
         private Button button4;
         private Button button3;
         private Button button2;
+        private Button button6;
+        private Button button7;
     }
 }
