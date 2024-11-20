@@ -208,17 +208,18 @@
                 Size = new System.Drawing.Size(799, 364),
                 Location = new System.Drawing.Point(336, 15),
                 BackColor = System.Drawing.Color.White,
+                Dock = DockStyle.Right
             };
             tabPage1.Controls.Add(CustInputPanel);
-            Label lblFirstName = new Label { Text = "First Name:", Location = new Point(20, 20) };
-            txtFirstName = new TextBox { Location = new Point(170, 20), Width = 300 };
-            Label lblLastName = new Label { Text = "Last Name:", Location = new Point(20, 60) };
-            txtLastName = new TextBox { Location = new Point(170, 60), Width = 300 };
-            Label lblAddress = new Label { Text = "Address:", Location = new Point(20, 100) };
-            txtAddress = new TextBox { Location = new Point(170, 100), Width = 300 };
-            Label lblCity = new Label { Text = "City:", Location = new Point(20, 140) };
-            txtCity = new TextBox { Location = new Point(170, 140), Width = 300 };
-            Label lblState = new Label { Text = "State:", Location = new Point(20, 180) };
+            Label lblFirstName = new Label { Text = "First Name:", Location = new Point(20, 20), Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            txtFirstName = new TextBox { Location = new Point(170, 20), Width = 300, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
+            Label lblLastName = new Label { Text = "Last Name:", Location = new Point(20, 60), Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            txtLastName = new TextBox { Location = new Point(170, 60), Width = 300, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
+            Label lblAddress = new Label { Text = "Address:", Location = new Point(20, 100), Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            txtAddress = new TextBox { Location = new Point(170, 100), Width = 300, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
+            Label lblCity = new Label { Text = "City:", Location = new Point(20, 140), Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            txtCity = new TextBox { Location = new Point(170, 140), Width = 300, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
+            Label lblState = new Label { Text = "State:", Location = new Point(20, 180), Anchor = AnchorStyles.Top | AnchorStyles.Right };
             //
             ComboBox cmbState = new ComboBox
             {
@@ -226,7 +227,8 @@
                 Width = 50,
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 FlatStyle = FlatStyle.Popup,
-                BackColor = Color.White
+                BackColor = Color.White,
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
             };
             // Add provinces
             cmbState.Items.AddRange(new string[]
@@ -234,14 +236,14 @@
                 "AB", "BC", "MB", "NB", "NL", "NS", "NT", "NU", "ON", "PE", "QC", "SK", "YT"
             });
             //
-            Label lblZip = new Label { Text = "Zip Code:", Location = new Point(20, 220) };
-            txtZip = new TextBox { Location = new Point(170, 220), Width = 100 };
-            Label lblEmail = new Label { Text = "Email:", Location = new Point(20, 260)};
-            txtEmail = new TextBox { Location = new Point(170, 260), Width = 300 };
-            Label lblAccountNumber = new Label { Text = "Account Number:", Location = new Point(20, 300)};
-            txtAccountNumber = new TextBox { Location = new Point(170, 300), Width = 100 };
-            Label lblCreditCard = new Label { Text = "Credit Card:", Location = new Point(20, 340)};
-            txtCreditCard = new TextBox { Location = new Point(170, 340), Width = 150 };
+            Label lblZip = new Label { Text = "Zip Code:", Location = new Point(20, 220), Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            txtZip = new TextBox { Location = new Point(170, 220), Width = 100, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
+            Label lblEmail = new Label { Text = "Email:", Location = new Point(20, 260), Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            txtEmail = new TextBox { Location = new Point(170, 260), Width = 300, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
+            Label lblAccountNumber = new Label { Text = "Account Number:", Location = new Point(20, 300), Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            txtAccountNumber = new TextBox { Location = new Point(170, 300), Width = 100, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
+            Label lblCreditCard = new Label { Text = "Credit Card:", Location = new Point(20, 340), Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            txtCreditCard = new TextBox { Location = new Point(170, 340), Width = 150, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
 
             CustInputPanel.Controls.Add(cmbState);
             CustInputPanel.Controls.Add(lblFirstName);
@@ -274,29 +276,31 @@
             {
                 Size = new Size(799, 364),
                 Location = new Point(336, 15),
-                BackColor = Color.White
+                BackColor = Color.White,
+                Dock = DockStyle.Right
             };
             tabPage2.Controls.Add(MovieInputPanel);
 
-            Label lblMovieName = new Label { Text = "Movie Name:", Location = new Point(20, 20), AutoSize = true };
-            txtMovieName = new TextBox { Location = new Point(170, 20), Width = 300 };
+            Label lblMovieName = new Label { Text = "Movie Name:", Location = new Point(20, 20), AutoSize = true, Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            txtMovieName = new TextBox { Location = new Point(170, 20), Width = 300, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
 
-            Label lblMovieType = new Label { Text = "Movie Type:", Location = new Point(20, 60), AutoSize = true };
+            Label lblMovieType = new Label { Text = "Movie Type:", Location = new Point(20, 60), AutoSize = true, Anchor = AnchorStyles.Top | AnchorStyles.Right };
             cmbMovieType = new ComboBox
             {
                 Location = new Point(170, 60),
                 Width = 150,
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 FlatStyle = FlatStyle.Popup,
-                BackColor = Color.White
+                BackColor = Color.White,
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
             };
             cmbMovieType.Items.AddRange(new string[] { "Comedy", "Drama", "Action", "Foreign" });
 
-            Label lblDistFee = new Label { Text = "Distribution Fee:", Location = new Point(20, 100), AutoSize = true };
-            txtDistFee = new TextBox { Location = new Point(170, 100), Width = 150 };
+            Label lblDistFee = new Label { Text = "Distribution Fee:", Location = new Point(20, 100), AutoSize = true, Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            txtDistFee = new TextBox { Location = new Point(170, 100), Width = 150, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
 
-            Label lblNumCopies = new Label { Text = "Number of Copies:", Location = new Point(20, 140), AutoSize = true };
-            txtNumCopies = new TextBox { Location = new Point(170, 140), Width = 100 };
+            Label lblNumCopies = new Label { Text = "Number of Copies:", Location = new Point(20, 140), AutoSize = true, Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            txtNumCopies = new TextBox { Location = new Point(170, 140), Width = 100, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
 
             MovieInputPanel.Controls.Add(lblMovieName);
             MovieInputPanel.Controls.Add(txtMovieName);
@@ -315,15 +319,16 @@
             {
                 Size = new Size(799, 364),
                 Location = new Point(336, 15),
-                BackColor = Color.White
+                BackColor = Color.White,
+                Dock = DockStyle.Right
             };
             tabPage2.Controls.Add(AssignActorPanel);
 
-            Label lblMovieName = new Label { Text = "Movie Name:", Location = new Point(20, 20), AutoSize = true };
-            txtAssignMovieName = new TextBox { Location = new Point(170, 20), Width = 300 };
+            Label lblMovieName = new Label { Text = "Movie Name:", Location = new Point(20, 20), AutoSize = true, Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            txtAssignMovieName = new TextBox { Location = new Point(170, 20), Width = 300, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
 
-            Label lblActorName = new Label { Text = "Actor Name:", Location = new Point(20, 60), AutoSize = true };
-            txtAssignActorName = new TextBox { Location = new Point(170, 60), Width = 300 };
+            Label lblActorName = new Label { Text = "Actor Name:", Location = new Point(20, 60), AutoSize = true, Anchor = AnchorStyles.Top | AnchorStyles.Right };
+            txtAssignActorName = new TextBox { Location = new Point(170, 60), Width = 300, Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
 
             AssignActorPanel.Controls.Add(lblMovieName);
             AssignActorPanel.Controls.Add(txtAssignMovieName);
