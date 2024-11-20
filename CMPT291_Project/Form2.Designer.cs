@@ -96,6 +96,9 @@
             FeeMofLabel = new Label();
             TypeModLabel = new Label();
             NameModLabel = new Label();
+            AssignActorButton = new Button();
+            ModifyMovieButton = new Button();
+            AddMovieButton = new Button();
             AddMovieBox = new GroupBox();
             MovieAddButton = new Button();
             TypeAddComboBox = new ComboBox();
@@ -106,9 +109,6 @@
             FeeAddLabel = new Label();
             TypeAddLabel = new Label();
             NameAddLabel = new Label();
-            AssignActorButton = new Button();
-            ModifyMovieButton = new Button();
-            AddMovieButton = new Button();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
@@ -584,10 +584,12 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.FromArgb(255, 192, 128);
-            tabPage2.Controls.Add(AddMovieBox);
+            tabPage2.Controls.Add(AssignActorBox);
+            tabPage2.Controls.Add(ModifyMovieBox);
             tabPage2.Controls.Add(AssignActorButton);
             tabPage2.Controls.Add(ModifyMovieButton);
             tabPage2.Controls.Add(AddMovieButton);
+            tabPage2.Controls.Add(AddMovieBox);
             tabPage2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Margin = new Padding(3, 2, 3, 2);
@@ -605,9 +607,9 @@
             AssignActorBox.Controls.Add(MovieAssignText);
             AssignActorBox.Controls.Add(ActorAssignLabel);
             AssignActorBox.Controls.Add(MovieAssignLabel);
-            AssignActorBox.Location = new Point(0, 0);
+            AssignActorBox.Location = new Point(329, 0);
             AssignActorBox.Name = "AssignActorBox";
-            AssignActorBox.Size = new Size(807, 388);
+            AssignActorBox.Size = new Size(823, 388);
             AssignActorBox.TabIndex = 6;
             AssignActorBox.TabStop = false;
             AssignActorBox.Visible = false;
@@ -658,7 +660,6 @@
             // ModifyMovieBox
             // 
             ModifyMovieBox.BackColor = Color.White;
-            ModifyMovieBox.Controls.Add(AssignActorBox);
             ModifyMovieBox.Controls.Add(DeleteMovieButton);
             ModifyMovieBox.Controls.Add(MovieIDText);
             ModifyMovieBox.Controls.Add(MovieIDLabel);
@@ -671,9 +672,9 @@
             ModifyMovieBox.Controls.Add(FeeMofLabel);
             ModifyMovieBox.Controls.Add(TypeModLabel);
             ModifyMovieBox.Controls.Add(NameModLabel);
-            ModifyMovieBox.Location = new Point(0, 0);
+            ModifyMovieBox.Location = new Point(335, 0);
             ModifyMovieBox.Name = "ModifyMovieBox";
-            ModifyMovieBox.Size = new Size(807, 388);
+            ModifyMovieBox.Size = new Size(821, 388);
             ModifyMovieBox.TabIndex = 5;
             ModifyMovieBox.TabStop = false;
             ModifyMovieBox.Visible = false;
@@ -780,11 +781,46 @@
             NameModLabel.TabIndex = 0;
             NameModLabel.Text = "Movie Name:";
             // 
+            // AssignActorButton
+            // 
+            AssignActorButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            AssignActorButton.Location = new Point(25, 98);
+            AssignActorButton.Margin = new Padding(3, 2, 3, 2);
+            AssignActorButton.Name = "AssignActorButton";
+            AssignActorButton.Size = new Size(217, 32);
+            AssignActorButton.TabIndex = 3;
+            AssignActorButton.Text = "Assign Actor to Movie";
+            AssignActorButton.UseVisualStyleBackColor = true;
+            AssignActorButton.Click += AssignActorButton_Click;
+            // 
+            // ModifyMovieButton
+            // 
+            ModifyMovieButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ModifyMovieButton.Location = new Point(25, 62);
+            ModifyMovieButton.Margin = new Padding(3, 2, 3, 2);
+            ModifyMovieButton.Name = "ModifyMovieButton";
+            ModifyMovieButton.Size = new Size(217, 32);
+            ModifyMovieButton.TabIndex = 2;
+            ModifyMovieButton.Text = "Search/Modify Movie";
+            ModifyMovieButton.UseVisualStyleBackColor = true;
+            ModifyMovieButton.Click += ModifyMovieButton_Click;
+            // 
+            // AddMovieButton
+            // 
+            AddMovieButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            AddMovieButton.Location = new Point(25, 25);
+            AddMovieButton.Margin = new Padding(3, 2, 3, 2);
+            AddMovieButton.Name = "AddMovieButton";
+            AddMovieButton.Size = new Size(217, 32);
+            AddMovieButton.TabIndex = 1;
+            AddMovieButton.Text = "Add New Movie";
+            AddMovieButton.UseVisualStyleBackColor = true;
+            AddMovieButton.Click += AddMovieButton_Click;
+            // 
             // AddMovieBox
             // 
             AddMovieBox.BackColor = Color.White;
             AddMovieBox.Controls.Add(MovieAddButton);
-            AddMovieBox.Controls.Add(ModifyMovieBox);
             AddMovieBox.Controls.Add(TypeAddComboBox);
             AddMovieBox.Controls.Add(CopiesAddText);
             AddMovieBox.Controls.Add(FeeAddText);
@@ -793,9 +829,9 @@
             AddMovieBox.Controls.Add(FeeAddLabel);
             AddMovieBox.Controls.Add(TypeAddLabel);
             AddMovieBox.Controls.Add(NameAddLabel);
-            AddMovieBox.Location = new Point(349, 0);
+            AddMovieBox.Location = new Point(352, 0);
             AddMovieBox.Name = "AddMovieBox";
-            AddMovieBox.Size = new Size(807, 388);
+            AddMovieBox.Size = new Size(800, 388);
             AddMovieBox.TabIndex = 4;
             AddMovieBox.TabStop = false;
             AddMovieBox.Visible = false;
@@ -875,42 +911,6 @@
             NameAddLabel.Size = new Size(107, 21);
             NameAddLabel.TabIndex = 0;
             NameAddLabel.Text = "Movie Name:";
-            // 
-            // AssignActorButton
-            // 
-            AssignActorButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AssignActorButton.Location = new Point(25, 98);
-            AssignActorButton.Margin = new Padding(3, 2, 3, 2);
-            AssignActorButton.Name = "AssignActorButton";
-            AssignActorButton.Size = new Size(217, 32);
-            AssignActorButton.TabIndex = 3;
-            AssignActorButton.Text = "Assign Actor to Movie";
-            AssignActorButton.UseVisualStyleBackColor = true;
-            AssignActorButton.Click += AssignActorButton_Click;
-            // 
-            // ModifyMovieButton
-            // 
-            ModifyMovieButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ModifyMovieButton.Location = new Point(25, 62);
-            ModifyMovieButton.Margin = new Padding(3, 2, 3, 2);
-            ModifyMovieButton.Name = "ModifyMovieButton";
-            ModifyMovieButton.Size = new Size(217, 32);
-            ModifyMovieButton.TabIndex = 2;
-            ModifyMovieButton.Text = "Search/Modify Movie";
-            ModifyMovieButton.UseVisualStyleBackColor = true;
-            ModifyMovieButton.Click += ModifyMovieButton_Click;
-            // 
-            // AddMovieButton
-            // 
-            AddMovieButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AddMovieButton.Location = new Point(25, 25);
-            AddMovieButton.Margin = new Padding(3, 2, 3, 2);
-            AddMovieButton.Name = "AddMovieButton";
-            AddMovieButton.Size = new Size(217, 32);
-            AddMovieButton.TabIndex = 1;
-            AddMovieButton.Text = "Add New Movie";
-            AddMovieButton.UseVisualStyleBackColor = true;
-            AddMovieButton.Click += AddMovieButton_Click;
             // 
             // tabPage3
             // 

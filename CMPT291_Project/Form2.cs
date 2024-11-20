@@ -110,16 +110,12 @@ namespace CMPT291_Project
         // *********************************
         private void AddMovieButton_Click(object sender, EventArgs e)
         {
-            AssignActorBox.Visible = false;
-            ModifyMovieBox.Visible = false;
-            AddMovieBox.Visible = true;
+            ShowGroupBox(AddMovieBox);
         }
 
         private void ModifyMovieButton_Click(object sender, EventArgs e)
         {
-            AssignActorBox.Visible = false;
-            AddMovieBox.Visible = false;
-            ModifyMovieBox.Visible = true;
+            ShowGroupBox(ModifyMovieBox);
         }
 
         private void MovieAddButton_Click(object sender, EventArgs e)
@@ -175,9 +171,7 @@ namespace CMPT291_Project
 
         private void AssignActorButton_Click(object sender, EventArgs e)
         {
-            AddMovieBox.Visible = false;
-            ModifyMovieBox.Visible = false;
-            AssignActorBox.Visible = true;
+            ShowGroupBox(AssignActorBox);
         }
 
         private void AssignButton_Click(object sender, EventArgs e)
@@ -196,6 +190,20 @@ namespace CMPT291_Project
 
             // NEED TO ADD IN DATABASE FUNCTIONALITY HERE
             MessageBox.Show("Actor successfully assigned to the movie!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ShowGroupBox(GroupBox targetGroupBox)
+        {
+            // Hide all group boxes first
+            AssignActorBox.Visible = false;
+            ModifyMovieBox.Visible = false;
+            AddMovieBox.Visible = false;
+
+            // Show the desired group box
+            if (targetGroupBox != null)
+            {
+                targetGroupBox.Visible = true;
+            }
         }
     }
 }
