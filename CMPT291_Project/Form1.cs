@@ -23,9 +23,9 @@ namespace CMPT291_Project
             InitializeComponent();
 
             // Initialize the connection
-            myConnection = new SqlConnection("user id=Memoh;" + // Username
-                                              "password=memoh4321;" + // Password
-                                              "server=DESKTOP-H6FU9US\\MSSQLSERVER01;" + // Server name
+            myConnection = new SqlConnection("user id=admin3;" + // Username
+                                              "password=admin;" + // Password
+                                              "server=DESKTOP-6QG008O;" + // Server name
                                               "TrustServerCertificate=True;" +
                                               "database=project291; " + // Database
                                               "connection timeout=30"); // Timeout in seconds
