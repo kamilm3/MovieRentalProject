@@ -110,6 +110,7 @@
             TypeAddLabel = new Label();
             NameAddLabel = new Label();
             tabPage3 = new TabPage();
+            button6 = new Button();
             tabPage4 = new TabPage();
             button5 = new Button();
             button4 = new Button();
@@ -117,8 +118,13 @@
             button2 = new Button();
             button1 = new Button();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            button6 = new Button();
-            button7 = new Button();
+            label5 = new Label();
+            sqlCommand2 = new Microsoft.Data.SqlClient.SqlCommand();
+            textBox1 = new TextBox();
+            label6 = new Label();
+            textBox4 = new TextBox();
+            button8 = new Button();
+            label2 = new Label();
             DashboardTabs.SuspendLayout();
             tabPage1.SuspendLayout();
             ModifyCustBox.SuspendLayout();
@@ -963,6 +969,12 @@
             // tabPage3
             // 
             tabPage3.BackColor = Color.FromArgb(255, 192, 192);
+            tabPage3.Controls.Add(label2);
+            tabPage3.Controls.Add(button8);
+            tabPage3.Controls.Add(textBox4);
+            tabPage3.Controls.Add(label6);
+            tabPage3.Controls.Add(textBox1);
+            tabPage3.Controls.Add(label5);
             tabPage3.Controls.Add(button6);
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
@@ -970,6 +982,16 @@
             tabPage3.Size = new Size(1318, 516);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Rental Management";
+            // 
+            // button6
+            // 
+            button6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button6.Location = new Point(65, 109);
+            button6.Name = "button6";
+            button6.Size = new Size(248, 43);
+            button6.TabIndex = 3;
+            button6.Text = "Search Customer";
+            button6.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
@@ -1041,30 +1063,70 @@
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
-            // button6
+            // label5
             // 
-            button6.Location = new Point(68, 59);
-            button6.Name = "button6";
-            button6.Size = new Size(94, 29);
-            button6.TabIndex = 0;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(65, 37);
+            label5.Name = "label5";
+            label5.Size = new Size(220, 28);
+            label5.TabIndex = 4;
+            label5.Text = "Enter Customer Name";
             // 
-            // button7
+            // sqlCommand2
             // 
-            button7.Location = new Point(458, 40);
-            button7.Name = "button7";
-            button7.Size = new Size(94, 29);
-            button7.TabIndex = 3;
-            button7.Text = "button7";
-            button7.UseVisualStyleBackColor = true;
+            sqlCommand2.CommandTimeout = 30;
+            sqlCommand2.EnableOptimizedParameterBinding = false;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(65, 76);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(248, 27);
+            textBox1.TabIndex = 5;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(65, 221);
+            label6.Name = "label6";
+            label6.Size = new Size(120, 28);
+            label6.TabIndex = 6;
+            label6.Text = "Availability";
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(65, 265);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(248, 27);
+            textBox4.TabIndex = 7;
+            // 
+            // button8
+            // 
+            button8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button8.Location = new Point(65, 330);
+            button8.Name = "button8";
+            button8.Size = new Size(248, 43);
+            button8.TabIndex = 8;
+            button8.Text = "Rent Movie";
+            button8.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(800, 37);
+            label2.Name = "label2";
+            label2.Size = new Size(248, 28);
+            label2.TabIndex = 9;
+            label2.Text = "Customer's Movie Queue";
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1351, 665);
-            Controls.Add(button7);
             Controls.Add(DashboardTabs);
             Controls.Add(label1);
             Name = "Form2";
@@ -1083,6 +1145,7 @@
             AddMovieBox.ResumeLayout(false);
             AddMovieBox.PerformLayout();
             tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
             tabPage4.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -1189,5 +1252,11 @@
         private Button button2;
         private Button button6;
         private Button button7;
+        private Button button8;
+        private TextBox textBox4;
+        private Label label6;
+        private TextBox textBox1;
+        private Label label5;
+        private Microsoft.Data.SqlClient.SqlCommand sqlCommand2;
     }
 }
