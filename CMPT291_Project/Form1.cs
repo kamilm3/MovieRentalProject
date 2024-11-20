@@ -25,9 +25,9 @@ namespace CMPT291_Project
             // Initialize the connection
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                               "password=admin;" + // Password
-                                              "server=DESKTOP-6QG008O;" + // Server name
+                                              "server=LAPTOP-6TEGHEN2;" + // Server name
                                               "TrustServerCertificate=True;" +
-                                              "database=project291; " + // Database
+                                              "database=Project_291; " + // Database
                                               "connection timeout=30"); // Timeout in seconds
 
             try
@@ -102,6 +102,10 @@ namespace CMPT291_Project
         {
 
         }
-        
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

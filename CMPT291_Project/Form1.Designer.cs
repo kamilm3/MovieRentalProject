@@ -63,6 +63,7 @@
             // 
             resources.ApplyResources(label2, "label2");
             label2.Name = "label2";
+            label2.Click += label2_Click;
             // 
             // usernameInput
             // 
