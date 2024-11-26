@@ -19,6 +19,7 @@ namespace CMPT291_Project
         public SqlConnection myConnection;
         public SqlCommand myCommand;
         public SqlDataReader myReader;
+
         private DataTable dt;
         private SqlDataAdapter sd;
 
@@ -259,30 +260,97 @@ namespace CMPT291_Project
         private void button6_Click(object sender, EventArgs e)
         {
 
+            string fName = textBox1.Text;
+            string lName = textBox2.Text;
+            string emailAddress = textBox3.Text;
 
             if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
             {
                 MessageBox.Show("Please fill in all the fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
-            // Retrieves the customerID from Customer 
-            SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '"+ (textBox1.Text)+ "' AND lastName= '"+ (textBox2.Text)+"' AND Email= '" + (textBox3.Text) + "'", myConnection);
-            int result = (int)myCommand.ExecuteScalar();
+
+            try
+            {
+                // Query to check first name, last name, and email
+                string query = "SELECT COUNT(*) FROM Customer WHERE firstName = @fName AND lastName = @lName AND Email = @emailAddress";
 
 
-            // Retrieves everything from Movie using customerID from myCommand
-            SqlCommand myCommand1 = new SqlCommand("select * from MovieQueue where customerID = '"+@result+ "'", myConnection);
-            SqlDataAdapter sd = new SqlDataAdapter(myCommand1);
-            DataTable dt = new DataTable();
-            sd.Fill(dt);
-            dataGridView1.DataSource = dt;
-            MessageBox.Show("Testing successful");
+                // Create SQL command
+                using (SqlCommand command = new SqlCommand(query, myConnection))
+                {
+                    command.Parameters.AddWithValue("@fName", fName);
+                    command.Parameters.AddWithValue("@lName", lName);
+                    command.Parameters.AddWithValue("@emailAddress", emailAddress);
+
+                    int result = (int)command.ExecuteScalar();
+
+                    // if statement will be exceuted if Customer exists in the database
+                    if (result > 0)
+                    {
+                        /*
+                        int CustomerID;
+                        // retrieves the customerID of the customer 
+                        string query1 = "SELECT customerID FROM Customer WHERE firstName = @fName AND lastName = @lName AND Email = @emailAddress";
+ 
+                        SqlCommand command1 = new SqlCommand(query1, myConnection);
+                        command1.Parameters.AddWithValue("@CustomerID", CustomerID);
+                        */
+                        SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '" + @fName + "'AND lastName= '" +@lName+ "' AND Email= '"+@emailAddress+"'", myConnection);
+
+                        int custID = (int)myCommand.ExecuteScalar();
+
+                        SqlCommand myCommand1 = new SqlCommand("select * from MovieQueue where customerID = '" + custID + "'", myConnection);
+                        SqlDataAdapter sd = new SqlDataAdapter(myCommand1);
+                        DataTable dt = new DataTable();
+                        sd.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                        MessageBox.Show("Testing successful");
+                    }
+                    else
+                    {
+                        // Customer does not exist in database
+                        MessageBox.Show("Customer does not exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        
+                    /*
+                    if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
+                    {
+                        MessageBox.Show("Please fill in all the fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    try
+                    {
+                        // Retrieves the customerID from Customer 
+                        SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '" + (textBox1.Text) + "' AND lastName= '" + (textBox2.Text) + "' AND Email= '" + (textBox3.Text) + "'", myConnection);
+
+                        int result = (int)myCommand.ExecuteScalar();
+                        using
 
 
+                        // Retrieves everything from Movie using customerID from myCommand
+                        SqlCommand myCommand1 = new SqlCommand("select * from MovieQueue where customerID = '" + @result + "'", myConnection);
+                        SqlDataAdapter sd = new SqlDataAdapter(myCommand1);
+                        DataTable dt = new DataTable();
+                        sd.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                        MessageBox.Show("Testing successful");
+                    }
+
+                    catch
+                    {
+
+                    }
+                    */
 
 
-        }
+                }
 
         private void label5_Click(object sender, EventArgs e)
         {
