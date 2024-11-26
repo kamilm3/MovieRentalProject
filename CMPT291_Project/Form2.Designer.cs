@@ -110,8 +110,7 @@
             TypeAddLabel = new Label();
             NameAddLabel = new Label();
             tabPage3 = new TabPage();
-            label8 = new Label();
-            textBox5 = new TextBox();
+            dataGridView1 = new DataGridView();
             label7 = new Label();
             textBox3 = new TextBox();
             label4 = new Label();
@@ -132,7 +131,6 @@
             button1 = new Button();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             sqlCommand2 = new Microsoft.Data.SqlClient.SqlCommand();
-            dataGridView1 = new DataGridView();
             DashboardTabs.SuspendLayout();
             tabPage1.SuspendLayout();
             ModifyCustBox.SuspendLayout();
@@ -142,8 +140,8 @@
             ModifyMovieBox.SuspendLayout();
             AddMovieBox.SuspendLayout();
             tabPage3.SuspendLayout();
-            tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            tabPage4.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -980,8 +978,6 @@
             // 
             tabPage3.BackColor = Color.FromArgb(255, 192, 192);
             tabPage3.Controls.Add(dataGridView1);
-            tabPage3.Controls.Add(label8);
-            tabPage3.Controls.Add(textBox5);
             tabPage3.Controls.Add(label7);
             tabPage3.Controls.Add(textBox3);
             tabPage3.Controls.Add(label4);
@@ -1001,21 +997,14 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Rental Management";
             // 
-            // label8
+            // dataGridView1
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(65, 273);
-            label8.Name = "label8";
-            label8.Size = new Size(214, 20);
-            label8.TabIndex = 16;
-            label8.Text = "Customer ID (testing purposes)";
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(65, 296);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(248, 27);
-            textBox5.TabIndex = 15;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(761, 79);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(531, 214);
+            dataGridView1.TabIndex = 17;
             // 
             // label7
             // 
@@ -1071,7 +1060,7 @@
             // button8
             // 
             button8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button8.Location = new Point(402, 350);
+            button8.Location = new Point(761, 324);
             button8.Name = "button8";
             button8.Size = new Size(248, 43);
             button8.TabIndex = 8;
@@ -1117,7 +1106,7 @@
             // button6
             // 
             button6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button6.Location = new Point(65, 350);
+            button6.Location = new Point(65, 289);
             button6.Name = "button6";
             button6.Size = new Size(248, 43);
             button6.TabIndex = 3;
@@ -1200,15 +1189,6 @@
             sqlCommand2.CommandTimeout = 30;
             sqlCommand2.EnableOptimizedParameterBinding = false;
             // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(761, 79);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(531, 214);
-            dataGridView1.TabIndex = 17;
-            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1233,8 +1213,8 @@
             AddMovieBox.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
-            tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            tabPage4.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1347,8 +1327,6 @@
         private Label label5;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand2;
         private Label label7;
-        private Label label8;
-        private TextBox textBox5;
         private DataGridView dataGridView1;
     }
 }

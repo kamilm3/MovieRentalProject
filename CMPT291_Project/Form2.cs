@@ -253,32 +253,34 @@ namespace CMPT291_Project
         {
 
         }
-
+        // *********************************
+        //      Rental Management Tab
+        // *********************************
         private void button6_Click(object sender, EventArgs e)
         {
 
-            /*
-            SqlCommand command = new(
-            "SELECT movieID FROM MovieQueue;",
-            myConnection);
-        
 
-            SqlDataReader reader = command.ExecuteReader();
-            reader.Close();
-            */
-            if (string.IsNullOrEmpty(textBox5.Text))
+            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
             {
                 MessageBox.Show("Please fill in all the fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            
+            // Retrieves the customerID from Customer 
+            SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '"+ (textBox1.Text)+ "' AND lastName= '"+ (textBox2.Text)+"' AND Email= '" + (textBox3.Text) + "'", myConnection);
+            int result = (int)myCommand.ExecuteScalar();
 
-            SqlCommand myCommand = new SqlCommand("select * from MovieQueue where customerID = '"+int.Parse(textBox5.Text)+"'", myConnection);
-            SqlDataAdapter sd = new SqlDataAdapter(myCommand);
+
+            // Retrieves everything from Movie using customerID from myCommand
+            SqlCommand myCommand1 = new SqlCommand("select * from MovieQueue where customerID = '"+@result+ "'", myConnection);
+            SqlDataAdapter sd = new SqlDataAdapter(myCommand1);
             DataTable dt = new DataTable();
             sd.Fill(dt);
             dataGridView1.DataSource = dt;
             MessageBox.Show("Testing successful");
-            
+
+
+
 
         }
 
