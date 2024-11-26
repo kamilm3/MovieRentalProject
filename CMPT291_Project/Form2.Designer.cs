@@ -110,6 +110,19 @@
             TypeAddLabel = new Label();
             NameAddLabel = new Label();
             tabPage3 = new TabPage();
+            label8 = new Label();
+            textBox5 = new TextBox();
+            label7 = new Label();
+            textBox3 = new TextBox();
+            label4 = new Label();
+            textBox2 = new TextBox();
+            label3 = new Label();
+            label2 = new Label();
+            button8 = new Button();
+            textBox4 = new TextBox();
+            label6 = new Label();
+            textBox1 = new TextBox();
+            label5 = new Label();
             button6 = new Button();
             tabPage4 = new TabPage();
             button5 = new Button();
@@ -118,13 +131,8 @@
             button2 = new Button();
             button1 = new Button();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            label5 = new Label();
             sqlCommand2 = new Microsoft.Data.SqlClient.SqlCommand();
-            textBox1 = new TextBox();
-            label6 = new Label();
-            textBox4 = new TextBox();
-            button8 = new Button();
-            label2 = new Label();
+            dataGridView1 = new DataGridView();
             DashboardTabs.SuspendLayout();
             tabPage1.SuspendLayout();
             ModifyCustBox.SuspendLayout();
@@ -135,6 +143,7 @@
             AddMovieBox.SuspendLayout();
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -320,6 +329,7 @@
             FirstNameModText.Name = "FirstNameModText";
             FirstNameModText.Size = new Size(334, 34);
             FirstNameModText.TabIndex = 9;
+            FirstNameModText.TextChanged += FirstNameModText_TextChanged;
             // 
             // CreditModLabel
             // 
@@ -969,6 +979,14 @@
             // tabPage3
             // 
             tabPage3.BackColor = Color.FromArgb(255, 192, 192);
+            tabPage3.Controls.Add(dataGridView1);
+            tabPage3.Controls.Add(label8);
+            tabPage3.Controls.Add(textBox5);
+            tabPage3.Controls.Add(label7);
+            tabPage3.Controls.Add(textBox3);
+            tabPage3.Controls.Add(label4);
+            tabPage3.Controls.Add(textBox2);
+            tabPage3.Controls.Add(label3);
             tabPage3.Controls.Add(label2);
             tabPage3.Controls.Add(button8);
             tabPage3.Controls.Add(textBox4);
@@ -983,15 +1001,129 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Rental Management";
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(65, 273);
+            label8.Name = "label8";
+            label8.Size = new Size(214, 20);
+            label8.TabIndex = 16;
+            label8.Text = "Customer ID (testing purposes)";
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(65, 296);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(248, 27);
+            textBox5.TabIndex = 15;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(65, 205);
+            label7.Name = "label7";
+            label7.Size = new Size(103, 20);
+            label7.TabIndex = 14;
+            label7.Text = "Email Address";
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(65, 228);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(248, 27);
+            textBox3.TabIndex = 13;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(65, 138);
+            label4.Name = "label4";
+            label4.Size = new Size(79, 20);
+            label4.TabIndex = 12;
+            label4.Text = "Last Name";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(65, 161);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(248, 27);
+            textBox2.TabIndex = 11;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(65, 79);
+            label3.Name = "label3";
+            label3.Size = new Size(80, 20);
+            label3.TabIndex = 10;
+            label3.Text = "First Name";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(761, 37);
+            label2.Name = "label2";
+            label2.Size = new Size(248, 28);
+            label2.TabIndex = 9;
+            label2.Text = "Customer's Movie Queue";
+            // 
+            // button8
+            // 
+            button8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button8.Location = new Point(402, 350);
+            button8.Name = "button8";
+            button8.Size = new Size(248, 43);
+            button8.TabIndex = 8;
+            button8.Text = "Rent Movie";
+            button8.UseVisualStyleBackColor = true;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(413, 79);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(248, 27);
+            textBox4.TabIndex = 7;
+            textBox4.TextChanged += textBox4_availability;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(413, 37);
+            label6.Name = "label6";
+            label6.Size = new Size(120, 28);
+            label6.TabIndex = 6;
+            label6.Text = "Availability";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(65, 102);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(248, 27);
+            textBox1.TabIndex = 5;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(65, 37);
+            label5.Name = "label5";
+            label5.Size = new Size(260, 28);
+            label5.TabIndex = 4;
+            label5.Text = "Fill in the following fields:";
+            label5.Click += label5_Click;
+            // 
             // button6
             // 
             button6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button6.Location = new Point(65, 109);
+            button6.Location = new Point(65, 350);
             button6.Name = "button6";
             button6.Size = new Size(248, 43);
             button6.TabIndex = 3;
             button6.Text = "Search Customer";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // tabPage4
             // 
@@ -1063,64 +1195,19 @@
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(65, 37);
-            label5.Name = "label5";
-            label5.Size = new Size(220, 28);
-            label5.TabIndex = 4;
-            label5.Text = "Enter Customer Name";
-            // 
             // sqlCommand2
             // 
             sqlCommand2.CommandTimeout = 30;
             sqlCommand2.EnableOptimizedParameterBinding = false;
             // 
-            // textBox1
+            // dataGridView1
             // 
-            textBox1.Location = new Point(65, 76);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(248, 27);
-            textBox1.TabIndex = 5;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(65, 221);
-            label6.Name = "label6";
-            label6.Size = new Size(120, 28);
-            label6.TabIndex = 6;
-            label6.Text = "Availability";
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(65, 265);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(248, 27);
-            textBox4.TabIndex = 7;
-            // 
-            // button8
-            // 
-            button8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button8.Location = new Point(65, 330);
-            button8.Name = "button8";
-            button8.Size = new Size(248, 43);
-            button8.TabIndex = 8;
-            button8.Text = "Rent Movie";
-            button8.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(800, 37);
-            label2.Name = "label2";
-            label2.Size = new Size(248, 28);
-            label2.TabIndex = 9;
-            label2.Text = "Customer's Movie Queue";
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(761, 79);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(531, 214);
+            dataGridView1.TabIndex = 17;
             // 
             // Form2
             // 
@@ -1147,6 +1234,7 @@
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1258,5 +1346,9 @@
         private TextBox textBox1;
         private Label label5;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand2;
+        private Label label7;
+        private Label label8;
+        private TextBox textBox5;
+        private DataGridView dataGridView1;
     }
 }

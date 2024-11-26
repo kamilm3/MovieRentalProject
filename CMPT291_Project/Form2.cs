@@ -1,12 +1,50 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace CMPT291_Project
 {
     public partial class Form2 : Form
+
     {
+        public SqlConnection myConnection;
+        public SqlCommand myCommand;
+        public SqlDataReader myReader;
+        private DataTable dt;
+        private SqlDataAdapter sd;
+
+
         public Form2()
         {
             InitializeComponent();
+            // Initialize the connection
+            myConnection = new SqlConnection("user id=admin3;" + // Username
+                                              "password=admin;" + // Password
+                                              "server=LAPTOP-6TEGHEN2;" + // Server name
+                                              "TrustServerCertificate=True;" +
+                                              "database=Project_291; " + // Database
+                                              "connection timeout=30"); // Timeout in seconds
+
+            try
+            {
+                myConnection.Open(); // Open the connection
+                myCommand = new SqlCommand();
+                myCommand.Connection = myConnection; // Link the command to the connection
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString(), "Error");
+                this.Close();
+            }
         }
 
 
@@ -209,6 +247,51 @@ namespace CMPT291_Project
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void FirstNameModText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+            /*
+            SqlCommand command = new(
+            "SELECT movieID FROM MovieQueue;",
+            myConnection);
+        
+
+            SqlDataReader reader = command.ExecuteReader();
+            reader.Close();
+            */
+            if (string.IsNullOrEmpty(textBox5.Text))
+            {
+                MessageBox.Show("Please fill in all the fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            SqlCommand myCommand = new SqlCommand("select * from MovieQueue where customerID = '"+int.Parse(textBox5.Text)+"'", myConnection);
+            SqlDataAdapter sd = new SqlDataAdapter(myCommand);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            dataGridView1.DataSource = dt;
+            MessageBox.Show("Testing successful");
+            
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void textBox4_availability(object sender, EventArgs e)
+        {
+            textBox4.Text = "Available";
         }
     }
 }

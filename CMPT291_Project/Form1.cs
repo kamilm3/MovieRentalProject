@@ -107,5 +107,10 @@ namespace CMPT291_Project
         {
 
         }
+
+        private void passwordInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

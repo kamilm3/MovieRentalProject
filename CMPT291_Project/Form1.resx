@@ -242,6 +242,9 @@
   <data name="passwordInput.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 217</value>
   </data>
+  <data name="passwordInput.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
+    <value>*</value>
+  </data>
   <data name="passwordInput.Size" type="System.Drawing.Size, System.Drawing">
     <value>265, 27</value>
   </data>

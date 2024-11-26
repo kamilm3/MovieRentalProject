@@ -75,6 +75,7 @@
             // 
             resources.ApplyResources(passwordInput, "passwordInput");
             passwordInput.Name = "passwordInput";
+            passwordInput.TextChanged += passwordInput_TextChanged;
             // 
             // passwordText
             // 
