@@ -122,8 +122,6 @@ namespace CMPT291_Project
             NameAddLabel = new Label();
             tabPage3 = new TabPage();
             dataGridView1 = new DataGridView();
-            label8 = new Label();
-            textBox5 = new TextBox();
             label7 = new Label();
             textBox3 = new TextBox();
             label4 = new Label();
@@ -1055,8 +1053,6 @@ namespace CMPT291_Project
             // 
             tabPage3.BackColor = Color.FromArgb(255, 192, 192);
             tabPage3.Controls.Add(dataGridView1);
-            tabPage3.Controls.Add(label8);
-            tabPage3.Controls.Add(textBox5);
             tabPage3.Controls.Add(label7);
             tabPage3.Controls.Add(textBox3);
             tabPage3.Controls.Add(label4);
@@ -1080,29 +1076,11 @@ namespace CMPT291_Project
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(666, 59);
-            dataGridView1.Margin = new Padding(3, 2, 3, 2);
+            dataGridView1.Location = new Point(761, 79);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(465, 160);
+            dataGridView1.Size = new Size(531, 214);
             dataGridView1.TabIndex = 17;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(57, 205);
-            label8.Name = "label8";
-            label8.Size = new Size(171, 15);
-            label8.TabIndex = 16;
-            label8.Text = "Customer ID (testing purposes)";
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(57, 222);
-            textBox5.Margin = new Padding(3, 2, 3, 2);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(218, 23);
-            textBox5.TabIndex = 15;
             // 
             // label7
             // 
@@ -1160,8 +1138,7 @@ namespace CMPT291_Project
             // button8
             // 
             button8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button8.Location = new Point(352, 262);
-            button8.Margin = new Padding(3, 2, 3, 2);
+            button8.Location = new Point(761, 324);
             button8.Name = "button8";
             button8.Size = new Size(217, 32);
             button8.TabIndex = 8;
@@ -1209,8 +1186,7 @@ namespace CMPT291_Project
             // button6
             // 
             button6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button6.Location = new Point(57, 262);
-            button6.Margin = new Padding(3, 2, 3, 2);
+            button6.Location = new Point(65, 289);
             button6.Name = "button6";
             button6.Size = new Size(217, 32);
             button6.TabIndex = 3;
@@ -1445,8 +1421,6 @@ namespace CMPT291_Project
         private Label label5;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand2;
         private Label label7;
-        private Label label8;
-        private TextBox textBox5;
         private DataGridView dataGridView1;
         private DataGridView ModifyCustDataView;
         private Label CustIDLabel;
