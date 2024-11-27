@@ -289,3 +289,4 @@ C:\Users\angel\OneDrive - MacEwan University\CMPT_291\Project_2024\CMPT291_Proje
 C:\Users\angel\OneDrive - MacEwan University\CMPT_291\Project_2024\CMPT291_Project\obj\Debug\net8.0-windows\CMPT291_Project.genruntimeconfig.cache
 C:\Users\angel\OneDrive - MacEwan University\CMPT_291\Project_2024\CMPT291_Project\obj\Debug\net8.0-windows\ref\CMPT291_Project.dll
 C:\Users\angel\OneDrive - MacEwan University\CMPT_291\Project_2024\CMPT291_Project\obj\Debug\net8.0-windows\CMPT291_Project.Form3.resources
+C:\Users\halo2\Source\Repos\CMPT291Project\CMPT291_Project\obj\Debug\net8.0-windows\CMPT291_Project.Form3.resources
