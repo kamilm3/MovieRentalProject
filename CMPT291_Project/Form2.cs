@@ -288,14 +288,7 @@ namespace CMPT291_Project
                     // if statement will be exceuted if Customer exists in the database
                     if (result > 0)
                     {
-                        /*
-                        int CustomerID;
-                        // retrieves the customerID of the customer 
-                        string query1 = "SELECT customerID FROM Customer WHERE firstName = @fName AND lastName = @lName AND Email = @emailAddress";
- 
-                        SqlCommand command1 = new SqlCommand(query1, myConnection);
-                        command1.Parameters.AddWithValue("@CustomerID", CustomerID);
-                        */
+
                         SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '" + @fName + "'AND lastName= '" +@lName+ "' AND Email= '"+@emailAddress+"'", myConnection);
 
                         int custID = (int)myCommand.ExecuteScalar();
