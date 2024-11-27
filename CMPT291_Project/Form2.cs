@@ -535,7 +535,6 @@ namespace CMPT291_Project
 
         private void textBox4_availability(object sender, EventArgs e)
         {
-            textBox4.Text = "Available";
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
