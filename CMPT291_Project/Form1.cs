@@ -21,7 +21,14 @@ namespace CMPT291_Project
         public Form1()
         {
             InitializeComponent();
+            myConnection = new SqlConnection("user id=admin3;" + // Username
+                                  "password=admin;" + // Password
+                                  "server=LAPTOP-6TEGHEN2;" + // Server name
+                                  "TrustServerCertificate=True;" +
+                                  "database=Project_291; " + // Database
+                                  "connection timeout=30"); // Timeout in seconds
 
+            /*
             // Initialize the connection
             myConnection = new SqlConnection("user id=Memoh;" + // Username
                                               "password=memoh4321;" + // Password
@@ -29,6 +36,7 @@ namespace CMPT291_Project
                                               "TrustServerCertificate=True;" +
                                               "database=project291; " + // Database
                                               "connection timeout=30"); // Timeout in seconds
+            */
 
             try
             {

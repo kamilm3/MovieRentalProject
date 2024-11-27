@@ -28,6 +28,14 @@ namespace CMPT291_Project
         public Form2()
         {
             InitializeComponent();
+            myConnection = new SqlConnection("user id=admin3;" + // Username
+                                              "password=admin;" + // Password
+                                              "server=LAPTOP-6TEGHEN2;" + // Server name
+                                              "TrustServerCertificate=True;" +
+                                              "database=Project_291; " + // Database
+                                              "connection timeout=30"); // Timeout in seconds
+
+            /*
             // Initialize the connection
             myConnection = new SqlConnection("user id=Memoh;" + // Username
                                               "password=memoh4321;" + // Password
@@ -35,6 +43,7 @@ namespace CMPT291_Project
                                               "TrustServerCertificate=True;" +
                                               "database=project291; " + // Database
                                               "connection timeout=30"); // Timeout in seconds
+            */
 
             try
             {
@@ -461,7 +470,7 @@ namespace CMPT291_Project
                     if (result > 0)
                     {
 
-                        SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '" + @fName + "'AND lastName= '" +@lName+ "' AND Email= '"+@emailAddress+"'", myConnection);
+                        SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '" + @fName + "'AND lastName= '" + @lName + "' AND Email= '" + @emailAddress + "'", myConnection);
 
                         int custID = (int)myCommand.ExecuteScalar();
 
@@ -483,39 +492,39 @@ namespace CMPT291_Project
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        
-                    /*
-                    if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
-                    {
-                        MessageBox.Show("Please fill in all the fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    try
-                    {
-                        // Retrieves the customerID from Customer 
-                        SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '" + (textBox1.Text) + "' AND lastName= '" + (textBox2.Text) + "' AND Email= '" + (textBox3.Text) + "'", myConnection);
 
-                        int result = (int)myCommand.ExecuteScalar();
-                        using
+            /*
+            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
+            {
+                MessageBox.Show("Please fill in all the fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try
+            {
+                // Retrieves the customerID from Customer 
+                SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '" + (textBox1.Text) + "' AND lastName= '" + (textBox2.Text) + "' AND Email= '" + (textBox3.Text) + "'", myConnection);
 
-
-                        // Retrieves everything from Movie using customerID from myCommand
-                        SqlCommand myCommand1 = new SqlCommand("select * from MovieQueue where customerID = '" + @result + "'", myConnection);
-                        SqlDataAdapter sd = new SqlDataAdapter(myCommand1);
-                        DataTable dt = new DataTable();
-                        sd.Fill(dt);
-                        dataGridView1.DataSource = dt;
-                        MessageBox.Show("Testing successful");
-                    }
-
-                    catch
-                    {
-
-                    }
-                    */
+                int result = (int)myCommand.ExecuteScalar();
+                using
 
 
-                }
+                // Retrieves everything from Movie using customerID from myCommand
+                SqlCommand myCommand1 = new SqlCommand("select * from MovieQueue where customerID = '" + @result + "'", myConnection);
+                SqlDataAdapter sd = new SqlDataAdapter(myCommand1);
+                DataTable dt = new DataTable();
+                sd.Fill(dt);
+                dataGridView1.DataSource = dt;
+                MessageBox.Show("Testing successful");
+            }
+
+            catch
+            {
+
+            }
+            */
+
+
+        }
 
         private void label5_Click(object sender, EventArgs e)
         {
@@ -527,6 +536,11 @@ namespace CMPT291_Project
         private void textBox4_availability(object sender, EventArgs e)
         {
             textBox4.Text = "Available";
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
