@@ -27,8 +27,8 @@ INSERT INTO Employee (SSN, firstName, lastName, empAddress, empCity, empState, e
 
 -- Insert test data into UsernamePassword
 INSERT INTO UsernamePassword (employeeID, Username, Password) VALUES
-(1, 'admin', 'admin1'),
-(2, 'michael_c', 'password456');
+(1, 'admin', ENCRYPTBYPASSPHRASE('lemon', 'admin1')),
+(2, 'michael', ENCRYPTBYPASSPHRASE('lemon', 'password123')); 
 
 -- Insert test data into PlacedOrder
 INSERT INTO PlacedOrder (CheckoutTime, ReturnTime, customerID, movieID, employeeID) VALUES
@@ -67,8 +67,3 @@ INSERT INTO MovieRate (Rate, MovieOrderID) VALUES
 INSERT INTO RateActor (actorID, orderID, actorRating) VALUES
 (1, 1, 5),
 (2, 2, 4);
-
-
-select * from Employee
-
-select * from UsernamePassword
