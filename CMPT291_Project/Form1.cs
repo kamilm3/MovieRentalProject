@@ -23,9 +23,9 @@ namespace CMPT291_Project
             InitializeComponent();
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
-                                  "server=LAPTOP-6TEGHEN2;" + // Server name
+                                  "server=Kamil\\MSSQLSERVER03;" + // Server name
                                   "TrustServerCertificate=True;" +
-                                  "database=Project_291; " + // Database
+                                  "database=project291; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
 
             /*
@@ -71,8 +71,14 @@ namespace CMPT291_Project
 
             try
             {
-                // Query to check username and password
-                string query = "SELECT COUNT(*) FROM UsernamePassword WHERE Username = @username AND Password = @password";
+                // SQL query to decrypt and check the password
+                string query = @"
+                    SELECT CASE 
+                               WHEN CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('lemon', Password)) = @password 
+                               THEN 1 ELSE 0 
+                           END AS IsValid
+                    FROM UsernamePassword
+                    WHERE Username = @username";
 
                 // Create SQL command
                 using (SqlCommand command = new SqlCommand(query, myConnection))
