@@ -64,7 +64,7 @@ CREATE TABLE [Employee] (
 CREATE TABLE [UsernamePassword] (
   [employeeID] int not null FOREIGN KEY REFERENCES Employee(employeeID),
   [Username] varchar(15) not null,
-  [Password] varchar(15) not null,
+  [Password] varbinary(MAX) not null,
   PRIMARY KEY ([employeeID])
 );
 
