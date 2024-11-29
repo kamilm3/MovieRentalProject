@@ -132,6 +132,16 @@ namespace CMPT291_Project
             label5 = new Label();
             button6 = new Button();
             tabPage4 = new TabPage();
+            groupBox1 = new GroupBox();
+            button7 = new Button();
+            comboBox1 = new ComboBox();
+            label10 = new Label();
+            label9 = new Label();
+            textBox5 = new TextBox();
+            label8 = new Label();
+            dataGridView2 = new DataGridView();
+            textBox4 = new TextBox();
+            label6 = new Label();
             button5 = new Button();
             button4 = new Button();
             button3 = new Button();
@@ -151,6 +161,8 @@ namespace CMPT291_Project
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabPage4.SuspendLayout();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -755,7 +767,7 @@ namespace CMPT291_Project
             tabPage2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 3, 3, 3);
+            tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(1318, 516);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Movie Management";
@@ -1106,7 +1118,7 @@ namespace CMPT291_Project
             tabPage3.Controls.Add(button6);
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3, 3, 3, 3);
+            tabPage3.Padding = new Padding(3);
             tabPage3.Size = new Size(1318, 516);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Rental Management";
@@ -1120,7 +1132,7 @@ namespace CMPT291_Project
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(607, 285);
             dataGridView1.TabIndex = 17;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.Visible = false;
             // 
             // label7
             // 
@@ -1172,6 +1184,7 @@ namespace CMPT291_Project
             label2.Size = new Size(248, 28);
             label2.TabIndex = 9;
             label2.Text = "Customer's Movie Queue";
+            label2.Visible = false;
             // 
             // textBox1
             // 
@@ -1189,7 +1202,6 @@ namespace CMPT291_Project
             label5.Size = new Size(260, 28);
             label5.TabIndex = 4;
             label5.Text = "Fill in the following fields:";
-            label5.Click += label5_Click;
             // 
             // button6
             // 
@@ -1206,6 +1218,7 @@ namespace CMPT291_Project
             // tabPage4
             // 
             tabPage4.BackColor = Color.FromArgb(192, 255, 192);
+            tabPage4.Controls.Add(groupBox1);
             tabPage4.Controls.Add(button5);
             tabPage4.Controls.Add(button4);
             tabPage4.Controls.Add(button3);
@@ -1213,10 +1226,116 @@ namespace CMPT291_Project
             tabPage4.Controls.Add(button1);
             tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3, 3, 3, 3);
+            tabPage4.Padding = new Padding(3);
             tabPage4.Size = new Size(1318, 516);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Report";
+            // 
+            // groupBox1
+            // 
+            groupBox1.BackColor = Color.White;
+            groupBox1.Controls.Add(button7);
+            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Controls.Add(label10);
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(textBox5);
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(dataGridView2);
+            groupBox1.Controls.Add(textBox4);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Location = new Point(320, 0);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(1002, 424);
+            groupBox1.TabIndex = 7;
+            groupBox1.TabStop = false;
+            groupBox1.Visible = false;
+            // 
+            // button7
+            // 
+            button7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button7.Location = new Point(47, 323);
+            button7.Name = "button7";
+            button7.Size = new Size(211, 37);
+            button7.TabIndex = 9;
+            button7.Text = "Execute Report";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Comedy", "Drama", "Action ", "Foreign" });
+            comboBox1.Location = new Point(47, 262);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(213, 28);
+            comboBox1.TabIndex = 7;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.Red;
+            label10.Location = new Point(47, 236);
+            label10.Name = "label10";
+            label10.Size = new Size(96, 23);
+            label10.TabIndex = 6;
+            label10.Text = "Movie Type";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.Red;
+            label9.Location = new Point(47, 155);
+            label9.Name = "label9";
+            label9.Size = new Size(57, 23);
+            label9.TabIndex = 5;
+            label9.Text = "> Age";
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(47, 181);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(213, 27);
+            textBox5.TabIndex = 4;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Red;
+            label8.Location = new Point(47, 79);
+            label8.Name = "label8";
+            label8.Size = new Size(158, 23);
+            label8.TabIndex = 3;
+            label8.Text = "First Name of Actor";
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(553, 26);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 51;
+            dataGridView2.Size = new Size(411, 366);
+            dataGridView2.TabIndex = 2;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(47, 105);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(213, 27);
+            textBox4.TabIndex = 1;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.White;
+            label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(47, 24);
+            label6.Name = "label6";
+            label6.Size = new Size(326, 46);
+            label6.TabIndex = 0;
+            label6.Text = "Report 1 will show actors based on the \r\nparameters below:";
             // 
             // button5
             // 
@@ -1267,6 +1386,7 @@ namespace CMPT291_Project
             button1.TabIndex = 2;
             button1.Text = "Report 1";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // sqlCommand1
             // 
@@ -1306,6 +1426,9 @@ namespace CMPT291_Project
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tabPage4.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1423,5 +1546,15 @@ namespace CMPT291_Project
         private DataGridView dataGridView1;
         private DataGridView ModifyCustDataView;
         private Label CustIDLabel;
+        private GroupBox groupBox1;
+        private Label label6;
+        private DataGridView dataGridView2;
+        private TextBox textBox4;
+        private Label label9;
+        private TextBox textBox5;
+        private Label label8;
+        private Label label10;
+        private ComboBox comboBox1;
+        private Button button7;
     }
 }

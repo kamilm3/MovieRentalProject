@@ -29,6 +29,7 @@ namespace CMPT291_Project
                                   "database=Project_291; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
             */
+            
             /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password

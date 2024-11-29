@@ -5,10 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using Microsoft.VisualBasic.Devices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -29,6 +32,7 @@ namespace CMPT291_Project
         {
             InitializeComponent();
             /*
+
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
                                   "server=LAPTOP-6TEGHEN2;" + // Server name
@@ -36,6 +40,7 @@ namespace CMPT291_Project
                                   "database=Project_291; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
             */
+
             /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                               "password=admin;" + // Password
@@ -484,12 +489,16 @@ namespace CMPT291_Project
 
                         int custID = (int)myCommand.ExecuteScalar();
 
-                        SqlCommand myCommand1 = new SqlCommand("select * from MovieQueue where customerID = '" + custID + "'", myConnection);
+                        SqlCommand myCommand1 = new SqlCommand("select movieName, QueuePosition from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "'", myConnection);
                         SqlDataAdapter sd = new SqlDataAdapter(myCommand1);
                         DataTable dt = new DataTable();
                         sd.Fill(dt);
                         dataGridView1.DataSource = dt;
-                        MessageBox.Show("Testing successful");
+                        dataGridView1.Visible = true;
+                        label2.Visible = true;
+                        label2.Text = fName + "'s Movie Queue";
+
+                        //MessageBox.Show("Testing successful");
                     }
                     else
                     {
@@ -498,56 +507,86 @@ namespace CMPT291_Project
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            /*
-            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
+
+
+
+        }
+
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            groupBox1.Visible = true;
+
+
+        }
+
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            string actorFName = textBox4.Text;
+            string ageInput = textBox5.Text;
+            int actorAge = Convert.ToInt32(textBox5.Text);
+            string selectedMovieType = comboBox1.Text;
+
+            if (string.IsNullOrEmpty(actorFName) || string.IsNullOrEmpty(ageInput) || string.IsNullOrEmpty(selectedMovieType))
             {
-                MessageBox.Show("Please fill in all the fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please fill in all the parameters", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
             {
-                // Retrieves the customerID from Customer 
-                SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '" + (textBox1.Text) + "' AND lastName= '" + (textBox2.Text) + "' AND Email= '" + (textBox3.Text) + "'", myConnection);
+                // Query to check first name, last name, and email
+                string query2 = "select firstName, lastName, DATEDIFF(yy, DateofBirth, GETDATE()) " +
+                    "from Actor " +
+                    "where firstName = @actorFName and (DATEDIFF(yy, DateofBirth, GETDATE())) > @actorAge " +
+                    "and actorID in " +
+                    "(select T1.actorID from ActorAppearedIn as T1, Actor as T2, Movie as T3 where T1.actorID = T2.actorID and T1.movieID = T3.movieID and MovieType = @selectedMovieType)";
 
-                int result = (int)myCommand.ExecuteScalar();
-                using
 
+                // Create SQL command
+                using (SqlCommand command = new SqlCommand(query2, myConnection))
+                {
+                    command.Parameters.AddWithValue("@actorFName", actorFName);
+                    command.Parameters.AddWithValue("@actorAge", actorAge);
+                    command.Parameters.AddWithValue("@selectedMovieType", selectedMovieType);
 
-                // Retrieves everything from Movie using customerID from myCommand
-                SqlCommand myCommand1 = new SqlCommand("select * from MovieQueue where customerID = '" + @result + "'", myConnection);
-                SqlDataAdapter sd = new SqlDataAdapter(myCommand1);
-                DataTable dt = new DataTable();
-                sd.Fill(dt);
-                dataGridView1.DataSource = dt;
-                MessageBox.Show("Testing successful");
+                    int result = (int)command.ExecuteScalar();
+
+                    // if statement will be exceuted if Customer exists in the database
+                    if (result > 0)
+                    { 
+
+                        //SqlCommand myCommand1 = new SqlCommand("select movieName, QueuePosition from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "'", myConnection);
+                        DataTable dt = new DataTable();
+                        sd.Fill(dt);
+                        dataGridView2.DataSource = dt;
+
+                        //MessageBox.Show("Testing successful");
+                    }
+                    else
+                    {
+                        // Customer does not exist in database
+                        MessageBox.Show("Customer does not exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
 
-            catch
+            catch (Exception ex)
             {
-
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            */
 
 
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void textBox4_availability(object sender, EventArgs e)
-        {
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
