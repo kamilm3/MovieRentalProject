@@ -6,10 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace CMPT291_Project
@@ -45,15 +48,15 @@ namespace CMPT291_Project
                                               "connection timeout=30"); // Timeout in seconds
             */
 
-            /*
+
             // Initialize the connection
             myConnection = new SqlConnection("user id=Memoh;" + // Username
                                               "password=memoh4321;" + // Password
-                                              "server=DESKTOP-H6FU9US\\MSSQLSERVER01;" + // Server name
+                                              "server=Memoh;" + // Server name
                                               "TrustServerCertificate=True;" +
                                               "database=project291; " + // Database
                                               "connection timeout=30"); // Timeout in seconds
-            */
+
 
             try
             {
@@ -550,6 +553,97 @@ namespace CMPT291_Project
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        // *********************************
+        //            Report Tab
+        // *********************************
+
+        private void MonthText_Enter(object sender, EventArgs e)
+        {
+            System.Windows.Forms.TextBox MonthText = sender as System.Windows.Forms.TextBox;
+            if (MonthText.Text == "Ex. 3")
+            {
+                MonthText.Text = "";
+                MonthText.ForeColor = Color.Black;
+            }
+        }
+
+        private void MonthText_Leave(object sender, EventArgs e)
+        {
+            System.Windows.Forms.TextBox MonthText = sender as System.Windows.Forms.TextBox;
+            if (string.IsNullOrWhiteSpace(MonthText.Text))
+            {
+                MonthText.Text = "Ex. 3";
+                MonthText.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void Report1Button_Click(object sender, EventArgs e)
+        {
+            string monthRangeText = MonthText.Text.Trim();
+
+            if (string.IsNullOrEmpty(monthRangeText) || !int.TryParse(monthRangeText, out int monthRange))
+            {
+                MessageBox.Show("Please enter a valid month range (numeric value).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Search for the customer sales
+            string query = @"
+                SELECT 
+                    C.customerID, 
+                    C.firstName + ' ' + C.lastName AS FullName, 
+                    C.Email, 
+                    COUNT(P.movieID) AS TotalMoviesRented, 
+                    SUM(M.DistFee) AS TotalAmountSpent, 
+                    MIN(P.CheckoutTime) AS FirstRentalDate, 
+                    MAX(P.CheckoutTime) AS LastRentalDate
+                FROM 
+                    Customer C, 
+                    PlacedOrder P, 
+                    Movie M
+                WHERE 
+                    P.customerID = C.customerID 
+                    AND M.movieID = P.movieID 
+                    AND P.CheckoutTime >= DATEADD(MONTH, -@MonthRange, GETDATE())
+                GROUP BY 
+                    C.customerID, C.firstName, C.lastName, C.Email
+                ORDER BY 
+                    TotalAmountSpent DESC";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+                    // Add parameter for month range
+                    cmd.Parameters.AddWithValue("@MonthRange", monthRange);
+
+                    // Load results into the data table
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable results = new DataTable();
+                        adapter.Fill(results);
+
+                        // Bind results to the data view
+                        ModifyCustDataView.DataSource = results;
+
+                        // Check if results are empty
+                        if (results.Rows.Count == 0)
+                        {
+                            MessageBox.Show("No customer found within the provided range.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            ReportDataView.Visible = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
