@@ -39,8 +39,9 @@ namespace CMPT291_Project
                                   "connection timeout=30"); // Timeout in seconds
             */
 
-            /*
+            
             // Initialize the connection
+            /*
             myConnection = new SqlConnection("user id=Memoh;" + // Username
                                               "password=memoh4321;" + // Password
                                               "server=DESKTOP-H6FU9US\\MSSQLSERVER01;" + // Server name
