@@ -538,12 +538,13 @@ namespace CMPT291_Project
         {
             // Collect input data
             string movieName = MovieAssignText.Text.Trim();
-            string actorName = ActorAssignText.Text.Trim();
+            string actorFirstName = ActorFirstAssignText.Text.Trim();
+            string actorLastName = ActorLastAssignText.Text.Trim();
 
             // Validate inputs
-            if (string.IsNullOrEmpty(movieName) || string.IsNullOrEmpty(actorName))
+            if (string.IsNullOrEmpty(movieName) || string.IsNullOrEmpty(actorFirstName) || string.IsNullOrEmpty(actorLastName))
             {
-                MessageBox.Show("Please provide both the movie name and actor name.",
+                MessageBox.Show("Please provide both the movie name and the actor's full name.",
                                 "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -863,6 +864,11 @@ namespace CMPT291_Project
                 MovieDataView.Visible = false;
                 ModifyMovieBox.Visible = true;
             }
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }
