@@ -63,6 +63,13 @@ namespace CMPT291_Project
                                               "connection timeout=30"); // Timeout in seconds
             */
 
+            myConnection = new SqlConnection("user id=admin3;" + // Username
+                                             "password=admin;" + // Password
+                                             "server=DESKTOP-6QG008O;" + // Server name
+                                             "TrustServerCertificate=True;" +
+                                             "database=project291; " + // Database
+                                             "connection timeout=30"); // Timeout in seconds
+
             try
             {
                 myConnection.Open(); // Open the connection
@@ -348,12 +355,21 @@ namespace CMPT291_Project
         // *********************************
         private void AddMovieButton_Click(object sender, EventArgs e)
         {
-            ShowGroupBox(AddMovieBox);
+            ModifyMovieBox.Visible = false;
+            AddMovieBox.Visible = true;
+            AssignActorBox.Visible = false;
+            SearchMoviePanel.Visible = false;
+            MovieDataViewPanel.Visible = false;
         }
 
         private void ModifyMovieButton_Click(object sender, EventArgs e)
         {
-            ShowGroupBox(ModifyMovieBox);
+            ModifyMovieBox.Visible = false;
+            AddMovieBox.Visible = false;
+            AssignActorBox.Visible = false;
+            SearchMoviePanel.Visible = true;
+            MovieDataViewPanel.Visible = true;
+
         }
 
         private void MovieAddButton_Click(object sender, EventArgs e)
@@ -371,45 +387,151 @@ namespace CMPT291_Project
             }
 
             // NEED TO ADD IN DATABASE FUNCTIONALITY HERE
-            MessageBox.Show("Movie added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Add Movie
+            try
+            {
+                string query = "INSERT INTO Movie (movieName, MovieType, DistFee,NumCopies)" + "VALUES(@moviename, @movietype, @distfee, @numcopies)";
+
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+                    cmd.Parameters.AddWithValue("@moviename", movieName);
+                    cmd.Parameters.AddWithValue("@movietype", movieType);
+                    cmd.Parameters.AddWithValue("@distfee", distFee);
+                    cmd.Parameters.AddWithValue("@numcopies", numCopies);
+
+                    int MovierowsAffected = cmd.ExecuteNonQuery();
+
+                    if (MovierowsAffected > 0)
+                    {
+                        MessageBox.Show("Movie added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Movie addition failed. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            //MessageBox.Show("Movie added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
 
         private void MovieModifyButton_Click(object sender, EventArgs e)
         {
-            string movieID = MovieIDText?.Text.Trim();
-            string movieName = NameModText.Text.Trim();
-            string movieType = TypeModComboBox.SelectedItem?.ToString();
-            string distFee = FeeModText.Text.Trim();
-            string numCopies = CopiesModText.Text.Trim();
+            string movieId = MovieIDText?.Text.Trim();
+            string moviename = NameModText.Text.Trim();
+            string movietype = TypeModComboBox.SelectedItem?.ToString();
+            string distfee = FeeModText.Text.Trim();
+            string numcopies = CopiesModText.Text.Trim();
 
             // Validate inputs
-            if (string.IsNullOrEmpty(movieID))
+            if (string.IsNullOrEmpty(movieId) || string.IsNullOrEmpty(moviename) || string.IsNullOrEmpty(movietype) || string.IsNullOrEmpty(distfee) ||
+                string.IsNullOrEmpty(numcopies))
             {
-                MessageBox.Show("Please enter the Movie ID to update.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("All fields must be filled in to update the customer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // NEED TO ADD IN DATABASE FUNCTIONALITY HERE
-            MessageBox.Show("Movie updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            try
+            {
+
+                string query = "UPDATE Movie SET movieName = @MovieName, MovieType = @movieType, " +
+                                "DistFee = @distFee, NumCopies = @numCopies " +
+                                "WHERE movieID = @MovieId";
+
+                using (SqlCommand cmnd = new SqlCommand(query, myConnection))
+                {
+                    cmnd.Parameters.AddWithValue("@MovieId", movieId);
+                    cmnd.Parameters.AddWithValue("@MovieName", moviename);
+                    cmnd.Parameters.AddWithValue("@movieType", movietype);
+                    cmnd.Parameters.AddWithValue("@distFee", distfee);
+                    cmnd.Parameters.AddWithValue("@numCopies", numcopies);
+
+                    // Execute the query
+                    int rowsAffected = cmnd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Movie modified successfully!", "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Movie modification failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+
+            // MessageBox.Show("Movie updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
 
         private void DeleteMovieButton_Click(object sender, EventArgs e)
         {
-            string movieID = MovieIDText?.Text.Trim();
+            string movieId = MovieIDText?.Text.Trim();
 
-            if (string.IsNullOrEmpty(movieID))
+            DialogResult confirm_delete = MessageBox.Show("Are you sure you want to delete this movie? This action cannot be undone.",
+                                                           "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm_delete != DialogResult.Yes)
             {
-                MessageBox.Show("Please enter the Movie ID to delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return; // Pressed No
             }
 
-            // NEED TO ADD IN DATABASE FUNCTIONALITY HERE
-            MessageBox.Show("Movie (not yet) deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                string query = "DELETE FROM Movie WHERE movieID = @MovieId";
+
+                using (SqlCommand cmnd = new SqlCommand(query, myConnection))
+                {
+                    cmnd.Parameters.AddWithValue("@MovieId", movieId);
+
+                    // Execute
+                    int rowsAffected = cmnd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Movie deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Movie deletion failed. Please check the ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
+
 
         private void AssignActorButton_Click(object sender, EventArgs e)
         {
-            ShowGroupBox(AssignActorBox);
+            ModifyMovieBox.Visible = false;
+            AddMovieBox.Visible = false;
+            AssignActorBox.Visible = true;
+            SearchMoviePanel.Visible = false;
+            MovieDataViewPanel.Visible = false;
         }
 
         private void AssignButton_Click(object sender, EventArgs e)
@@ -607,7 +729,7 @@ namespace CMPT291_Project
             }
         }
 
-        
+
         private void Report2Button_Click(object sender, EventArgs e)
         {
             string monthRangeText = MonthText.Text.Trim();
@@ -660,10 +782,89 @@ namespace CMPT291_Project
             }
         }
 
-        /////////////////////
-        //     Report 3    //
-        /////////////////////
-        
+        private void SearchMovieButton_Click(object sender, EventArgs e)
+        {
+            ModifyMovieBox.Visible = false;
+            AddMovieBox.Visible = false;
+            AssignActorBox.Visible = false;
+            MovieDataViewPanel.Visible = true;
+            // SearchMoviePanel.Visible = false;
+            //MovieDataView.Visible = true;
 
+            string moviename = SearchMovieText?.Text.Trim();
+
+            if (string.IsNullOrEmpty(moviename))
+            {
+                MessageBox.Show("Please enter the Movie Title to search", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+
+
+                // Search for the Movie
+                string query = "SELECT movieID, movieName, MovieType, DistFee, NumCopies " +
+                               "FROM Movie " +
+                               "WHERE movieName = @MovieName";
+
+                using (SqlCommand cmnd = new SqlCommand(query, myConnection))
+                {
+                    cmnd.Parameters.AddWithValue("@MovieName", moviename);
+
+
+                    // Load results into the data table
+                    using (SqlDataAdapter Moviedata = new SqlDataAdapter(cmnd))
+                    {
+                        DataTable movieresults = new DataTable();
+
+                        Moviedata.Fill(movieresults);
+
+                        MovieDataView.DataSource = movieresults;
+
+
+
+                        // Error check to ensure customer exists
+                        if (movieresults.Rows.Count == 0)
+                        {
+                            MessageBox.Show("No movie found with the provided details.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MovieDataView.Visible = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            /////////////////////
+            //     Report 3    //
+            /////////////////////
+
+
+        }
+
+        private void MovieDataView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Ensure the row selected is not the header
+            {
+                DataGridViewRow selectedMovieRow = MovieDataView.Rows[e.RowIndex];
+
+                NameModText.Text = selectedMovieRow.Cells["movieName"].Value?.ToString();
+                MovieIDText.Text = selectedMovieRow.Cells["movieID"].Value?.ToString();
+                TypeModComboBox.SelectedItem = selectedMovieRow.Cells["MovieType"].Value?.ToString();
+                FeeModText.Text = selectedMovieRow.Cells["DistFee"].Value?.ToString();
+                CopiesModText.Text = selectedMovieRow.Cells["NumCopies"].Value?.ToString();
+
+                MovieDataView.Visible = false;
+                ModifyMovieBox.Visible = true;
+            }
+
+        }
     }
 }
+
