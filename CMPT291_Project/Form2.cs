@@ -8,11 +8,13 @@ using System.Net;
 using System.Net.Mail;
 using System.Numerics;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
-using Microsoft.VisualBasic.Devices;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace CMPT291_Project
@@ -50,8 +52,9 @@ namespace CMPT291_Project
                                               "connection timeout=30"); // Timeout in seconds
             */
 
-            /*
+
             // Initialize the connection
+            /*
             myConnection = new SqlConnection("user id=Memoh;" + // Username
                                               "password=memoh4321;" + // Password
                                               "server=DESKTOP-H6FU9US\\MSSQLSERVER01;" + // Server name
@@ -518,28 +521,25 @@ namespace CMPT291_Project
 
         }
 
+        // *********************************
+        //            Report Tab
+        // *********************************
 
-
+        /////////////////////
+        //     Report 1    //
+        /////////////////////
         private void button1_Click(object sender, EventArgs e)
-        {
-            groupBox1.Visible = true;
-
-
-        }
-
-
-        private void button7_Click(object sender, EventArgs e)
         {
             string actorFName = textBox4.Text;
             string ageInput = textBox5.Text;
-            int actorAge = Convert.ToInt32(textBox5.Text);
             string selectedMovieType = comboBox1.Text;
 
-            if (string.IsNullOrEmpty(actorFName) || string.IsNullOrEmpty(ageInput) || string.IsNullOrEmpty(selectedMovieType))
+            if (string.IsNullOrEmpty(actorFName) || string.IsNullOrEmpty(ageInput) || string.IsNullOrEmpty(selectedMovieType) || !int.TryParse(ageInput, out int actorAge))
             {
                 MessageBox.Show("Please fill in all the parameters", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             try
             {
                 // Query to check first name, last name, and email
@@ -547,7 +547,8 @@ namespace CMPT291_Project
                     "from Actor " +
                     "where firstName = @actorFName and (DATEDIFF(yy, DateofBirth, GETDATE())) > @actorAge " +
                     "and actorID in " +
-                    "(select T1.actorID from ActorAppearedIn as T1, Actor as T2, Movie as T3 where T1.actorID = T2.actorID and T1.movieID = T3.movieID and MovieType = @selectedMovieType)";
+                    "(select T1.actorID from ActorAppearedIn as T1, Actor as T2, Movie as T3 " +
+                    "where T1.actorID = T2.actorID and T1.movieID = T3.movieID and MovieType = @selectedMovieType)";
 
 
                 // Create SQL command
@@ -557,18 +558,15 @@ namespace CMPT291_Project
                     command.Parameters.AddWithValue("@actorAge", actorAge);
                     command.Parameters.AddWithValue("@selectedMovieType", selectedMovieType);
 
-                    int result = (int)command.ExecuteScalar();
+                    object result = command.ExecuteScalar();
 
                     // if statement will be exceuted if Customer exists in the database
-                    if (result > 0)
-                    { 
-
-                        //SqlCommand myCommand1 = new SqlCommand("select movieName, QueuePosition from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "'", myConnection);
+                    if (result != null && int.TryParse(result.ToString(), out int count) && count > 0)
+                    {
+                        // Retrieve additional data if necessary
                         DataTable dt = new DataTable();
-                        sd.Fill(dt);
-                        dataGridView2.DataSource = dt;
-
-                        //MessageBox.Show("Testing successful");
+                        sd.Fill(dt); // Assuming 'sd' is a SqlDataAdapter
+                        ReportDataGrid.DataSource = dt;
                     }
                     else
                     {
@@ -583,12 +581,89 @@ namespace CMPT291_Project
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-
         }
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        /////////////////////
+        //     Report 2    //
+        /////////////////////
+
+        private void MonthText_Enter(object sender, EventArgs e)
         {
-
+            System.Windows.Forms.TextBox MonthText = sender as System.Windows.Forms.TextBox;
+            if (MonthText.Text == "Ex. 3")
+            {
+                MonthText.Text = "";
+                MonthText.ForeColor = Color.Black;
+            }
         }
+
+        private void MonthText_Leave(object sender, EventArgs e)
+        {
+            System.Windows.Forms.TextBox MonthText = sender as System.Windows.Forms.TextBox;
+            if (string.IsNullOrWhiteSpace(MonthText.Text))
+            {
+                MonthText.Text = "Ex. 3";
+                MonthText.ForeColor = Color.DarkGray;
+            }
+        }
+
+        
+        private void Report2Button_Click(object sender, EventArgs e)
+        {
+            string monthRangeText = MonthText.Text.Trim();
+
+            if (string.IsNullOrEmpty(monthRangeText) || !int.TryParse(monthRangeText, out int monthRange))
+            {
+                MessageBox.Show("Please enter a valid month range (numeric value).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Search for the customer sales
+            string query = @"
+                select C.customerID, C.firstName + ' ' + C.lastName AS FullName, C.Email, count(P.movieID) as TotalMoviesRented, sum(M.DistFee) as TotalAmountSpent, min(P.CheckoutTime) as FirstRentalDate, max(P.CheckoutTime) as LastRentalDate
+                from Customer C, PlacedOrder P, Movie M
+                where P.customerID = C.customerID AND M.movieID = P.movieID AND P.CheckoutTime >= DATEADD(MONTH, -@MonthRange, GETDATE())
+                group by C.customerID, C.firstName, C.lastName, C.Email
+                order by TotalAmountSpent DESC";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+                    // Add parameter for month range
+                    cmd.Parameters.AddWithValue("@MonthRange", monthRange);
+
+                    // Load results into the data table
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable results = new DataTable();
+                        adapter.Fill(results);
+
+                        // Bind results to the data view
+                        ReportDataGrid.DataSource = results;
+
+                        // Check if results are empty
+                        if (results.Rows.Count == 0)
+                        {
+                            MessageBox.Show("No customer found within the provided range.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            ReportDataGrid.Visible = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /////////////////////
+        //     Report 3    //
+        /////////////////////
+        
+
     }
 }
