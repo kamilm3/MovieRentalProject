@@ -805,9 +805,18 @@ namespace CMPT291_Project
 
 
                 // Search for the Movie
-                string query = "SELECT movieID, movieName, MovieType, DistFee, NumCopies " +
-                               "FROM Movie " +
-                               "WHERE movieName = @MovieName";
+
+
+
+                string query = "SELECT M.movieID, M.movieName, M.MovieType, M.DistFee, M.NumCopies, A.firstName, A.lastName " +
+                                "FROM Movie M " +
+                                "JOIN ActorAppearedIn MA ON M.movieID = MA.movieID " +
+                                "JOIN Actor A ON MA.actorID = A.actorID " +
+                                "WHERE M.movieName = @MovieName";
+                
+
+
+
 
                 using (SqlCommand cmnd = new SqlCommand(query, myConnection))
                 {
@@ -819,13 +828,38 @@ namespace CMPT291_Project
                     {
                         DataTable movieresults = new DataTable();
 
+
                         Moviedata.Fill(movieresults);
 
-                        MovieDataView.DataSource = movieresults;
+                        // Remove duplicates by movieID
+                        DataView distinctMovies = new DataView(movieresults);
+                        distinctMovies.Sort = "movieID";  // Sorting to group by movieID
+                        DataTable uniqueMovies = distinctMovies.ToTable(true, "movieID", "movieName", "MovieType", "DistFee", "NumCopies");
+
+                        // Set the unique data as the DataSource
+                        MovieDataView.DataSource = uniqueMovies;
+
+                        //MovieDataView.Columns["firstName"].Visible = false;
+                        //MovieDataView.Columns["lastName"].Visible = false;
+
+                        actorList.Items.Clear();
+
+                        SqlDataReader reader = cmnd.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            // Concatenate firstName and lastName with a space between them
+                            string fullName = reader["firstName"].ToString() + " " + reader["lastName"].ToString();
+
+                            // Add the full name to the actor list
+                            actorList.Items.Add(fullName);
+                        }
+
+                        reader.Close();
 
 
 
-                        // Error check to ensure customer exists
+                        // Error check to ensure movie exists
                         if (movieresults.Rows.Count == 0)
                         {
                             MessageBox.Show("No movie found with the provided details.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -860,6 +894,8 @@ namespace CMPT291_Project
                 TypeModComboBox.SelectedItem = selectedMovieRow.Cells["MovieType"].Value?.ToString();
                 FeeModText.Text = selectedMovieRow.Cells["DistFee"].Value?.ToString();
                 CopiesModText.Text = selectedMovieRow.Cells["NumCopies"].Value?.ToString();
+
+                
 
                 MovieDataView.Visible = false;
                 ModifyMovieBox.Visible = true;

@@ -30,7 +30,7 @@ namespace CMPT291_Project
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label1 = new Label();
             DashboardTabs = new TabControl();
             tabPage1 = new TabPage();
@@ -95,6 +95,22 @@ namespace CMPT291_Project
             AssignActorButton = new Button();
             ModifyMovieButton = new Button();
             AddMovieButton = new Button();
+            MovieDataViewPanel = new Panel();
+            ModifyMovieBox = new GroupBox();
+            actorList = new ListBox();
+            DeleteMovieButton = new Button();
+            MovieIDText = new TextBox();
+            MovieIDLabel = new Label();
+            MovieModifyButton = new Button();
+            TypeModComboBox = new ComboBox();
+            CopiesModText = new TextBox();
+            FeeModText = new TextBox();
+            NameModText = new TextBox();
+            CopiesModLabel = new Label();
+            FeeMofLabel = new Label();
+            TypeModLabel = new Label();
+            NameModLabel = new Label();
+            MovieDataView = new DataGridView();
             AssignActorBox = new GroupBox();
             label11 = new Label();
             label6 = new Label();
@@ -114,21 +130,6 @@ namespace CMPT291_Project
             FeeAddLabel = new Label();
             TypeAddLabel = new Label();
             NameAddLabel = new Label();
-            MovieDataViewPanel = new Panel();
-            ModifyMovieBox = new GroupBox();
-            DeleteMovieButton = new Button();
-            MovieIDText = new TextBox();
-            MovieIDLabel = new Label();
-            MovieModifyButton = new Button();
-            TypeModComboBox = new ComboBox();
-            CopiesModText = new TextBox();
-            FeeModText = new TextBox();
-            NameModText = new TextBox();
-            CopiesModLabel = new Label();
-            FeeMofLabel = new Label();
-            TypeModLabel = new Label();
-            NameModLabel = new Label();
-            MovieDataView = new DataGridView();
             tabPage3 = new TabPage();
             dataGridView1 = new DataGridView();
             label7 = new Label();
@@ -157,6 +158,7 @@ namespace CMPT291_Project
             button1 = new Button();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             sqlCommand2 = new Microsoft.Data.SqlClient.SqlCommand();
+            label12 = new Label();
             DashboardTabs.SuspendLayout();
             tabPage1.SuspendLayout();
             AddCustBox.SuspendLayout();
@@ -164,11 +166,11 @@ namespace CMPT291_Project
             ModifyCustBox.SuspendLayout();
             tabPage2.SuspendLayout();
             SearchMoviePanel.SuspendLayout();
-            AssignActorBox.SuspendLayout();
-            AddMovieBox.SuspendLayout();
             MovieDataViewPanel.SuspendLayout();
             ModifyMovieBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MovieDataView).BeginInit();
+            AssignActorBox.SuspendLayout();
+            AddMovieBox.SuspendLayout();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabPage4.SuspendLayout();
@@ -530,14 +532,14 @@ namespace CMPT291_Project
             ModifyCustDataView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ModifyCustDataView.BackgroundColor = Color.White;
             ModifyCustDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            ModifyCustDataView.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            ModifyCustDataView.DefaultCellStyle = dataGridViewCellStyle2;
             ModifyCustDataView.Dock = DockStyle.Right;
             ModifyCustDataView.GridColor = Color.LightGray;
             ModifyCustDataView.Location = new Point(-534, 0);
@@ -799,9 +801,9 @@ namespace CMPT291_Project
             tabPage2.Controls.Add(AssignActorButton);
             tabPage2.Controls.Add(ModifyMovieButton);
             tabPage2.Controls.Add(AddMovieButton);
+            tabPage2.Controls.Add(MovieDataViewPanel);
             tabPage2.Controls.Add(AssignActorBox);
             tabPage2.Controls.Add(AddMovieBox);
-            tabPage2.Controls.Add(MovieDataViewPanel);
             tabPage2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Margin = new Padding(2, 3, 2, 3);
@@ -884,6 +886,180 @@ namespace CMPT291_Project
             AddMovieButton.Text = "Add New Movie";
             AddMovieButton.UseVisualStyleBackColor = true;
             AddMovieButton.Click += AddMovieButton_Click;
+            // 
+            // MovieDataViewPanel
+            // 
+            MovieDataViewPanel.BackColor = Color.White;
+            MovieDataViewPanel.Controls.Add(ModifyMovieBox);
+            MovieDataViewPanel.Controls.Add(MovieDataView);
+            MovieDataViewPanel.Location = new Point(350, 0);
+            MovieDataViewPanel.Name = "MovieDataViewPanel";
+            MovieDataViewPanel.Size = new Size(963, 514);
+            MovieDataViewPanel.TabIndex = 8;
+            MovieDataViewPanel.Visible = false;
+            // 
+            // ModifyMovieBox
+            // 
+            ModifyMovieBox.BackColor = Color.White;
+            ModifyMovieBox.Controls.Add(label12);
+            ModifyMovieBox.Controls.Add(actorList);
+            ModifyMovieBox.Controls.Add(DeleteMovieButton);
+            ModifyMovieBox.Controls.Add(MovieIDText);
+            ModifyMovieBox.Controls.Add(MovieIDLabel);
+            ModifyMovieBox.Controls.Add(MovieModifyButton);
+            ModifyMovieBox.Controls.Add(TypeModComboBox);
+            ModifyMovieBox.Controls.Add(CopiesModText);
+            ModifyMovieBox.Controls.Add(FeeModText);
+            ModifyMovieBox.Controls.Add(NameModText);
+            ModifyMovieBox.Controls.Add(CopiesModLabel);
+            ModifyMovieBox.Controls.Add(FeeMofLabel);
+            ModifyMovieBox.Controls.Add(TypeModLabel);
+            ModifyMovieBox.Controls.Add(NameModLabel);
+            ModifyMovieBox.Location = new Point(16, 0);
+            ModifyMovieBox.Margin = new Padding(2, 4, 2, 4);
+            ModifyMovieBox.Name = "ModifyMovieBox";
+            ModifyMovieBox.Padding = new Padding(2, 4, 2, 4);
+            ModifyMovieBox.Size = new Size(938, 517);
+            ModifyMovieBox.TabIndex = 5;
+            ModifyMovieBox.TabStop = false;
+            ModifyMovieBox.Visible = false;
+            // 
+            // actorList
+            // 
+            actorList.FormattingEnabled = true;
+            actorList.ItemHeight = 28;
+            actorList.Location = new Point(593, 175);
+            actorList.Name = "actorList";
+            actorList.Size = new Size(304, 172);
+            actorList.TabIndex = 12;
+            // 
+            // DeleteMovieButton
+            // 
+            DeleteMovieButton.Location = new Point(743, 416);
+            DeleteMovieButton.Margin = new Padding(2, 4, 2, 4);
+            DeleteMovieButton.Name = "DeleteMovieButton";
+            DeleteMovieButton.Size = new Size(128, 52);
+            DeleteMovieButton.TabIndex = 11;
+            DeleteMovieButton.Text = "Delete";
+            DeleteMovieButton.UseVisualStyleBackColor = true;
+            DeleteMovieButton.Click += DeleteMovieButton_Click;
+            // 
+            // MovieIDText
+            // 
+            MovieIDText.Enabled = false;
+            MovieIDText.Location = new Point(710, 44);
+            MovieIDText.Margin = new Padding(2, 4, 2, 4);
+            MovieIDText.Name = "MovieIDText";
+            MovieIDText.ReadOnly = true;
+            MovieIDText.Size = new Size(131, 34);
+            MovieIDText.TabIndex = 10;
+            // 
+            // MovieIDLabel
+            // 
+            MovieIDLabel.AutoSize = true;
+            MovieIDLabel.Location = new Point(593, 48);
+            MovieIDLabel.Margin = new Padding(2, 0, 2, 0);
+            MovieIDLabel.Name = "MovieIDLabel";
+            MovieIDLabel.Size = new Size(99, 28);
+            MovieIDLabel.TabIndex = 9;
+            MovieIDLabel.Text = "Movie ID:";
+            // 
+            // MovieModifyButton
+            // 
+            MovieModifyButton.Location = new Point(545, 416);
+            MovieModifyButton.Margin = new Padding(2, 4, 2, 4);
+            MovieModifyButton.Name = "MovieModifyButton";
+            MovieModifyButton.Size = new Size(138, 52);
+            MovieModifyButton.TabIndex = 8;
+            MovieModifyButton.Text = "Submit";
+            MovieModifyButton.UseVisualStyleBackColor = true;
+            MovieModifyButton.Click += MovieModifyButton_Click;
+            // 
+            // TypeModComboBox
+            // 
+            TypeModComboBox.FormattingEnabled = true;
+            TypeModComboBox.Items.AddRange(new object[] { "Comedy", "Drama", "Action", "Foreign" });
+            TypeModComboBox.Location = new Point(257, 131);
+            TypeModComboBox.Margin = new Padding(2, 4, 2, 4);
+            TypeModComboBox.Name = "TypeModComboBox";
+            TypeModComboBox.Size = new Size(173, 36);
+            TypeModComboBox.TabIndex = 7;
+            // 
+            // CopiesModText
+            // 
+            CopiesModText.Location = new Point(257, 295);
+            CopiesModText.Margin = new Padding(2, 4, 2, 4);
+            CopiesModText.Name = "CopiesModText";
+            CopiesModText.Size = new Size(114, 34);
+            CopiesModText.TabIndex = 6;
+            // 
+            // FeeModText
+            // 
+            FeeModText.Location = new Point(257, 211);
+            FeeModText.Margin = new Padding(2, 4, 2, 4);
+            FeeModText.Name = "FeeModText";
+            FeeModText.Size = new Size(173, 34);
+            FeeModText.TabIndex = 5;
+            // 
+            // NameModText
+            // 
+            NameModText.Location = new Point(257, 40);
+            NameModText.Margin = new Padding(2, 4, 2, 4);
+            NameModText.Name = "NameModText";
+            NameModText.Size = new Size(301, 34);
+            NameModText.TabIndex = 4;
+            // 
+            // CopiesModLabel
+            // 
+            CopiesModLabel.AutoSize = true;
+            CopiesModLabel.Location = new Point(62, 299);
+            CopiesModLabel.Margin = new Padding(2, 0, 2, 0);
+            CopiesModLabel.Name = "CopiesModLabel";
+            CopiesModLabel.Size = new Size(184, 28);
+            CopiesModLabel.TabIndex = 3;
+            CopiesModLabel.Text = "Number of Copies:";
+            // 
+            // FeeMofLabel
+            // 
+            FeeMofLabel.AutoSize = true;
+            FeeMofLabel.Location = new Point(62, 215);
+            FeeMofLabel.Margin = new Padding(2, 0, 2, 0);
+            FeeMofLabel.Name = "FeeMofLabel";
+            FeeMofLabel.Size = new Size(162, 28);
+            FeeMofLabel.TabIndex = 2;
+            FeeMofLabel.Text = "Distribution Fee:";
+            // 
+            // TypeModLabel
+            // 
+            TypeModLabel.AutoSize = true;
+            TypeModLabel.Location = new Point(62, 131);
+            TypeModLabel.Margin = new Padding(2, 0, 2, 0);
+            TypeModLabel.Name = "TypeModLabel";
+            TypeModLabel.Size = new Size(122, 28);
+            TypeModLabel.TabIndex = 1;
+            TypeModLabel.Text = "Movie Type:";
+            // 
+            // NameModLabel
+            // 
+            NameModLabel.AutoSize = true;
+            NameModLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NameModLabel.Location = new Point(62, 44);
+            NameModLabel.Margin = new Padding(2, 0, 2, 0);
+            NameModLabel.Name = "NameModLabel";
+            NameModLabel.Size = new Size(133, 28);
+            NameModLabel.TabIndex = 0;
+            NameModLabel.Text = "Movie Name:";
+            // 
+            // MovieDataView
+            // 
+            MovieDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            MovieDataView.Location = new Point(39, 22);
+            MovieDataView.Name = "MovieDataView";
+            MovieDataView.RowHeadersWidth = 51;
+            MovieDataView.Size = new Size(897, 474);
+            MovieDataView.TabIndex = 0;
+            MovieDataView.Visible = false;
+            MovieDataView.CellClick += MovieDataView_CellClick;
             // 
             // AssignActorBox
             // 
@@ -1087,169 +1263,6 @@ namespace CMPT291_Project
             NameAddLabel.Size = new Size(133, 28);
             NameAddLabel.TabIndex = 0;
             NameAddLabel.Text = "Movie Name:";
-            // 
-            // MovieDataViewPanel
-            // 
-            MovieDataViewPanel.BackColor = Color.White;
-            MovieDataViewPanel.Controls.Add(ModifyMovieBox);
-            MovieDataViewPanel.Controls.Add(MovieDataView);
-            MovieDataViewPanel.Location = new Point(350, 0);
-            MovieDataViewPanel.Name = "MovieDataViewPanel";
-            MovieDataViewPanel.Size = new Size(963, 514);
-            MovieDataViewPanel.TabIndex = 8;
-            MovieDataViewPanel.Visible = false;
-            // 
-            // ModifyMovieBox
-            // 
-            ModifyMovieBox.BackColor = Color.White;
-            ModifyMovieBox.Controls.Add(DeleteMovieButton);
-            ModifyMovieBox.Controls.Add(MovieIDText);
-            ModifyMovieBox.Controls.Add(MovieIDLabel);
-            ModifyMovieBox.Controls.Add(MovieModifyButton);
-            ModifyMovieBox.Controls.Add(TypeModComboBox);
-            ModifyMovieBox.Controls.Add(CopiesModText);
-            ModifyMovieBox.Controls.Add(FeeModText);
-            ModifyMovieBox.Controls.Add(NameModText);
-            ModifyMovieBox.Controls.Add(CopiesModLabel);
-            ModifyMovieBox.Controls.Add(FeeMofLabel);
-            ModifyMovieBox.Controls.Add(TypeModLabel);
-            ModifyMovieBox.Controls.Add(NameModLabel);
-            ModifyMovieBox.Location = new Point(16, 0);
-            ModifyMovieBox.Margin = new Padding(2, 4, 2, 4);
-            ModifyMovieBox.Name = "ModifyMovieBox";
-            ModifyMovieBox.Padding = new Padding(2, 4, 2, 4);
-            ModifyMovieBox.Size = new Size(938, 517);
-            ModifyMovieBox.TabIndex = 5;
-            ModifyMovieBox.TabStop = false;
-            ModifyMovieBox.Visible = false;
-            // 
-            // DeleteMovieButton
-            // 
-            DeleteMovieButton.Location = new Point(743, 416);
-            DeleteMovieButton.Margin = new Padding(2, 4, 2, 4);
-            DeleteMovieButton.Name = "DeleteMovieButton";
-            DeleteMovieButton.Size = new Size(128, 52);
-            DeleteMovieButton.TabIndex = 11;
-            DeleteMovieButton.Text = "Delete";
-            DeleteMovieButton.UseVisualStyleBackColor = true;
-            DeleteMovieButton.Click += DeleteMovieButton_Click;
-            // 
-            // MovieIDText
-            // 
-            MovieIDText.Enabled = false;
-            MovieIDText.Location = new Point(710, 44);
-            MovieIDText.Margin = new Padding(2, 4, 2, 4);
-            MovieIDText.Name = "MovieIDText";
-            MovieIDText.ReadOnly = true;
-            MovieIDText.Size = new Size(131, 34);
-            MovieIDText.TabIndex = 10;
-            // 
-            // MovieIDLabel
-            // 
-            MovieIDLabel.AutoSize = true;
-            MovieIDLabel.Location = new Point(593, 48);
-            MovieIDLabel.Margin = new Padding(2, 0, 2, 0);
-            MovieIDLabel.Name = "MovieIDLabel";
-            MovieIDLabel.Size = new Size(99, 28);
-            MovieIDLabel.TabIndex = 9;
-            MovieIDLabel.Text = "Movie ID:";
-            // 
-            // MovieModifyButton
-            // 
-            MovieModifyButton.Location = new Point(545, 416);
-            MovieModifyButton.Margin = new Padding(2, 4, 2, 4);
-            MovieModifyButton.Name = "MovieModifyButton";
-            MovieModifyButton.Size = new Size(138, 52);
-            MovieModifyButton.TabIndex = 8;
-            MovieModifyButton.Text = "Submit";
-            MovieModifyButton.UseVisualStyleBackColor = true;
-            MovieModifyButton.Click += MovieModifyButton_Click;
-            // 
-            // TypeModComboBox
-            // 
-            TypeModComboBox.FormattingEnabled = true;
-            TypeModComboBox.Items.AddRange(new object[] { "Comedy", "Drama", "Action", "Foreign" });
-            TypeModComboBox.Location = new Point(257, 131);
-            TypeModComboBox.Margin = new Padding(2, 4, 2, 4);
-            TypeModComboBox.Name = "TypeModComboBox";
-            TypeModComboBox.Size = new Size(173, 36);
-            TypeModComboBox.TabIndex = 7;
-            // 
-            // CopiesModText
-            // 
-            CopiesModText.Location = new Point(257, 295);
-            CopiesModText.Margin = new Padding(2, 4, 2, 4);
-            CopiesModText.Name = "CopiesModText";
-            CopiesModText.Size = new Size(114, 34);
-            CopiesModText.TabIndex = 6;
-            // 
-            // FeeModText
-            // 
-            FeeModText.Location = new Point(257, 211);
-            FeeModText.Margin = new Padding(2, 4, 2, 4);
-            FeeModText.Name = "FeeModText";
-            FeeModText.Size = new Size(173, 34);
-            FeeModText.TabIndex = 5;
-            // 
-            // NameModText
-            // 
-            NameModText.Location = new Point(257, 40);
-            NameModText.Margin = new Padding(2, 4, 2, 4);
-            NameModText.Name = "NameModText";
-            NameModText.Size = new Size(301, 34);
-            NameModText.TabIndex = 4;
-            // 
-            // CopiesModLabel
-            // 
-            CopiesModLabel.AutoSize = true;
-            CopiesModLabel.Location = new Point(62, 299);
-            CopiesModLabel.Margin = new Padding(2, 0, 2, 0);
-            CopiesModLabel.Name = "CopiesModLabel";
-            CopiesModLabel.Size = new Size(184, 28);
-            CopiesModLabel.TabIndex = 3;
-            CopiesModLabel.Text = "Number of Copies:";
-            // 
-            // FeeMofLabel
-            // 
-            FeeMofLabel.AutoSize = true;
-            FeeMofLabel.Location = new Point(62, 215);
-            FeeMofLabel.Margin = new Padding(2, 0, 2, 0);
-            FeeMofLabel.Name = "FeeMofLabel";
-            FeeMofLabel.Size = new Size(162, 28);
-            FeeMofLabel.TabIndex = 2;
-            FeeMofLabel.Text = "Distribution Fee:";
-            // 
-            // TypeModLabel
-            // 
-            TypeModLabel.AutoSize = true;
-            TypeModLabel.Location = new Point(62, 131);
-            TypeModLabel.Margin = new Padding(2, 0, 2, 0);
-            TypeModLabel.Name = "TypeModLabel";
-            TypeModLabel.Size = new Size(122, 28);
-            TypeModLabel.TabIndex = 1;
-            TypeModLabel.Text = "Movie Type:";
-            // 
-            // NameModLabel
-            // 
-            NameModLabel.AutoSize = true;
-            NameModLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            NameModLabel.Location = new Point(62, 44);
-            NameModLabel.Margin = new Padding(2, 0, 2, 0);
-            NameModLabel.Name = "NameModLabel";
-            NameModLabel.Size = new Size(133, 28);
-            NameModLabel.TabIndex = 0;
-            NameModLabel.Text = "Movie Name:";
-            // 
-            // MovieDataView
-            // 
-            MovieDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            MovieDataView.Location = new Point(39, 22);
-            MovieDataView.Name = "MovieDataView";
-            MovieDataView.RowHeadersWidth = 51;
-            MovieDataView.Size = new Size(897, 474);
-            MovieDataView.TabIndex = 0;
-            MovieDataView.Visible = false;
-            MovieDataView.CellClick += MovieDataView_CellClick;
             // 
             // tabPage3
             // 
@@ -1563,6 +1576,15 @@ namespace CMPT291_Project
             sqlCommand2.CommandTimeout = 30;
             sqlCommand2.EnableOptimizedParameterBinding = false;
             // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(593, 131);
+            label12.Name = "label12";
+            label12.Size = new Size(74, 28);
+            label12.TabIndex = 13;
+            label12.Text = "Actors:";
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1584,14 +1606,14 @@ namespace CMPT291_Project
             tabPage2.ResumeLayout(false);
             SearchMoviePanel.ResumeLayout(false);
             SearchMoviePanel.PerformLayout();
-            AssignActorBox.ResumeLayout(false);
-            AssignActorBox.PerformLayout();
-            AddMovieBox.ResumeLayout(false);
-            AddMovieBox.PerformLayout();
             MovieDataViewPanel.ResumeLayout(false);
             ModifyMovieBox.ResumeLayout(false);
             ModifyMovieBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)MovieDataView).EndInit();
+            AssignActorBox.ResumeLayout(false);
+            AssignActorBox.PerformLayout();
+            AddMovieBox.ResumeLayout(false);
+            AddMovieBox.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -1733,5 +1755,7 @@ namespace CMPT291_Project
         private TextBox ActorLastAssignText;
         private Label label11;
         private Label label6;
+        private ListBox actorList;
+        private Label label12;
     }
 }
