@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -374,13 +376,13 @@ namespace CMPT291_Project
 
         private void MovieAddButton_Click(object sender, EventArgs e)
         {
-            string movieName = NameAddText.Text.Trim();
-            string movieType = TypeAddComboBox.SelectedItem?.ToString();
-            string distFee = FeeAddText.Text.Trim();
-            string numCopies = CopiesAddText.Text.Trim();
+            string MovieName = NameAddText.Text.Trim();
+            string MovieType = TypeAddComboBox.SelectedItem?.ToString();
+            string DistFee = FeeAddText.Text.Trim();
+            string NumCopies = CopiesAddText.Text.Trim();
 
             // Validate inputs
-            if (string.IsNullOrEmpty(movieName) || string.IsNullOrEmpty(movieType) || string.IsNullOrEmpty(distFee) || string.IsNullOrEmpty(numCopies))
+            if (string.IsNullOrEmpty(MovieName) || string.IsNullOrEmpty(MovieType) || string.IsNullOrEmpty(DistFee) || string.IsNullOrEmpty(NumCopies))
             {
                 MessageBox.Show("Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -395,10 +397,10 @@ namespace CMPT291_Project
 
                 using (SqlCommand cmd = new SqlCommand(query, myConnection))
                 {
-                    cmd.Parameters.AddWithValue("@moviename", movieName);
-                    cmd.Parameters.AddWithValue("@movietype", movieType);
-                    cmd.Parameters.AddWithValue("@distfee", distFee);
-                    cmd.Parameters.AddWithValue("@numcopies", numCopies);
+                    cmd.Parameters.AddWithValue("@moviename", MovieName);
+                    cmd.Parameters.AddWithValue("@movietype", MovieType);
+                    cmd.Parameters.AddWithValue("@distfee", DistFee);
+                    cmd.Parameters.AddWithValue("@numcopies", NumCopies);
 
                     int MovierowsAffected = cmd.ExecuteNonQuery();
 
@@ -532,6 +534,13 @@ namespace CMPT291_Project
             AssignActorBox.Visible = true;
             SearchMoviePanel.Visible = false;
             MovieDataViewPanel.Visible = false;
+            ActorAssignLabel.Visible = false;
+            ActorFirstAssignText.Visible = false;
+            ActorLastAssignText.Visible = false;
+            label6.Visible = false;
+            label11.Visible = false;
+            AssignButton.Visible = false;
+
         }
 
         private void AssignButton_Click(object sender, EventArgs e)
@@ -549,7 +558,62 @@ namespace CMPT291_Project
                 return;
             }
 
-            // NEED TO ADD IN DATABASE FUNCTIONALITY HERE
+
+            try
+            {
+
+                // Check if a row is selected in the DataGridView
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    // Get the first selected row
+                    DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+
+                    // Access the movieID of a specific column in the selected row
+                    var movieId = selectedRow.Cells["movieID"].Value;
+                }
+
+                else
+                {
+                    MessageBox.Show("No row selected. Please select a row.");
+                }
+
+                //string query1 = "INSERT INTO ActorAppearedIn (actorID, movieID" + "VALUES(@ActorId, @MovieId");
+                /*           
+
+                 using (SqlCommand cmnd = new SqlCommand(query1, myConnection))
+                 {
+                     cmnd.Parameters.AddWithValue("@FirstName", actorFirstName);
+                     cmnd.Parameters.AddWithValue("@LastName", actorLastName);
+
+
+                     // Execute the query
+                     int rowsAffected = cmnd.ExecuteNonQuery();
+
+                     if (rowsAffected > 0)
+                     {
+                         MessageBox.Show("Movie modified successfully!", "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                     }
+                     else
+                     {
+                         MessageBox.Show("Could not assign actor to movie.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                     }
+                 }
+
+
+                 /* string query = "SELECT M.movieID, A.actorID " +
+                                  "FROM Movie M, Actor A, ActorAppearedIn MA " +
+                                  "WHERE M.movieID = ";
+
+                  //string query2 = 
+                 */
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
             MessageBox.Show("Actor successfully assigned to the movie!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -803,20 +867,22 @@ namespace CMPT291_Project
             try
             {
 
-
                 // Search for the Movie
 
 
-
+                /*
                 string query = "SELECT M.movieID, M.movieName, M.MovieType, M.DistFee, M.NumCopies, A.firstName, A.lastName " +
                                 "FROM Movie M " +
                                 "JOIN ActorAppearedIn MA ON M.movieID = MA.movieID " +
                                 "JOIN Actor A ON MA.actorID = A.actorID " +
                                 "WHERE M.movieName = @MovieName";
+                */
+
                 
-
-
-
+                string query = "SELECT M.movieID, M.movieName, M.MovieType, M.DistFee, M.NumCopies, A.firstName, A.lastName " +
+                              "FROM Movie M, Actor A, ActorAppearedIn AM " +
+                              "WHERE movieName = @MovieName and M.movieID = AM.movieId and A.actorID = AM.actorID";
+                
 
                 using (SqlCommand cmnd = new SqlCommand(query, myConnection))
                 {
@@ -830,7 +896,7 @@ namespace CMPT291_Project
 
 
                         Moviedata.Fill(movieresults);
-
+                        
                         // Remove duplicates by movieID
                         DataView distinctMovies = new DataView(movieresults);
                         distinctMovies.Sort = "movieID";  // Sorting to group by movieID
@@ -857,7 +923,7 @@ namespace CMPT291_Project
 
                         reader.Close();
 
-
+                        
 
                         // Error check to ensure movie exists
                         if (movieresults.Rows.Count == 0)
@@ -895,7 +961,7 @@ namespace CMPT291_Project
                 FeeModText.Text = selectedMovieRow.Cells["DistFee"].Value?.ToString();
                 CopiesModText.Text = selectedMovieRow.Cells["NumCopies"].Value?.ToString();
 
-                
+
 
                 MovieDataView.Visible = false;
                 ModifyMovieBox.Visible = true;
@@ -907,6 +973,84 @@ namespace CMPT291_Project
         {
 
         }
+
+        private void ActorMovieSearchButton_Click(object sender, EventArgs e)
+        {
+            // Collect input data
+            string moviename = MovieAssignText.Text.Trim();
+
+
+            // Validate inputs
+            if (string.IsNullOrEmpty(moviename))
+            {
+                MessageBox.Show("Please provide the movie name.",
+                                "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                // Search for the Movie
+                string query = "SELECT movieID, movieName " +
+                               "FROM Movie " +
+                               "WHERE movieName = @MovieName";
+
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+                    cmd.Parameters.AddWithValue("@MovieName", moviename);
+
+
+                    // Load results into the data table
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable results = new DataTable();
+                        adapter.Fill(results);
+
+                        MovieActorDataView.DataSource = results;
+
+                        // Error check to ensure customer exists
+                        if (results.Rows.Count == 0)
+                        {
+                            MessageBox.Show("No customer found with the provided details.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            ModifyCustDataView.Visible = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MovieActorDataView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Ensure the row selected is not the header
+            {
+                DataGridViewRow selectedMovieRow = MovieActorDataView.Rows[e.RowIndex];
+
+                int MovieId = selectedMovieRow.Cells["movieID"].Value != DBNull.Value
+                ? Convert.ToInt32(selectedMovieRow.Cells["movieID"].Value)
+                : 0; // Default value if null or DBNull
+
+                ActorAssignLabel.Visible = true;
+                ActorFirstAssignText.Visible = true;
+                ActorLastAssignText.Visible = true;
+                label6.Visible = true;
+                label11.Visible = true;
+                AssignButton.Visible = true;
+
+            }
+        }
+
+        private void MovieActorDataView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
+
 
