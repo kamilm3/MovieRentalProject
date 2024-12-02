@@ -1065,9 +1065,10 @@ namespace CMPT291_Project
         {
             string selectedGenre = dropdownReport4.Text.Trim();
 
+            // Validate if the user selected a genre
             if (string.IsNullOrEmpty(selectedGenre))
             {
-                MessageBox.Show("Please select a genre before generating the report.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select a genre or 'All' before generating the report.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -1080,16 +1081,25 @@ namespace CMPT291_Project
         FROM 
             Movie M
         WHERE 
-            M.movieID IN (SELECT movieID FROM PlacedOrder)
-            AND M.MovieType = @selectedGenre
-        ORDER BY 
-            TotalRentals DESC";
+            M.movieID IN (SELECT movieID FROM PlacedOrder)";
+
+            // Add genre filter if a specific genre is selected
+            if (!selectedGenre.Equals("All", StringComparison.OrdinalIgnoreCase))
+            {
+                query += " AND M.MovieType = @selectedGenre";
+            }
+
+            query += " ORDER BY TotalRentals DESC";
 
             try
             {
                 using (SqlCommand cmd = new SqlCommand(query, myConnection))
                 {
-                    cmd.Parameters.AddWithValue("@selectedGenre", selectedGenre);
+                    // Add parameter only if a specific genre is selected
+                    if (!selectedGenre.Equals("All", StringComparison.OrdinalIgnoreCase))
+                    {
+                        cmd.Parameters.AddWithValue("@selectedGenre", selectedGenre);
+                    }
 
                     // Load results into a DataTable
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
