@@ -95,17 +95,6 @@ namespace CMPT291_Project
             AssignActorButton = new Button();
             ModifyMovieButton = new Button();
             AddMovieButton = new Button();
-            AssignActorBox = new GroupBox();
-            ActorMovieSearchButton = new Button();
-            MovieActorDataView = new DataGridView();
-            label11 = new Label();
-            label6 = new Label();
-            ActorLastAssignText = new TextBox();
-            ActorFirstAssignText = new TextBox();
-            AssignButton = new Button();
-            MovieAssignText = new TextBox();
-            ActorAssignLabel = new Label();
-            MovieAssignLabel = new Label();
             AddMovieBox = new GroupBox();
             MovieAddButton = new Button();
             TypeAddComboBox = new ComboBox();
@@ -133,6 +122,17 @@ namespace CMPT291_Project
             FeeMofLabel = new Label();
             TypeModLabel = new Label();
             NameModLabel = new Label();
+            AssignActorBox = new GroupBox();
+            ActorMovieSearchButton = new Button();
+            MovieActorDataView = new DataGridView();
+            label11 = new Label();
+            label6 = new Label();
+            ActorLastAssignText = new TextBox();
+            ActorFirstAssignText = new TextBox();
+            AssignButton = new Button();
+            MovieAssignText = new TextBox();
+            ActorAssignLabel = new Label();
+            MovieAssignLabel = new Label();
             tabPage3 = new TabPage();
             dataGridView1 = new DataGridView();
             label7 = new Label();
@@ -145,6 +145,8 @@ namespace CMPT291_Project
             label5 = new Label();
             button6 = new Button();
             tabPage4 = new TabPage();
+            dropdownReport4 = new ComboBox();
+            label13 = new Label();
             MonthLabel = new Label();
             MonthText = new TextBox();
             ReportDataGrid = new DataGridView();
@@ -153,9 +155,9 @@ namespace CMPT291_Project
             comboBox1 = new ComboBox();
             label9 = new Label();
             textBox4 = new TextBox();
-            button5 = new Button();
+            reportButton5 = new Button();
             textBox5 = new TextBox();
-            button4 = new Button();
+            reportButton4 = new Button();
             button3 = new Button();
             Report2Button = new Button();
             button1 = new Button();
@@ -168,12 +170,12 @@ namespace CMPT291_Project
             ModifyCustBox.SuspendLayout();
             tabPage2.SuspendLayout();
             SearchMoviePanel.SuspendLayout();
-            AssignActorBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)MovieActorDataView).BeginInit();
             AddMovieBox.SuspendLayout();
             MovieDataViewPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MovieDataView).BeginInit();
             ModifyMovieBox.SuspendLayout();
+            AssignActorBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)MovieActorDataView).BeginInit();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabPage4.SuspendLayout();
@@ -184,10 +186,10 @@ namespace CMPT291_Project
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(558, 25);
+            label1.Location = new Point(488, 19);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(212, 28);
+            label1.Size = new Size(173, 21);
             label1.TabIndex = 0;
             label1.Text = "Employee Dashboard";
             // 
@@ -197,11 +199,11 @@ namespace CMPT291_Project
             DashboardTabs.Controls.Add(tabPage2);
             DashboardTabs.Controls.Add(tabPage3);
             DashboardTabs.Controls.Add(tabPage4);
-            DashboardTabs.Location = new Point(10, 81);
-            DashboardTabs.Margin = new Padding(2, 3, 2, 3);
+            DashboardTabs.Location = new Point(9, 61);
+            DashboardTabs.Margin = new Padding(2);
             DashboardTabs.Name = "DashboardTabs";
             DashboardTabs.SelectedIndex = 0;
-            DashboardTabs.Size = new Size(1326, 549);
+            DashboardTabs.Size = new Size(1160, 412);
             DashboardTabs.TabIndex = 2;
             // 
             // tabPage1
@@ -221,10 +223,10 @@ namespace CMPT291_Project
             tabPage1.Controls.Add(ModifyCustBox);
             tabPage1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tabPage1.ForeColor = Color.Black;
-            tabPage1.Location = new Point(4, 29);
-            tabPage1.Margin = new Padding(2, 3, 2, 3);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Margin = new Padding(2);
             tabPage1.Name = "tabPage1";
-            tabPage1.Size = new Size(1318, 516);
+            tabPage1.Size = new Size(1152, 384);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Customer Management";
             // 
@@ -251,21 +253,21 @@ namespace CMPT291_Project
             AddCustBox.Controls.Add(LastNameCustLabel);
             AddCustBox.Controls.Add(FirstNameCustLabel);
             AddCustBox.Dock = DockStyle.Right;
-            AddCustBox.Location = new Point(-1464, 0);
-            AddCustBox.Margin = new Padding(2, 4, 2, 4);
+            AddCustBox.Location = new Point(-1283, 0);
+            AddCustBox.Margin = new Padding(2, 3, 2, 3);
             AddCustBox.Name = "AddCustBox";
-            AddCustBox.Padding = new Padding(2, 4, 2, 4);
-            AddCustBox.Size = new Size(930, 516);
+            AddCustBox.Padding = new Padding(2, 3, 2, 3);
+            AddCustBox.Size = new Size(814, 384);
             AddCustBox.TabIndex = 2;
             AddCustBox.TabStop = false;
             AddCustBox.Visible = false;
             // 
             // AddCustButton
             // 
-            AddCustButton.Location = new Point(670, 423);
-            AddCustButton.Margin = new Padding(2, 4, 2, 4);
+            AddCustButton.Location = new Point(586, 317);
+            AddCustButton.Margin = new Padding(2, 3, 2, 3);
             AddCustButton.Name = "AddCustButton";
-            AddCustButton.Size = new Size(110, 49);
+            AddCustButton.Size = new Size(96, 37);
             AddCustButton.TabIndex = 18;
             AddCustButton.Text = "Add";
             AddCustButton.UseVisualStyleBackColor = true;
@@ -275,172 +277,172 @@ namespace CMPT291_Project
             // 
             StateCustComboBox.FormattingEnabled = true;
             StateCustComboBox.Items.AddRange(new object[] { "AB", "BC", "MB", "NB", "NL", "NT", "NS", "NU", "ON", "PE", "QC", "SK", "YT" });
-            StateCustComboBox.Location = new Point(231, 237);
-            StateCustComboBox.Margin = new Padding(2, 4, 2, 4);
+            StateCustComboBox.Location = new Point(202, 178);
+            StateCustComboBox.Margin = new Padding(2, 3, 2, 3);
             StateCustComboBox.Name = "StateCustComboBox";
-            StateCustComboBox.Size = new Size(77, 36);
+            StateCustComboBox.Size = new Size(68, 29);
             StateCustComboBox.TabIndex = 17;
             // 
             // CreditCustText
             // 
-            CreditCustText.Location = new Point(231, 440);
-            CreditCustText.Margin = new Padding(2, 4, 2, 4);
+            CreditCustText.Location = new Point(202, 330);
+            CreditCustText.Margin = new Padding(2, 3, 2, 3);
             CreditCustText.Name = "CreditCustText";
-            CreditCustText.Size = new Size(229, 34);
+            CreditCustText.Size = new Size(201, 29);
             CreditCustText.TabIndex = 16;
             // 
             // AccountCustText
             // 
-            AccountCustText.Location = new Point(231, 387);
-            AccountCustText.Margin = new Padding(2, 4, 2, 4);
+            AccountCustText.Location = new Point(202, 290);
+            AccountCustText.Margin = new Padding(2, 3, 2, 3);
             AccountCustText.Name = "AccountCustText";
-            AccountCustText.Size = new Size(114, 34);
+            AccountCustText.Size = new Size(100, 29);
             AccountCustText.TabIndex = 15;
             // 
             // CityCustText
             // 
-            CityCustText.Location = new Point(231, 189);
-            CityCustText.Margin = new Padding(2, 4, 2, 4);
+            CityCustText.Location = new Point(202, 142);
+            CityCustText.Margin = new Padding(2, 3, 2, 3);
             CityCustText.Name = "CityCustText";
-            CityCustText.Size = new Size(334, 34);
+            CityCustText.Size = new Size(293, 29);
             CityCustText.TabIndex = 14;
             // 
             // ZipCustText
             // 
-            ZipCustText.Location = new Point(231, 284);
-            ZipCustText.Margin = new Padding(2, 4, 2, 4);
+            ZipCustText.Location = new Point(202, 213);
+            ZipCustText.Margin = new Padding(2, 3, 2, 3);
             ZipCustText.Name = "ZipCustText";
-            ZipCustText.Size = new Size(114, 34);
+            ZipCustText.Size = new Size(100, 29);
             ZipCustText.TabIndex = 13;
             // 
             // EmailCustText
             // 
-            EmailCustText.Location = new Point(231, 331);
-            EmailCustText.Margin = new Padding(2, 4, 2, 4);
+            EmailCustText.Location = new Point(202, 248);
+            EmailCustText.Margin = new Padding(2, 3, 2, 3);
             EmailCustText.Name = "EmailCustText";
-            EmailCustText.Size = new Size(229, 34);
+            EmailCustText.Size = new Size(201, 29);
             EmailCustText.TabIndex = 12;
             // 
             // AddressCustText
             // 
-            AddressCustText.Location = new Point(231, 139);
-            AddressCustText.Margin = new Padding(2, 4, 2, 4);
+            AddressCustText.Location = new Point(202, 104);
+            AddressCustText.Margin = new Padding(2, 3, 2, 3);
             AddressCustText.Name = "AddressCustText";
-            AddressCustText.Size = new Size(334, 34);
+            AddressCustText.Size = new Size(293, 29);
             AddressCustText.TabIndex = 11;
             // 
             // LastNameCustText
             // 
-            LastNameCustText.Location = new Point(231, 81);
-            LastNameCustText.Margin = new Padding(2, 4, 2, 4);
+            LastNameCustText.Location = new Point(202, 61);
+            LastNameCustText.Margin = new Padding(2, 3, 2, 3);
             LastNameCustText.Name = "LastNameCustText";
-            LastNameCustText.Size = new Size(334, 34);
+            LastNameCustText.Size = new Size(293, 29);
             LastNameCustText.TabIndex = 10;
             // 
             // FirstNameCustText
             // 
-            FirstNameCustText.Location = new Point(231, 29);
-            FirstNameCustText.Margin = new Padding(2, 4, 2, 4);
+            FirstNameCustText.Location = new Point(202, 22);
+            FirstNameCustText.Margin = new Padding(2, 3, 2, 3);
             FirstNameCustText.Name = "FirstNameCustText";
-            FirstNameCustText.Size = new Size(334, 34);
+            FirstNameCustText.Size = new Size(293, 29);
             FirstNameCustText.TabIndex = 9;
             // 
             // CreditCustLabel
             // 
             CreditCustLabel.AutoSize = true;
-            CreditCustLabel.Location = new Point(38, 444);
+            CreditCustLabel.Location = new Point(33, 333);
             CreditCustLabel.Margin = new Padding(2, 0, 2, 0);
             CreditCustLabel.Name = "CreditCustLabel";
-            CreditCustLabel.Size = new Size(118, 28);
+            CreditCustLabel.Size = new Size(97, 21);
             CreditCustLabel.TabIndex = 8;
             CreditCustLabel.Text = "Credit Card:";
             // 
             // AccountNumCustLabel
             // 
             AccountNumCustLabel.AutoSize = true;
-            AccountNumCustLabel.Location = new Point(38, 391);
+            AccountNumCustLabel.Location = new Point(33, 293);
             AccountNumCustLabel.Margin = new Padding(2, 0, 2, 0);
             AccountNumCustLabel.Name = "AccountNumCustLabel";
-            AccountNumCustLabel.Size = new Size(173, 28);
+            AccountNumCustLabel.Size = new Size(140, 21);
             AccountNumCustLabel.TabIndex = 7;
             AccountNumCustLabel.Text = "Account Number:";
             // 
             // EmailCustLabel
             // 
             EmailCustLabel.AutoSize = true;
-            EmailCustLabel.Location = new Point(38, 341);
+            EmailCustLabel.Location = new Point(33, 256);
             EmailCustLabel.Margin = new Padding(2, 0, 2, 0);
             EmailCustLabel.Name = "EmailCustLabel";
-            EmailCustLabel.Size = new Size(65, 28);
+            EmailCustLabel.Size = new Size(52, 21);
             EmailCustLabel.TabIndex = 6;
             EmailCustLabel.Text = "Email:";
             // 
             // ZipCustLabel
             // 
             ZipCustLabel.AutoSize = true;
-            ZipCustLabel.Location = new Point(38, 289);
+            ZipCustLabel.Location = new Point(33, 217);
             ZipCustLabel.Margin = new Padding(2, 0, 2, 0);
             ZipCustLabel.Name = "ZipCustLabel";
-            ZipCustLabel.Size = new Size(99, 28);
+            ZipCustLabel.Size = new Size(80, 21);
             ZipCustLabel.TabIndex = 5;
             ZipCustLabel.Text = "Zip Code:";
             // 
             // StateCustLabel
             // 
             StateCustLabel.AutoSize = true;
-            StateCustLabel.Location = new Point(38, 241);
+            StateCustLabel.Location = new Point(33, 181);
             StateCustLabel.Margin = new Padding(2, 0, 2, 0);
             StateCustLabel.Name = "StateCustLabel";
-            StateCustLabel.Size = new Size(62, 28);
+            StateCustLabel.Size = new Size(52, 21);
             StateCustLabel.TabIndex = 4;
             StateCustLabel.Text = "State:";
             // 
             // CityCustLabel
             // 
             CityCustLabel.AutoSize = true;
-            CityCustLabel.Location = new Point(38, 189);
+            CityCustLabel.Location = new Point(33, 142);
             CityCustLabel.Margin = new Padding(2, 0, 2, 0);
             CityCustLabel.Name = "CityCustLabel";
-            CityCustLabel.Size = new Size(51, 28);
+            CityCustLabel.Size = new Size(42, 21);
             CityCustLabel.TabIndex = 3;
             CityCustLabel.Text = "City:";
             // 
             // AddressCustLabel
             // 
             AddressCustLabel.AutoSize = true;
-            AddressCustLabel.Location = new Point(38, 143);
+            AddressCustLabel.Location = new Point(33, 107);
             AddressCustLabel.Margin = new Padding(2, 0, 2, 0);
             AddressCustLabel.Name = "AddressCustLabel";
-            AddressCustLabel.Size = new Size(90, 28);
+            AddressCustLabel.Size = new Size(74, 21);
             AddressCustLabel.TabIndex = 2;
             AddressCustLabel.Text = "Address:";
             // 
             // LastNameCustLabel
             // 
             LastNameCustLabel.AutoSize = true;
-            LastNameCustLabel.Location = new Point(38, 88);
+            LastNameCustLabel.Location = new Point(33, 66);
             LastNameCustLabel.Margin = new Padding(2, 0, 2, 0);
             LastNameCustLabel.Name = "LastNameCustLabel";
-            LastNameCustLabel.Size = new Size(113, 28);
+            LastNameCustLabel.Size = new Size(90, 21);
             LastNameCustLabel.TabIndex = 1;
             LastNameCustLabel.Text = "Last Name:";
             // 
             // FirstNameCustLabel
             // 
             FirstNameCustLabel.AutoSize = true;
-            FirstNameCustLabel.Location = new Point(38, 33);
+            FirstNameCustLabel.Location = new Point(33, 25);
             FirstNameCustLabel.Margin = new Padding(2, 0, 2, 0);
             FirstNameCustLabel.Name = "FirstNameCustLabel";
-            FirstNameCustLabel.Size = new Size(115, 28);
+            FirstNameCustLabel.Size = new Size(92, 21);
             FirstNameCustLabel.TabIndex = 0;
             FirstNameCustLabel.Text = "First Name:";
             // 
             // CustSearchButton
             // 
-            CustSearchButton.Location = new Point(167, 444);
-            CustSearchButton.Margin = new Padding(2, 4, 2, 4);
+            CustSearchButton.Location = new Point(146, 333);
+            CustSearchButton.Margin = new Padding(2, 3, 2, 3);
             CustSearchButton.Name = "CustSearchButton";
-            CustSearchButton.Size = new Size(103, 39);
+            CustSearchButton.Size = new Size(90, 29);
             CustSearchButton.TabIndex = 10;
             CustSearchButton.Text = "Search";
             CustSearchButton.UseVisualStyleBackColor = true;
@@ -450,10 +452,10 @@ namespace CMPT291_Project
             // EmailSearchLabel
             // 
             EmailSearchLabel.AutoSize = true;
-            EmailSearchLabel.Location = new Point(22, 384);
+            EmailSearchLabel.Location = new Point(19, 288);
             EmailSearchLabel.Margin = new Padding(2, 0, 2, 0);
             EmailSearchLabel.Name = "EmailSearchLabel";
-            EmailSearchLabel.Size = new Size(65, 28);
+            EmailSearchLabel.Size = new Size(52, 21);
             EmailSearchLabel.TabIndex = 9;
             EmailSearchLabel.Text = "Email:";
             EmailSearchLabel.Visible = false;
@@ -461,10 +463,10 @@ namespace CMPT291_Project
             // LastNameSearchLabel
             // 
             LastNameSearchLabel.AutoSize = true;
-            LastNameSearchLabel.Location = new Point(22, 309);
+            LastNameSearchLabel.Location = new Point(19, 232);
             LastNameSearchLabel.Margin = new Padding(2, 0, 2, 0);
             LastNameSearchLabel.Name = "LastNameSearchLabel";
-            LastNameSearchLabel.Size = new Size(113, 28);
+            LastNameSearchLabel.Size = new Size(90, 21);
             LastNameSearchLabel.TabIndex = 8;
             LastNameSearchLabel.Text = "Last Name:";
             LastNameSearchLabel.Visible = false;
@@ -472,47 +474,47 @@ namespace CMPT291_Project
             // FirstNameSearchLabel
             // 
             FirstNameSearchLabel.AutoSize = true;
-            FirstNameSearchLabel.Location = new Point(22, 235);
+            FirstNameSearchLabel.Location = new Point(19, 176);
             FirstNameSearchLabel.Margin = new Padding(2, 0, 2, 0);
             FirstNameSearchLabel.Name = "FirstNameSearchLabel";
-            FirstNameSearchLabel.Size = new Size(115, 28);
+            FirstNameSearchLabel.Size = new Size(92, 21);
             FirstNameSearchLabel.TabIndex = 7;
             FirstNameSearchLabel.Text = "First Name:";
             FirstNameSearchLabel.Visible = false;
             // 
             // EmailSearchText
             // 
-            EmailSearchText.Location = new Point(128, 380);
-            EmailSearchText.Margin = new Padding(2, 4, 2, 4);
+            EmailSearchText.Location = new Point(112, 285);
+            EmailSearchText.Margin = new Padding(2, 3, 2, 3);
             EmailSearchText.Name = "EmailSearchText";
-            EmailSearchText.Size = new Size(214, 34);
+            EmailSearchText.Size = new Size(188, 29);
             EmailSearchText.TabIndex = 6;
             EmailSearchText.Visible = false;
             // 
             // FirstNameSearchText
             // 
-            FirstNameSearchText.Location = new Point(128, 231);
-            FirstNameSearchText.Margin = new Padding(2, 4, 2, 4);
+            FirstNameSearchText.Location = new Point(112, 173);
+            FirstNameSearchText.Margin = new Padding(2, 3, 2, 3);
             FirstNameSearchText.Name = "FirstNameSearchText";
-            FirstNameSearchText.Size = new Size(214, 34);
+            FirstNameSearchText.Size = new Size(188, 29);
             FirstNameSearchText.TabIndex = 5;
             FirstNameSearchText.Visible = false;
             // 
             // LastNameSearchText
             // 
-            LastNameSearchText.Location = new Point(128, 305);
-            LastNameSearchText.Margin = new Padding(2, 4, 2, 4);
+            LastNameSearchText.Location = new Point(112, 229);
+            LastNameSearchText.Margin = new Padding(2, 3, 2, 3);
             LastNameSearchText.Name = "LastNameSearchText";
-            LastNameSearchText.Size = new Size(214, 34);
+            LastNameSearchText.Size = new Size(188, 29);
             LastNameSearchText.TabIndex = 4;
             LastNameSearchText.Visible = false;
             // 
             // ModifyCustButton
             // 
-            ModifyCustButton.Location = new Point(22, 69);
-            ModifyCustButton.Margin = new Padding(2, 3, 2, 3);
+            ModifyCustButton.Location = new Point(19, 52);
+            ModifyCustButton.Margin = new Padding(2);
             ModifyCustButton.Name = "ModifyCustButton";
-            ModifyCustButton.Size = new Size(248, 68);
+            ModifyCustButton.Size = new Size(217, 51);
             ModifyCustButton.TabIndex = 1;
             ModifyCustButton.Text = "Update/Retrieve/Delete Customer Information";
             ModifyCustButton.UseVisualStyleBackColor = true;
@@ -520,10 +522,10 @@ namespace CMPT291_Project
             // 
             // NewCustButton
             // 
-            NewCustButton.Location = new Point(22, 21);
-            NewCustButton.Margin = new Padding(2, 3, 2, 3);
+            NewCustButton.Location = new Point(19, 16);
+            NewCustButton.Margin = new Padding(2);
             NewCustButton.Name = "NewCustButton";
-            NewCustButton.Size = new Size(248, 43);
+            NewCustButton.Size = new Size(217, 32);
             NewCustButton.TabIndex = 0;
             NewCustButton.Text = "Add New Customer";
             NewCustButton.UseVisualStyleBackColor = true;
@@ -545,12 +547,12 @@ namespace CMPT291_Project
             ModifyCustDataView.DefaultCellStyle = dataGridViewCellStyle1;
             ModifyCustDataView.Dock = DockStyle.Right;
             ModifyCustDataView.GridColor = Color.LightGray;
-            ModifyCustDataView.Location = new Point(-534, 0);
-            ModifyCustDataView.Margin = new Padding(2, 4, 2, 4);
+            ModifyCustDataView.Location = new Point(-469, 0);
+            ModifyCustDataView.Margin = new Padding(2, 3, 2, 3);
             ModifyCustDataView.Name = "ModifyCustDataView";
             ModifyCustDataView.ReadOnly = true;
             ModifyCustDataView.RowHeadersWidth = 51;
-            ModifyCustDataView.Size = new Size(922, 516);
+            ModifyCustDataView.Size = new Size(807, 384);
             ModifyCustDataView.TabIndex = 11;
             ModifyCustDataView.Visible = false;
             ModifyCustDataView.CellClick += ModifyCustDataViewCellClick;
@@ -581,41 +583,41 @@ namespace CMPT291_Project
             ModifyCustBox.Controls.Add(LastNameModLabel);
             ModifyCustBox.Controls.Add(FirstNameModLabel);
             ModifyCustBox.Dock = DockStyle.Right;
-            ModifyCustBox.Location = new Point(388, 0);
-            ModifyCustBox.Margin = new Padding(2, 4, 2, 4);
+            ModifyCustBox.Location = new Point(338, 0);
+            ModifyCustBox.Margin = new Padding(2, 3, 2, 3);
             ModifyCustBox.Name = "ModifyCustBox";
-            ModifyCustBox.Padding = new Padding(2, 4, 2, 4);
-            ModifyCustBox.Size = new Size(930, 516);
+            ModifyCustBox.Padding = new Padding(2, 3, 2, 3);
+            ModifyCustBox.Size = new Size(814, 384);
             ModifyCustBox.TabIndex = 3;
             ModifyCustBox.TabStop = false;
             ModifyCustBox.Visible = false;
             // 
             // CustIDText
             // 
-            CustIDText.Location = new Point(730, 29);
-            CustIDText.Margin = new Padding(2, 4, 2, 4);
+            CustIDText.Location = new Point(639, 22);
+            CustIDText.Margin = new Padding(2, 3, 2, 3);
             CustIDText.Name = "CustIDText";
             CustIDText.ReadOnly = true;
-            CustIDText.Size = new Size(77, 34);
+            CustIDText.Size = new Size(68, 29);
             CustIDText.TabIndex = 23;
             // 
             // CustIDLabel
             // 
             CustIDLabel.AutoSize = true;
-            CustIDLabel.Location = new Point(602, 33);
+            CustIDLabel.Location = new Point(527, 25);
             CustIDLabel.Margin = new Padding(2, 0, 2, 0);
             CustIDLabel.Name = "CustIDLabel";
-            CustIDLabel.Size = new Size(131, 28);
+            CustIDLabel.Size = new Size(105, 21);
             CustIDLabel.TabIndex = 22;
             CustIDLabel.Text = "Customer ID:";
             // 
             // DeleteCustButton
             // 
             DeleteCustButton.BackColor = Color.Transparent;
-            DeleteCustButton.Location = new Point(768, 425);
-            DeleteCustButton.Margin = new Padding(2, 4, 2, 4);
+            DeleteCustButton.Location = new Point(672, 319);
+            DeleteCustButton.Margin = new Padding(2, 3, 2, 3);
             DeleteCustButton.Name = "DeleteCustButton";
-            DeleteCustButton.Size = new Size(110, 53);
+            DeleteCustButton.Size = new Size(96, 40);
             DeleteCustButton.TabIndex = 21;
             DeleteCustButton.Text = "Delete";
             DeleteCustButton.UseVisualStyleBackColor = false;
@@ -623,10 +625,10 @@ namespace CMPT291_Project
             // 
             // UpdateCustButton
             // 
-            UpdateCustButton.Location = new Point(593, 425);
-            UpdateCustButton.Margin = new Padding(2, 4, 2, 4);
+            UpdateCustButton.Location = new Point(519, 319);
+            UpdateCustButton.Margin = new Padding(2, 3, 2, 3);
             UpdateCustButton.Name = "UpdateCustButton";
-            UpdateCustButton.Size = new Size(110, 49);
+            UpdateCustButton.Size = new Size(96, 37);
             UpdateCustButton.TabIndex = 18;
             UpdateCustButton.Text = "Update";
             UpdateCustButton.UseVisualStyleBackColor = true;
@@ -636,164 +638,164 @@ namespace CMPT291_Project
             // 
             StateModComboBox.FormattingEnabled = true;
             StateModComboBox.Items.AddRange(new object[] { "AB", "BC", "MB", "NB", "NL", "NT", "NS", "NU", "ON", "PE", "QC", "SK", "YT" });
-            StateModComboBox.Location = new Point(231, 237);
-            StateModComboBox.Margin = new Padding(2, 4, 2, 4);
+            StateModComboBox.Location = new Point(202, 178);
+            StateModComboBox.Margin = new Padding(2, 3, 2, 3);
             StateModComboBox.Name = "StateModComboBox";
-            StateModComboBox.Size = new Size(76, 36);
+            StateModComboBox.Size = new Size(67, 29);
             StateModComboBox.TabIndex = 17;
             // 
             // CreditModText
             // 
-            CreditModText.Location = new Point(231, 440);
-            CreditModText.Margin = new Padding(2, 4, 2, 4);
+            CreditModText.Location = new Point(202, 330);
+            CreditModText.Margin = new Padding(2, 3, 2, 3);
             CreditModText.Name = "CreditModText";
-            CreditModText.Size = new Size(190, 34);
+            CreditModText.Size = new Size(167, 29);
             CreditModText.TabIndex = 16;
             // 
             // AccountModText
             // 
-            AccountModText.Location = new Point(231, 387);
-            AccountModText.Margin = new Padding(2, 4, 2, 4);
+            AccountModText.Location = new Point(202, 290);
+            AccountModText.Margin = new Padding(2, 3, 2, 3);
             AccountModText.Name = "AccountModText";
-            AccountModText.Size = new Size(114, 34);
+            AccountModText.Size = new Size(100, 29);
             AccountModText.TabIndex = 15;
             // 
             // CityModText
             // 
-            CityModText.Location = new Point(231, 189);
-            CityModText.Margin = new Padding(2, 4, 2, 4);
+            CityModText.Location = new Point(202, 142);
+            CityModText.Margin = new Padding(2, 3, 2, 3);
             CityModText.Name = "CityModText";
-            CityModText.Size = new Size(334, 34);
+            CityModText.Size = new Size(293, 29);
             CityModText.TabIndex = 14;
             // 
             // ZipModText
             // 
-            ZipModText.Location = new Point(231, 284);
-            ZipModText.Margin = new Padding(2, 4, 2, 4);
+            ZipModText.Location = new Point(202, 213);
+            ZipModText.Margin = new Padding(2, 3, 2, 3);
             ZipModText.Name = "ZipModText";
-            ZipModText.Size = new Size(114, 34);
+            ZipModText.Size = new Size(100, 29);
             ZipModText.TabIndex = 13;
             // 
             // EmailModText
             // 
-            EmailModText.Location = new Point(231, 331);
-            EmailModText.Margin = new Padding(2, 4, 2, 4);
+            EmailModText.Location = new Point(202, 248);
+            EmailModText.Margin = new Padding(2, 3, 2, 3);
             EmailModText.Name = "EmailModText";
-            EmailModText.Size = new Size(334, 34);
+            EmailModText.Size = new Size(293, 29);
             EmailModText.TabIndex = 12;
             // 
             // AddressModText
             // 
-            AddressModText.Location = new Point(231, 139);
-            AddressModText.Margin = new Padding(2, 4, 2, 4);
+            AddressModText.Location = new Point(202, 104);
+            AddressModText.Margin = new Padding(2, 3, 2, 3);
             AddressModText.Name = "AddressModText";
-            AddressModText.Size = new Size(334, 34);
+            AddressModText.Size = new Size(293, 29);
             AddressModText.TabIndex = 11;
             // 
             // LastNameModText
             // 
-            LastNameModText.Location = new Point(231, 81);
-            LastNameModText.Margin = new Padding(2, 4, 2, 4);
+            LastNameModText.Location = new Point(202, 61);
+            LastNameModText.Margin = new Padding(2, 3, 2, 3);
             LastNameModText.Name = "LastNameModText";
-            LastNameModText.Size = new Size(334, 34);
+            LastNameModText.Size = new Size(293, 29);
             LastNameModText.TabIndex = 10;
             // 
             // FirstNameModText
             // 
-            FirstNameModText.Location = new Point(231, 29);
-            FirstNameModText.Margin = new Padding(2, 4, 2, 4);
+            FirstNameModText.Location = new Point(202, 22);
+            FirstNameModText.Margin = new Padding(2, 3, 2, 3);
             FirstNameModText.Name = "FirstNameModText";
-            FirstNameModText.Size = new Size(334, 34);
+            FirstNameModText.Size = new Size(293, 29);
             FirstNameModText.TabIndex = 9;
             FirstNameModText.TextChanged += FirstNameModText_TextChanged;
             // 
             // CreditModLabel
             // 
             CreditModLabel.AutoSize = true;
-            CreditModLabel.Location = new Point(38, 444);
+            CreditModLabel.Location = new Point(33, 333);
             CreditModLabel.Margin = new Padding(2, 0, 2, 0);
             CreditModLabel.Name = "CreditModLabel";
-            CreditModLabel.Size = new Size(118, 28);
+            CreditModLabel.Size = new Size(97, 21);
             CreditModLabel.TabIndex = 8;
             CreditModLabel.Text = "Credit Card:";
             // 
             // AccountModLabel
             // 
             AccountModLabel.AutoSize = true;
-            AccountModLabel.Location = new Point(38, 391);
+            AccountModLabel.Location = new Point(33, 293);
             AccountModLabel.Margin = new Padding(2, 0, 2, 0);
             AccountModLabel.Name = "AccountModLabel";
-            AccountModLabel.Size = new Size(173, 28);
+            AccountModLabel.Size = new Size(140, 21);
             AccountModLabel.TabIndex = 7;
             AccountModLabel.Text = "Account Number:";
             // 
             // EmailModLabel
             // 
             EmailModLabel.AutoSize = true;
-            EmailModLabel.Location = new Point(38, 341);
+            EmailModLabel.Location = new Point(33, 256);
             EmailModLabel.Margin = new Padding(2, 0, 2, 0);
             EmailModLabel.Name = "EmailModLabel";
-            EmailModLabel.Size = new Size(65, 28);
+            EmailModLabel.Size = new Size(52, 21);
             EmailModLabel.TabIndex = 6;
             EmailModLabel.Text = "Email:";
             // 
             // ZipModLabel
             // 
             ZipModLabel.AutoSize = true;
-            ZipModLabel.Location = new Point(38, 289);
+            ZipModLabel.Location = new Point(33, 217);
             ZipModLabel.Margin = new Padding(2, 0, 2, 0);
             ZipModLabel.Name = "ZipModLabel";
-            ZipModLabel.Size = new Size(99, 28);
+            ZipModLabel.Size = new Size(80, 21);
             ZipModLabel.TabIndex = 5;
             ZipModLabel.Text = "Zip Code:";
             // 
             // StateModLabel
             // 
             StateModLabel.AutoSize = true;
-            StateModLabel.Location = new Point(38, 241);
+            StateModLabel.Location = new Point(33, 181);
             StateModLabel.Margin = new Padding(2, 0, 2, 0);
             StateModLabel.Name = "StateModLabel";
-            StateModLabel.Size = new Size(62, 28);
+            StateModLabel.Size = new Size(52, 21);
             StateModLabel.TabIndex = 4;
             StateModLabel.Text = "State:";
             // 
             // CityModLabel
             // 
             CityModLabel.AutoSize = true;
-            CityModLabel.Location = new Point(38, 189);
+            CityModLabel.Location = new Point(33, 142);
             CityModLabel.Margin = new Padding(2, 0, 2, 0);
             CityModLabel.Name = "CityModLabel";
-            CityModLabel.Size = new Size(51, 28);
+            CityModLabel.Size = new Size(42, 21);
             CityModLabel.TabIndex = 3;
             CityModLabel.Text = "City:";
             // 
             // AddressModLabel
             // 
             AddressModLabel.AutoSize = true;
-            AddressModLabel.Location = new Point(38, 143);
+            AddressModLabel.Location = new Point(33, 107);
             AddressModLabel.Margin = new Padding(2, 0, 2, 0);
             AddressModLabel.Name = "AddressModLabel";
-            AddressModLabel.Size = new Size(90, 28);
+            AddressModLabel.Size = new Size(74, 21);
             AddressModLabel.TabIndex = 2;
             AddressModLabel.Text = "Address:";
             // 
             // LastNameModLabel
             // 
             LastNameModLabel.AutoSize = true;
-            LastNameModLabel.Location = new Point(38, 88);
+            LastNameModLabel.Location = new Point(33, 66);
             LastNameModLabel.Margin = new Padding(2, 0, 2, 0);
             LastNameModLabel.Name = "LastNameModLabel";
-            LastNameModLabel.Size = new Size(113, 28);
+            LastNameModLabel.Size = new Size(90, 21);
             LastNameModLabel.TabIndex = 1;
             LastNameModLabel.Text = "Last Name:";
             // 
             // FirstNameModLabel
             // 
             FirstNameModLabel.AutoSize = true;
-            FirstNameModLabel.Location = new Point(38, 33);
+            FirstNameModLabel.Location = new Point(33, 25);
             FirstNameModLabel.Margin = new Padding(2, 0, 2, 0);
             FirstNameModLabel.Name = "FirstNameModLabel";
-            FirstNameModLabel.Size = new Size(115, 28);
+            FirstNameModLabel.Size = new Size(92, 21);
             FirstNameModLabel.TabIndex = 0;
             FirstNameModLabel.Text = "First Name:";
             // 
@@ -808,11 +810,11 @@ namespace CMPT291_Project
             tabPage2.Controls.Add(MovieDataViewPanel);
             tabPage2.Controls.Add(AssignActorBox);
             tabPage2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tabPage2.Location = new Point(4, 29);
-            tabPage2.Margin = new Padding(2, 3, 2, 3);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Margin = new Padding(2);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(2, 3, 2, 3);
-            tabPage2.Size = new Size(1318, 516);
+            tabPage2.Padding = new Padding(2);
+            tabPage2.Size = new Size(1152, 384);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Movie Management";
             // 
@@ -822,33 +824,36 @@ namespace CMPT291_Project
             SearchMoviePanel.Controls.Add(SearchMovieLabel);
             SearchMoviePanel.Controls.Add(SearchMovieText);
             SearchMoviePanel.Controls.Add(SearchMovieButton);
-            SearchMoviePanel.Location = new Point(0, 212);
+            SearchMoviePanel.Location = new Point(0, 159);
+            SearchMoviePanel.Margin = new Padding(3, 2, 3, 2);
             SearchMoviePanel.Name = "SearchMoviePanel";
-            SearchMoviePanel.Size = new Size(344, 301);
+            SearchMoviePanel.Size = new Size(301, 226);
             SearchMoviePanel.TabIndex = 7;
             SearchMoviePanel.Visible = false;
             // 
             // SearchMovieLabel
             // 
             SearchMovieLabel.AutoSize = true;
-            SearchMovieLabel.Location = new Point(10, 153);
+            SearchMovieLabel.Location = new Point(9, 115);
             SearchMovieLabel.Name = "SearchMovieLabel";
-            SearchMovieLabel.Size = new Size(118, 28);
+            SearchMovieLabel.Size = new Size(96, 21);
             SearchMovieLabel.TabIndex = 2;
             SearchMovieLabel.Text = "Movie Title:";
             // 
             // SearchMovieText
             // 
-            SearchMovieText.Location = new Point(140, 151);
+            SearchMovieText.Location = new Point(122, 113);
+            SearchMovieText.Margin = new Padding(3, 2, 3, 2);
             SearchMovieText.Name = "SearchMovieText";
-            SearchMovieText.Size = new Size(191, 34);
+            SearchMovieText.Size = new Size(168, 29);
             SearchMovieText.TabIndex = 1;
             // 
             // SearchMovieButton
             // 
-            SearchMovieButton.Location = new Point(225, 220);
+            SearchMovieButton.Location = new Point(197, 165);
+            SearchMovieButton.Margin = new Padding(3, 2, 3, 2);
             SearchMovieButton.Name = "SearchMovieButton";
-            SearchMovieButton.Size = new Size(106, 44);
+            SearchMovieButton.Size = new Size(93, 33);
             SearchMovieButton.TabIndex = 0;
             SearchMovieButton.Text = "Search";
             SearchMovieButton.UseVisualStyleBackColor = true;
@@ -857,10 +862,10 @@ namespace CMPT291_Project
             // AssignActorButton
             // 
             AssignActorButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AssignActorButton.Location = new Point(30, 131);
-            AssignActorButton.Margin = new Padding(2, 3, 2, 3);
+            AssignActorButton.Location = new Point(26, 98);
+            AssignActorButton.Margin = new Padding(2);
             AssignActorButton.Name = "AssignActorButton";
-            AssignActorButton.Size = new Size(248, 43);
+            AssignActorButton.Size = new Size(217, 32);
             AssignActorButton.TabIndex = 3;
             AssignActorButton.Text = "Assign Actor to Movie";
             AssignActorButton.UseVisualStyleBackColor = true;
@@ -869,10 +874,10 @@ namespace CMPT291_Project
             // ModifyMovieButton
             // 
             ModifyMovieButton.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ModifyMovieButton.Location = new Point(30, 83);
-            ModifyMovieButton.Margin = new Padding(2, 3, 2, 3);
+            ModifyMovieButton.Location = new Point(26, 62);
+            ModifyMovieButton.Margin = new Padding(2);
             ModifyMovieButton.Name = "ModifyMovieButton";
-            ModifyMovieButton.Size = new Size(248, 43);
+            ModifyMovieButton.Size = new Size(217, 32);
             ModifyMovieButton.TabIndex = 2;
             ModifyMovieButton.Text = "Search/Modify/Delete Movie";
             ModifyMovieButton.UseVisualStyleBackColor = true;
@@ -881,139 +886,14 @@ namespace CMPT291_Project
             // AddMovieButton
             // 
             AddMovieButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AddMovieButton.Location = new Point(30, 33);
-            AddMovieButton.Margin = new Padding(2, 3, 2, 3);
+            AddMovieButton.Location = new Point(26, 25);
+            AddMovieButton.Margin = new Padding(2);
             AddMovieButton.Name = "AddMovieButton";
-            AddMovieButton.Size = new Size(248, 43);
+            AddMovieButton.Size = new Size(217, 32);
             AddMovieButton.TabIndex = 1;
             AddMovieButton.Text = "Add New Movie";
             AddMovieButton.UseVisualStyleBackColor = true;
             AddMovieButton.Click += AddMovieButton_Click;
-            // 
-            // AssignActorBox
-            // 
-            AssignActorBox.BackColor = Color.White;
-            AssignActorBox.Controls.Add(ActorMovieSearchButton);
-            AssignActorBox.Controls.Add(MovieActorDataView);
-            AssignActorBox.Controls.Add(label11);
-            AssignActorBox.Controls.Add(label6);
-            AssignActorBox.Controls.Add(ActorLastAssignText);
-            AssignActorBox.Controls.Add(ActorFirstAssignText);
-            AssignActorBox.Controls.Add(AssignButton);
-            AssignActorBox.Controls.Add(MovieAssignText);
-            AssignActorBox.Controls.Add(ActorAssignLabel);
-            AssignActorBox.Controls.Add(MovieAssignLabel);
-            AssignActorBox.Location = new Point(376, 0);
-            AssignActorBox.Margin = new Padding(2, 4, 2, 4);
-            AssignActorBox.Name = "AssignActorBox";
-            AssignActorBox.Padding = new Padding(2, 4, 2, 4);
-            AssignActorBox.Size = new Size(942, 517);
-            AssignActorBox.TabIndex = 6;
-            AssignActorBox.TabStop = false;
-            AssignActorBox.Visible = false;
-            // 
-            // ActorMovieSearchButton
-            // 
-            ActorMovieSearchButton.Location = new Point(588, 38);
-            ActorMovieSearchButton.Name = "ActorMovieSearchButton";
-            ActorMovieSearchButton.Size = new Size(94, 37);
-            ActorMovieSearchButton.TabIndex = 14;
-            ActorMovieSearchButton.Text = "Search";
-            ActorMovieSearchButton.UseVisualStyleBackColor = true;
-            ActorMovieSearchButton.Click += ActorMovieSearchButton_Click;
-            // 
-            // MovieActorDataView
-            // 
-            MovieActorDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            MovieActorDataView.Location = new Point(62, 86);
-            MovieActorDataView.Name = "MovieActorDataView";
-            MovieActorDataView.RowHeadersWidth = 51;
-            MovieActorDataView.Size = new Size(570, 202);
-            MovieActorDataView.TabIndex = 13;
-            MovieActorDataView.CellClick += MovieActorDataView_CellClick;
-            MovieActorDataView.CellContentClick += MovieActorDataView_CellContentClick;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(474, 363);
-            label11.Name = "label11";
-            label11.Size = new Size(91, 23);
-            label11.TabIndex = 12;
-            label11.Text = "Last Name";
-            label11.Visible = false;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(257, 363);
-            label6.Name = "label6";
-            label6.Size = new Size(93, 23);
-            label6.TabIndex = 11;
-            label6.Text = "First Name";
-            label6.Visible = false;
-            // 
-            // ActorLastAssignText
-            // 
-            ActorLastAssignText.Location = new Point(474, 319);
-            ActorLastAssignText.Margin = new Padding(2, 4, 2, 4);
-            ActorLastAssignText.Name = "ActorLastAssignText";
-            ActorLastAssignText.Size = new Size(163, 34);
-            ActorLastAssignText.TabIndex = 10;
-            ActorLastAssignText.Visible = false;
-            // 
-            // ActorFirstAssignText
-            // 
-            ActorFirstAssignText.Location = new Point(257, 319);
-            ActorFirstAssignText.Margin = new Padding(2, 4, 2, 4);
-            ActorFirstAssignText.Name = "ActorFirstAssignText";
-            ActorFirstAssignText.Size = new Size(163, 34);
-            ActorFirstAssignText.TabIndex = 9;
-            ActorFirstAssignText.Visible = false;
-            // 
-            // AssignButton
-            // 
-            AssignButton.Location = new Point(257, 447);
-            AssignButton.Margin = new Padding(2, 4, 2, 4);
-            AssignButton.Name = "AssignButton";
-            AssignButton.Size = new Size(138, 52);
-            AssignButton.TabIndex = 8;
-            AssignButton.Text = "Assign Actor";
-            AssignButton.UseVisualStyleBackColor = true;
-            AssignButton.Visible = false;
-            AssignButton.Click += AssignButton_Click;
-            // 
-            // MovieAssignText
-            // 
-            MovieAssignText.Location = new Point(257, 40);
-            MovieAssignText.Margin = new Padding(2, 4, 2, 4);
-            MovieAssignText.Name = "MovieAssignText";
-            MovieAssignText.Size = new Size(301, 34);
-            MovieAssignText.TabIndex = 4;
-            // 
-            // ActorAssignLabel
-            // 
-            ActorAssignLabel.AutoSize = true;
-            ActorAssignLabel.Location = new Point(62, 319);
-            ActorAssignLabel.Margin = new Padding(2, 0, 2, 0);
-            ActorAssignLabel.Name = "ActorAssignLabel";
-            ActorAssignLabel.Size = new Size(125, 28);
-            ActorAssignLabel.TabIndex = 1;
-            ActorAssignLabel.Text = "Actor Name:";
-            ActorAssignLabel.Visible = false;
-            // 
-            // MovieAssignLabel
-            // 
-            MovieAssignLabel.AutoSize = true;
-            MovieAssignLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            MovieAssignLabel.Location = new Point(62, 44);
-            MovieAssignLabel.Margin = new Padding(2, 0, 2, 0);
-            MovieAssignLabel.Name = "MovieAssignLabel";
-            MovieAssignLabel.Size = new Size(133, 28);
-            MovieAssignLabel.TabIndex = 0;
-            MovieAssignLabel.Text = "Movie Name:";
             // 
             // AddMovieBox
             // 
@@ -1027,21 +907,21 @@ namespace CMPT291_Project
             AddMovieBox.Controls.Add(FeeAddLabel);
             AddMovieBox.Controls.Add(TypeAddLabel);
             AddMovieBox.Controls.Add(NameAddLabel);
-            AddMovieBox.Location = new Point(349, 3);
-            AddMovieBox.Margin = new Padding(2, 4, 2, 4);
+            AddMovieBox.Location = new Point(305, 2);
+            AddMovieBox.Margin = new Padding(2, 3, 2, 3);
             AddMovieBox.Name = "AddMovieBox";
-            AddMovieBox.Padding = new Padding(2, 4, 2, 4);
-            AddMovieBox.Size = new Size(914, 517);
+            AddMovieBox.Padding = new Padding(2, 3, 2, 3);
+            AddMovieBox.Size = new Size(800, 388);
             AddMovieBox.TabIndex = 4;
             AddMovieBox.TabStop = false;
             AddMovieBox.Visible = false;
             // 
             // MovieAddButton
             // 
-            MovieAddButton.Location = new Point(614, 412);
-            MovieAddButton.Margin = new Padding(2, 4, 2, 4);
+            MovieAddButton.Location = new Point(537, 309);
+            MovieAddButton.Margin = new Padding(2, 3, 2, 3);
             MovieAddButton.Name = "MovieAddButton";
-            MovieAddButton.Size = new Size(138, 52);
+            MovieAddButton.Size = new Size(121, 39);
             MovieAddButton.TabIndex = 8;
             MovieAddButton.Text = "Add";
             MovieAddButton.UseVisualStyleBackColor = true;
@@ -1051,63 +931,63 @@ namespace CMPT291_Project
             // 
             TypeAddComboBox.FormattingEnabled = true;
             TypeAddComboBox.Items.AddRange(new object[] { "Comedy", "Drama", "Action", "Foreign" });
-            TypeAddComboBox.Location = new Point(278, 131);
-            TypeAddComboBox.Margin = new Padding(2, 4, 2, 4);
+            TypeAddComboBox.Location = new Point(243, 98);
+            TypeAddComboBox.Margin = new Padding(2, 3, 2, 3);
             TypeAddComboBox.Name = "TypeAddComboBox";
-            TypeAddComboBox.Size = new Size(173, 36);
+            TypeAddComboBox.Size = new Size(152, 29);
             TypeAddComboBox.TabIndex = 7;
             // 
             // CopiesAddText
             // 
-            CopiesAddText.Location = new Point(278, 295);
-            CopiesAddText.Margin = new Padding(2, 4, 2, 4);
+            CopiesAddText.Location = new Point(243, 221);
+            CopiesAddText.Margin = new Padding(2, 3, 2, 3);
             CopiesAddText.Name = "CopiesAddText";
-            CopiesAddText.Size = new Size(114, 34);
+            CopiesAddText.Size = new Size(100, 29);
             CopiesAddText.TabIndex = 6;
             // 
             // FeeAddText
             // 
-            FeeAddText.Location = new Point(278, 211);
-            FeeAddText.Margin = new Padding(2, 4, 2, 4);
+            FeeAddText.Location = new Point(243, 158);
+            FeeAddText.Margin = new Padding(2, 3, 2, 3);
             FeeAddText.Name = "FeeAddText";
-            FeeAddText.Size = new Size(173, 34);
+            FeeAddText.Size = new Size(152, 29);
             FeeAddText.TabIndex = 5;
             // 
             // NameAddText
             // 
-            NameAddText.Location = new Point(278, 40);
-            NameAddText.Margin = new Padding(2, 4, 2, 4);
+            NameAddText.Location = new Point(243, 30);
+            NameAddText.Margin = new Padding(2, 3, 2, 3);
             NameAddText.Name = "NameAddText";
-            NameAddText.Size = new Size(301, 34);
+            NameAddText.Size = new Size(264, 29);
             NameAddText.TabIndex = 4;
             // 
             // CopiesAddLabel
             // 
             CopiesAddLabel.AutoSize = true;
-            CopiesAddLabel.Location = new Point(62, 299);
+            CopiesAddLabel.Location = new Point(54, 224);
             CopiesAddLabel.Margin = new Padding(2, 0, 2, 0);
             CopiesAddLabel.Name = "CopiesAddLabel";
-            CopiesAddLabel.Size = new Size(184, 28);
+            CopiesAddLabel.Size = new Size(148, 21);
             CopiesAddLabel.TabIndex = 3;
             CopiesAddLabel.Text = "Number of Copies:";
             // 
             // FeeAddLabel
             // 
             FeeAddLabel.AutoSize = true;
-            FeeAddLabel.Location = new Point(62, 215);
+            FeeAddLabel.Location = new Point(54, 161);
             FeeAddLabel.Margin = new Padding(2, 0, 2, 0);
             FeeAddLabel.Name = "FeeAddLabel";
-            FeeAddLabel.Size = new Size(162, 28);
+            FeeAddLabel.Size = new Size(130, 21);
             FeeAddLabel.TabIndex = 2;
             FeeAddLabel.Text = "Distribution Fee:";
             // 
             // TypeAddLabel
             // 
             TypeAddLabel.AutoSize = true;
-            TypeAddLabel.Location = new Point(62, 131);
+            TypeAddLabel.Location = new Point(54, 98);
             TypeAddLabel.Margin = new Padding(2, 0, 2, 0);
             TypeAddLabel.Name = "TypeAddLabel";
-            TypeAddLabel.Size = new Size(122, 28);
+            TypeAddLabel.Size = new Size(99, 21);
             TypeAddLabel.TabIndex = 1;
             TypeAddLabel.Text = "Movie Type:";
             // 
@@ -1115,10 +995,10 @@ namespace CMPT291_Project
             // 
             NameAddLabel.AutoSize = true;
             NameAddLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            NameAddLabel.Location = new Point(62, 44);
+            NameAddLabel.Location = new Point(54, 33);
             NameAddLabel.Margin = new Padding(2, 0, 2, 0);
             NameAddLabel.Name = "NameAddLabel";
-            NameAddLabel.Size = new Size(133, 28);
+            NameAddLabel.Size = new Size(107, 21);
             NameAddLabel.TabIndex = 0;
             NameAddLabel.Text = "Movie Name:";
             // 
@@ -1127,19 +1007,21 @@ namespace CMPT291_Project
             MovieDataViewPanel.BackColor = Color.White;
             MovieDataViewPanel.Controls.Add(MovieDataView);
             MovieDataViewPanel.Controls.Add(ModifyMovieBox);
-            MovieDataViewPanel.Location = new Point(350, 0);
+            MovieDataViewPanel.Location = new Point(306, 0);
+            MovieDataViewPanel.Margin = new Padding(3, 2, 3, 2);
             MovieDataViewPanel.Name = "MovieDataViewPanel";
-            MovieDataViewPanel.Size = new Size(963, 514);
+            MovieDataViewPanel.Size = new Size(843, 386);
             MovieDataViewPanel.TabIndex = 8;
             MovieDataViewPanel.Visible = false;
             // 
             // MovieDataView
             // 
             MovieDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            MovieDataView.Location = new Point(39, 22);
+            MovieDataView.Location = new Point(34, 16);
+            MovieDataView.Margin = new Padding(3, 2, 3, 2);
             MovieDataView.Name = "MovieDataView";
             MovieDataView.RowHeadersWidth = 51;
-            MovieDataView.Size = new Size(897, 474);
+            MovieDataView.Size = new Size(785, 356);
             MovieDataView.TabIndex = 0;
             MovieDataView.Visible = false;
             MovieDataView.CellClick += MovieDataView_CellClick;
@@ -1161,11 +1043,11 @@ namespace CMPT291_Project
             ModifyMovieBox.Controls.Add(FeeMofLabel);
             ModifyMovieBox.Controls.Add(TypeModLabel);
             ModifyMovieBox.Controls.Add(NameModLabel);
-            ModifyMovieBox.Location = new Point(16, 0);
-            ModifyMovieBox.Margin = new Padding(2, 4, 2, 4);
+            ModifyMovieBox.Location = new Point(14, 0);
+            ModifyMovieBox.Margin = new Padding(2, 3, 2, 3);
             ModifyMovieBox.Name = "ModifyMovieBox";
-            ModifyMovieBox.Padding = new Padding(2, 4, 2, 4);
-            ModifyMovieBox.Size = new Size(938, 517);
+            ModifyMovieBox.Padding = new Padding(2, 3, 2, 3);
+            ModifyMovieBox.Size = new Size(821, 388);
             ModifyMovieBox.TabIndex = 5;
             ModifyMovieBox.TabStop = false;
             ModifyMovieBox.Visible = false;
@@ -1173,27 +1055,28 @@ namespace CMPT291_Project
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(593, 131);
+            label12.Location = new Point(519, 98);
             label12.Name = "label12";
-            label12.Size = new Size(74, 28);
+            label12.Size = new Size(62, 21);
             label12.TabIndex = 13;
             label12.Text = "Actors:";
             // 
             // actorList
             // 
             actorList.FormattingEnabled = true;
-            actorList.ItemHeight = 28;
-            actorList.Location = new Point(593, 175);
+            actorList.ItemHeight = 21;
+            actorList.Location = new Point(519, 131);
+            actorList.Margin = new Padding(3, 2, 3, 2);
             actorList.Name = "actorList";
-            actorList.Size = new Size(304, 172);
+            actorList.Size = new Size(266, 130);
             actorList.TabIndex = 12;
             // 
             // DeleteMovieButton
             // 
-            DeleteMovieButton.Location = new Point(743, 416);
-            DeleteMovieButton.Margin = new Padding(2, 4, 2, 4);
+            DeleteMovieButton.Location = new Point(650, 312);
+            DeleteMovieButton.Margin = new Padding(2, 3, 2, 3);
             DeleteMovieButton.Name = "DeleteMovieButton";
-            DeleteMovieButton.Size = new Size(128, 52);
+            DeleteMovieButton.Size = new Size(112, 39);
             DeleteMovieButton.TabIndex = 11;
             DeleteMovieButton.Text = "Delete";
             DeleteMovieButton.UseVisualStyleBackColor = true;
@@ -1202,29 +1085,29 @@ namespace CMPT291_Project
             // MovieIDText
             // 
             MovieIDText.Enabled = false;
-            MovieIDText.Location = new Point(710, 44);
-            MovieIDText.Margin = new Padding(2, 4, 2, 4);
+            MovieIDText.Location = new Point(621, 33);
+            MovieIDText.Margin = new Padding(2, 3, 2, 3);
             MovieIDText.Name = "MovieIDText";
             MovieIDText.ReadOnly = true;
-            MovieIDText.Size = new Size(131, 34);
+            MovieIDText.Size = new Size(115, 29);
             MovieIDText.TabIndex = 10;
             // 
             // MovieIDLabel
             // 
             MovieIDLabel.AutoSize = true;
-            MovieIDLabel.Location = new Point(593, 48);
+            MovieIDLabel.Location = new Point(519, 36);
             MovieIDLabel.Margin = new Padding(2, 0, 2, 0);
             MovieIDLabel.Name = "MovieIDLabel";
-            MovieIDLabel.Size = new Size(99, 28);
+            MovieIDLabel.Size = new Size(80, 21);
             MovieIDLabel.TabIndex = 9;
             MovieIDLabel.Text = "Movie ID:";
             // 
             // MovieModifyButton
             // 
-            MovieModifyButton.Location = new Point(545, 416);
-            MovieModifyButton.Margin = new Padding(2, 4, 2, 4);
+            MovieModifyButton.Location = new Point(477, 312);
+            MovieModifyButton.Margin = new Padding(2, 3, 2, 3);
             MovieModifyButton.Name = "MovieModifyButton";
-            MovieModifyButton.Size = new Size(138, 52);
+            MovieModifyButton.Size = new Size(121, 39);
             MovieModifyButton.TabIndex = 8;
             MovieModifyButton.Text = "Submit";
             MovieModifyButton.UseVisualStyleBackColor = true;
@@ -1234,63 +1117,63 @@ namespace CMPT291_Project
             // 
             TypeModComboBox.FormattingEnabled = true;
             TypeModComboBox.Items.AddRange(new object[] { "Comedy", "Drama", "Action", "Foreign" });
-            TypeModComboBox.Location = new Point(257, 131);
-            TypeModComboBox.Margin = new Padding(2, 4, 2, 4);
+            TypeModComboBox.Location = new Point(225, 98);
+            TypeModComboBox.Margin = new Padding(2, 3, 2, 3);
             TypeModComboBox.Name = "TypeModComboBox";
-            TypeModComboBox.Size = new Size(173, 36);
+            TypeModComboBox.Size = new Size(152, 29);
             TypeModComboBox.TabIndex = 7;
             // 
             // CopiesModText
             // 
-            CopiesModText.Location = new Point(257, 295);
-            CopiesModText.Margin = new Padding(2, 4, 2, 4);
+            CopiesModText.Location = new Point(225, 221);
+            CopiesModText.Margin = new Padding(2, 3, 2, 3);
             CopiesModText.Name = "CopiesModText";
-            CopiesModText.Size = new Size(114, 34);
+            CopiesModText.Size = new Size(100, 29);
             CopiesModText.TabIndex = 6;
             // 
             // FeeModText
             // 
-            FeeModText.Location = new Point(257, 211);
-            FeeModText.Margin = new Padding(2, 4, 2, 4);
+            FeeModText.Location = new Point(225, 158);
+            FeeModText.Margin = new Padding(2, 3, 2, 3);
             FeeModText.Name = "FeeModText";
-            FeeModText.Size = new Size(173, 34);
+            FeeModText.Size = new Size(152, 29);
             FeeModText.TabIndex = 5;
             // 
             // NameModText
             // 
-            NameModText.Location = new Point(257, 40);
-            NameModText.Margin = new Padding(2, 4, 2, 4);
+            NameModText.Location = new Point(225, 30);
+            NameModText.Margin = new Padding(2, 3, 2, 3);
             NameModText.Name = "NameModText";
-            NameModText.Size = new Size(301, 34);
+            NameModText.Size = new Size(264, 29);
             NameModText.TabIndex = 4;
             // 
             // CopiesModLabel
             // 
             CopiesModLabel.AutoSize = true;
-            CopiesModLabel.Location = new Point(62, 299);
+            CopiesModLabel.Location = new Point(54, 224);
             CopiesModLabel.Margin = new Padding(2, 0, 2, 0);
             CopiesModLabel.Name = "CopiesModLabel";
-            CopiesModLabel.Size = new Size(184, 28);
+            CopiesModLabel.Size = new Size(148, 21);
             CopiesModLabel.TabIndex = 3;
             CopiesModLabel.Text = "Number of Copies:";
             // 
             // FeeMofLabel
             // 
             FeeMofLabel.AutoSize = true;
-            FeeMofLabel.Location = new Point(62, 215);
+            FeeMofLabel.Location = new Point(54, 161);
             FeeMofLabel.Margin = new Padding(2, 0, 2, 0);
             FeeMofLabel.Name = "FeeMofLabel";
-            FeeMofLabel.Size = new Size(162, 28);
+            FeeMofLabel.Size = new Size(130, 21);
             FeeMofLabel.TabIndex = 2;
             FeeMofLabel.Text = "Distribution Fee:";
             // 
             // TypeModLabel
             // 
             TypeModLabel.AutoSize = true;
-            TypeModLabel.Location = new Point(62, 131);
+            TypeModLabel.Location = new Point(54, 98);
             TypeModLabel.Margin = new Padding(2, 0, 2, 0);
             TypeModLabel.Name = "TypeModLabel";
-            TypeModLabel.Size = new Size(122, 28);
+            TypeModLabel.Size = new Size(99, 21);
             TypeModLabel.TabIndex = 1;
             TypeModLabel.Text = "Movie Type:";
             // 
@@ -1298,12 +1181,139 @@ namespace CMPT291_Project
             // 
             NameModLabel.AutoSize = true;
             NameModLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            NameModLabel.Location = new Point(62, 44);
+            NameModLabel.Location = new Point(54, 33);
             NameModLabel.Margin = new Padding(2, 0, 2, 0);
             NameModLabel.Name = "NameModLabel";
-            NameModLabel.Size = new Size(133, 28);
+            NameModLabel.Size = new Size(107, 21);
             NameModLabel.TabIndex = 0;
             NameModLabel.Text = "Movie Name:";
+            // 
+            // AssignActorBox
+            // 
+            AssignActorBox.BackColor = Color.White;
+            AssignActorBox.Controls.Add(ActorMovieSearchButton);
+            AssignActorBox.Controls.Add(MovieActorDataView);
+            AssignActorBox.Controls.Add(label11);
+            AssignActorBox.Controls.Add(label6);
+            AssignActorBox.Controls.Add(ActorLastAssignText);
+            AssignActorBox.Controls.Add(ActorFirstAssignText);
+            AssignActorBox.Controls.Add(AssignButton);
+            AssignActorBox.Controls.Add(MovieAssignText);
+            AssignActorBox.Controls.Add(ActorAssignLabel);
+            AssignActorBox.Controls.Add(MovieAssignLabel);
+            AssignActorBox.Location = new Point(329, 0);
+            AssignActorBox.Margin = new Padding(2, 3, 2, 3);
+            AssignActorBox.Name = "AssignActorBox";
+            AssignActorBox.Padding = new Padding(2, 3, 2, 3);
+            AssignActorBox.Size = new Size(824, 388);
+            AssignActorBox.TabIndex = 6;
+            AssignActorBox.TabStop = false;
+            AssignActorBox.Visible = false;
+            // 
+            // ActorMovieSearchButton
+            // 
+            ActorMovieSearchButton.Location = new Point(514, 28);
+            ActorMovieSearchButton.Margin = new Padding(3, 2, 3, 2);
+            ActorMovieSearchButton.Name = "ActorMovieSearchButton";
+            ActorMovieSearchButton.Size = new Size(82, 28);
+            ActorMovieSearchButton.TabIndex = 14;
+            ActorMovieSearchButton.Text = "Search";
+            ActorMovieSearchButton.UseVisualStyleBackColor = true;
+            ActorMovieSearchButton.Click += ActorMovieSearchButton_Click;
+            // 
+            // MovieActorDataView
+            // 
+            MovieActorDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            MovieActorDataView.Location = new Point(54, 64);
+            MovieActorDataView.Margin = new Padding(3, 2, 3, 2);
+            MovieActorDataView.Name = "MovieActorDataView";
+            MovieActorDataView.RowHeadersWidth = 51;
+            MovieActorDataView.Size = new Size(499, 152);
+            MovieActorDataView.TabIndex = 13;
+            MovieActorDataView.CellClick += MovieActorDataView_CellClick;
+            MovieActorDataView.CellContentClick += MovieActorDataView_CellContentClick;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.Location = new Point(415, 272);
+            label11.Name = "label11";
+            label11.Size = new Size(75, 19);
+            label11.TabIndex = 12;
+            label11.Text = "Last Name";
+            label11.Visible = false;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(225, 272);
+            label6.Name = "label6";
+            label6.Size = new Size(77, 19);
+            label6.TabIndex = 11;
+            label6.Text = "First Name";
+            label6.Visible = false;
+            // 
+            // ActorLastAssignText
+            // 
+            ActorLastAssignText.Location = new Point(415, 239);
+            ActorLastAssignText.Margin = new Padding(2, 3, 2, 3);
+            ActorLastAssignText.Name = "ActorLastAssignText";
+            ActorLastAssignText.Size = new Size(143, 29);
+            ActorLastAssignText.TabIndex = 10;
+            ActorLastAssignText.Visible = false;
+            // 
+            // ActorFirstAssignText
+            // 
+            ActorFirstAssignText.Location = new Point(225, 239);
+            ActorFirstAssignText.Margin = new Padding(2, 3, 2, 3);
+            ActorFirstAssignText.Name = "ActorFirstAssignText";
+            ActorFirstAssignText.Size = new Size(143, 29);
+            ActorFirstAssignText.TabIndex = 9;
+            ActorFirstAssignText.Visible = false;
+            // 
+            // AssignButton
+            // 
+            AssignButton.Location = new Point(225, 335);
+            AssignButton.Margin = new Padding(2, 3, 2, 3);
+            AssignButton.Name = "AssignButton";
+            AssignButton.Size = new Size(121, 39);
+            AssignButton.TabIndex = 8;
+            AssignButton.Text = "Assign Actor";
+            AssignButton.UseVisualStyleBackColor = true;
+            AssignButton.Visible = false;
+            AssignButton.Click += AssignButton_Click;
+            // 
+            // MovieAssignText
+            // 
+            MovieAssignText.Location = new Point(225, 30);
+            MovieAssignText.Margin = new Padding(2, 3, 2, 3);
+            MovieAssignText.Name = "MovieAssignText";
+            MovieAssignText.Size = new Size(264, 29);
+            MovieAssignText.TabIndex = 4;
+            // 
+            // ActorAssignLabel
+            // 
+            ActorAssignLabel.AutoSize = true;
+            ActorAssignLabel.Location = new Point(54, 239);
+            ActorAssignLabel.Margin = new Padding(2, 0, 2, 0);
+            ActorAssignLabel.Name = "ActorAssignLabel";
+            ActorAssignLabel.Size = new Size(102, 21);
+            ActorAssignLabel.TabIndex = 1;
+            ActorAssignLabel.Text = "Actor Name:";
+            ActorAssignLabel.Visible = false;
+            // 
+            // MovieAssignLabel
+            // 
+            MovieAssignLabel.AutoSize = true;
+            MovieAssignLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            MovieAssignLabel.Location = new Point(54, 33);
+            MovieAssignLabel.Margin = new Padding(2, 0, 2, 0);
+            MovieAssignLabel.Name = "MovieAssignLabel";
+            MovieAssignLabel.Size = new Size(107, 21);
+            MovieAssignLabel.TabIndex = 0;
+            MovieAssignLabel.Text = "Movie Name:";
             // 
             // tabPage3
             // 
@@ -1318,22 +1328,22 @@ namespace CMPT291_Project
             tabPage3.Controls.Add(textBox1);
             tabPage3.Controls.Add(label5);
             tabPage3.Controls.Add(button6);
-            tabPage3.Location = new Point(4, 29);
-            tabPage3.Margin = new Padding(2, 3, 2, 3);
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Margin = new Padding(2);
             tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(2, 3, 2, 3);
-            tabPage3.Size = new Size(1318, 516);
+            tabPage3.Padding = new Padding(2);
+            tabPage3.Size = new Size(1152, 384);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Rental Management";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(520, 79);
-            dataGridView1.Margin = new Padding(2, 4, 2, 4);
+            dataGridView1.Location = new Point(455, 59);
+            dataGridView1.Margin = new Padding(2, 3, 2, 3);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(607, 285);
+            dataGridView1.Size = new Size(531, 214);
             dataGridView1.TabIndex = 17;
             dataGridView1.Visible = false;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
@@ -1341,46 +1351,46 @@ namespace CMPT291_Project
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(65, 205);
+            label7.Location = new Point(57, 154);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(103, 20);
+            label7.Size = new Size(81, 15);
             label7.TabIndex = 14;
             label7.Text = "Email Address";
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(65, 228);
-            textBox3.Margin = new Padding(2, 3, 2, 3);
+            textBox3.Location = new Point(57, 171);
+            textBox3.Margin = new Padding(2);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(250, 27);
+            textBox3.Size = new Size(219, 23);
             textBox3.TabIndex = 13;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(65, 139);
+            label4.Location = new Point(57, 104);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(79, 20);
+            label4.Size = new Size(63, 15);
             label4.TabIndex = 12;
             label4.Text = "Last Name";
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(65, 161);
-            textBox2.Margin = new Padding(2, 3, 2, 3);
+            textBox2.Location = new Point(57, 121);
+            textBox2.Margin = new Padding(2);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(250, 27);
+            textBox2.Size = new Size(219, 23);
             textBox2.TabIndex = 11;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(65, 79);
+            label3.Location = new Point(57, 59);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(80, 20);
+            label3.Size = new Size(64, 15);
             label3.TabIndex = 10;
             label3.Text = "First Name";
             // 
@@ -1388,40 +1398,40 @@ namespace CMPT291_Project
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(520, 37);
+            label2.Location = new Point(455, 28);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(248, 28);
+            label2.Size = new Size(200, 21);
             label2.TabIndex = 9;
             label2.Text = "Customer's Movie Queue";
             label2.Visible = false;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(65, 101);
-            textBox1.Margin = new Padding(2, 3, 2, 3);
+            textBox1.Location = new Point(57, 76);
+            textBox1.Margin = new Padding(2);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(250, 27);
+            textBox1.Size = new Size(219, 23);
             textBox1.TabIndex = 5;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(65, 37);
+            label5.Location = new Point(57, 28);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(260, 28);
+            label5.Size = new Size(209, 21);
             label5.TabIndex = 4;
             label5.Text = "Fill in the following fields:";
             // 
             // button6
             // 
             button6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button6.Location = new Point(65, 288);
-            button6.Margin = new Padding(2, 4, 2, 4);
+            button6.Location = new Point(57, 216);
+            button6.Margin = new Padding(2, 3, 2, 3);
             button6.Name = "button6";
-            button6.Size = new Size(248, 43);
+            button6.Size = new Size(217, 32);
             button6.TabIndex = 3;
             button6.Text = "Search Customer";
             button6.UseVisualStyleBackColor = true;
@@ -1430,6 +1440,8 @@ namespace CMPT291_Project
             // tabPage4
             // 
             tabPage4.BackColor = Color.FromArgb(192, 255, 192);
+            tabPage4.Controls.Add(dropdownReport4);
+            tabPage4.Controls.Add(label13);
             tabPage4.Controls.Add(MonthLabel);
             tabPage4.Controls.Add(MonthText);
             tabPage4.Controls.Add(ReportDataGrid);
@@ -1438,37 +1450,56 @@ namespace CMPT291_Project
             tabPage4.Controls.Add(comboBox1);
             tabPage4.Controls.Add(label9);
             tabPage4.Controls.Add(textBox4);
-            tabPage4.Controls.Add(button5);
+            tabPage4.Controls.Add(reportButton5);
             tabPage4.Controls.Add(textBox5);
-            tabPage4.Controls.Add(button4);
+            tabPage4.Controls.Add(reportButton4);
             tabPage4.Controls.Add(button3);
             tabPage4.Controls.Add(Report2Button);
             tabPage4.Controls.Add(button1);
-            tabPage4.Location = new Point(4, 29);
-            tabPage4.Margin = new Padding(2, 3, 2, 3);
+            tabPage4.Location = new Point(4, 24);
+            tabPage4.Margin = new Padding(2);
             tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(2, 3, 2, 3);
-            tabPage4.Size = new Size(1318, 516);
+            tabPage4.Padding = new Padding(2);
+            tabPage4.Size = new Size(1152, 384);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Report";
+            // 
+            // dropdownReport4
+            // 
+            dropdownReport4.FormattingEnabled = true;
+            dropdownReport4.Items.AddRange(new object[] { "Comedy", "Drama", "Action ", "Foreign" });
+            dropdownReport4.Location = new Point(282, 247);
+            dropdownReport4.Name = "dropdownReport4";
+            dropdownReport4.Size = new Size(90, 23);
+            dropdownReport4.TabIndex = 12;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 10F);
+            label13.Location = new Point(282, 225);
+            label13.Name = "label13";
+            label13.Size = new Size(46, 19);
+            label13.TabIndex = 11;
+            label13.Text = "Genre";
+            label13.Click += label13_Click;
             // 
             // MonthLabel
             // 
             MonthLabel.AutoSize = true;
             MonthLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            MonthLabel.Location = new Point(322, 109);
+            MonthLabel.Location = new Point(282, 82);
             MonthLabel.Name = "MonthLabel";
-            MonthLabel.Size = new Size(114, 23);
+            MonthLabel.Size = new Size(87, 17);
             MonthLabel.TabIndex = 10;
             MonthLabel.Text = "Month Range";
             // 
             // MonthText
             // 
             MonthText.ForeColor = Color.DarkGray;
-            MonthText.Location = new Point(322, 136);
-            MonthText.Margin = new Padding(3, 4, 3, 4);
+            MonthText.Location = new Point(282, 102);
             MonthText.Name = "MonthText";
-            MonthText.Size = new Size(102, 27);
+            MonthText.Size = new Size(90, 23);
             MonthText.TabIndex = 9;
             MonthText.Text = "Ex. 3";
             MonthText.Enter += MonthText_Enter;
@@ -1481,11 +1512,10 @@ namespace CMPT291_Project
             ReportDataGrid.AllowUserToResizeRows = false;
             ReportDataGrid.BackgroundColor = SystemColors.Window;
             ReportDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ReportDataGrid.Location = new Point(785, 0);
-            ReportDataGrid.Margin = new Padding(3, 4, 3, 4);
+            ReportDataGrid.Location = new Point(687, 0);
             ReportDataGrid.Name = "ReportDataGrid";
             ReportDataGrid.RowHeadersWidth = 51;
-            ReportDataGrid.Size = new Size(531, 512);
+            ReportDataGrid.Size = new Size(465, 384);
             ReportDataGrid.TabIndex = 8;
             // 
             // label8
@@ -1493,10 +1523,10 @@ namespace CMPT291_Project
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Black;
-            label8.Location = new Point(322, 19);
+            label8.Location = new Point(282, 14);
             label8.Margin = new Padding(1, 0, 1, 0);
             label8.Name = "label8";
-            label8.Size = new Size(158, 23);
+            label8.Size = new Size(128, 19);
             label8.TabIndex = 3;
             label8.Text = "First Name of Actor";
             // 
@@ -1505,10 +1535,10 @@ namespace CMPT291_Project
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Black;
-            label10.Location = new Point(645, 19);
+            label10.Location = new Point(564, 14);
             label10.Margin = new Padding(1, 0, 1, 0);
             label10.Name = "label10";
-            label10.Size = new Size(96, 23);
+            label10.Size = new Size(79, 19);
             label10.TabIndex = 6;
             label10.Text = "Movie Type";
             // 
@@ -1516,10 +1546,10 @@ namespace CMPT291_Project
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Comedy", "Drama", "Action ", "Foreign" });
-            comboBox1.Location = new Point(638, 47);
+            comboBox1.Location = new Point(558, 35);
             comboBox1.Margin = new Padding(1);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(102, 28);
+            comboBox1.Size = new Size(90, 23);
             comboBox1.TabIndex = 7;
             // 
             // label9
@@ -1527,58 +1557,59 @@ namespace CMPT291_Project
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Black;
-            label9.Location = new Point(517, 19);
+            label9.Location = new Point(452, 14);
             label9.Margin = new Padding(1, 0, 1, 0);
             label9.Name = "label9";
-            label9.Size = new Size(57, 23);
+            label9.Size = new Size(47, 19);
             label9.TabIndex = 5;
             label9.Text = "> Age";
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(322, 47);
+            textBox4.Location = new Point(282, 35);
             textBox4.Margin = new Padding(1);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(146, 27);
+            textBox4.Size = new Size(128, 23);
             textBox4.TabIndex = 1;
             // 
-            // button5
+            // reportButton5
             // 
-            button5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.Location = new Point(34, 416);
-            button5.Margin = new Padding(2, 3, 2, 3);
-            button5.Name = "button5";
-            button5.Size = new Size(248, 43);
-            button5.TabIndex = 6;
-            button5.Text = "Report 5";
-            button5.UseVisualStyleBackColor = true;
+            reportButton5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            reportButton5.Location = new Point(30, 312);
+            reportButton5.Margin = new Padding(2);
+            reportButton5.Name = "reportButton5";
+            reportButton5.Size = new Size(217, 32);
+            reportButton5.TabIndex = 6;
+            reportButton5.Text = "# of Orders by Employee";
+            reportButton5.UseVisualStyleBackColor = true;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(517, 45);
+            textBox5.Location = new Point(452, 34);
             textBox5.Margin = new Padding(1);
             textBox5.Name = "textBox5";
-            textBox5.Size = new Size(70, 27);
+            textBox5.Size = new Size(62, 23);
             textBox5.TabIndex = 4;
             // 
-            // button4
+            // reportButton4
             // 
-            button4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.Location = new Point(34, 317);
-            button4.Margin = new Padding(2, 3, 2, 3);
-            button4.Name = "button4";
-            button4.Size = new Size(248, 43);
-            button4.TabIndex = 5;
-            button4.Text = "Report 4";
-            button4.UseVisualStyleBackColor = true;
+            reportButton4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            reportButton4.Location = new Point(30, 238);
+            reportButton4.Margin = new Padding(2);
+            reportButton4.Name = "reportButton4";
+            reportButton4.Size = new Size(217, 32);
+            reportButton4.TabIndex = 5;
+            reportButton4.Text = "Best Selling Movies";
+            reportButton4.UseVisualStyleBackColor = true;
+            reportButton4.Click += reportButton4_Click_1;
             // 
             // button3
             // 
             button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(34, 220);
-            button3.Margin = new Padding(2, 3, 2, 3);
+            button3.Location = new Point(30, 165);
+            button3.Margin = new Padding(2);
             button3.Name = "button3";
-            button3.Size = new Size(248, 43);
+            button3.Size = new Size(217, 32);
             button3.TabIndex = 4;
             button3.Text = "Report 3";
             button3.UseVisualStyleBackColor = true;
@@ -1586,10 +1617,10 @@ namespace CMPT291_Project
             // Report2Button
             // 
             Report2Button.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Report2Button.Location = new Point(34, 125);
-            Report2Button.Margin = new Padding(2, 3, 2, 3);
+            Report2Button.Location = new Point(30, 94);
+            Report2Button.Margin = new Padding(2);
             Report2Button.Name = "Report2Button";
-            Report2Button.Size = new Size(248, 43);
+            Report2Button.Size = new Size(217, 32);
             Report2Button.TabIndex = 3;
             Report2Button.Text = "Customer Sales Report";
             Report2Button.UseVisualStyleBackColor = true;
@@ -1598,10 +1629,9 @@ namespace CMPT291_Project
             // button1
             // 
             button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(34, 35);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(30, 26);
             button1.Name = "button1";
-            button1.Size = new Size(248, 43);
+            button1.Size = new Size(217, 32);
             button1.TabIndex = 2;
             button1.Text = "Report 1";
             button1.UseVisualStyleBackColor = true;
@@ -1619,12 +1649,12 @@ namespace CMPT291_Project
             // 
             // Form2
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1351, 665);
+            ClientSize = new Size(1182, 499);
             Controls.Add(DashboardTabs);
             Controls.Add(label1);
-            Margin = new Padding(2, 3, 2, 3);
+            Margin = new Padding(2);
             Name = "Form2";
             Text = "Employee Homescreen ";
             DashboardTabs.ResumeLayout(false);
@@ -1638,15 +1668,15 @@ namespace CMPT291_Project
             tabPage2.ResumeLayout(false);
             SearchMoviePanel.ResumeLayout(false);
             SearchMoviePanel.PerformLayout();
-            AssignActorBox.ResumeLayout(false);
-            AssignActorBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)MovieActorDataView).EndInit();
             AddMovieBox.ResumeLayout(false);
             AddMovieBox.PerformLayout();
             MovieDataViewPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)MovieDataView).EndInit();
             ModifyMovieBox.ResumeLayout(false);
             ModifyMovieBox.PerformLayout();
+            AssignActorBox.ResumeLayout(false);
+            AssignActorBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)MovieActorDataView).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -1792,5 +1822,10 @@ namespace CMPT291_Project
         private Label label12;
         private Button ActorMovieSearchButton;
         private DataGridView MovieActorDataView;
+        private Button reportButton5;
+        private Button reportButton4;
+        private Label label13;
+        private ComboBox comboBox2;
+        private ComboBox dropdownReport4;
     }
 }

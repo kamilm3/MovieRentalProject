@@ -45,14 +45,14 @@ namespace CMPT291_Project
                                   "connection timeout=30"); // Timeout in seconds
             */
 
-            /*
+
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                               "password=admin;" + // Password
                                               "server=Kamil\\MSSQLSERVER03;" + // Server name
                                               "TrustServerCertificate=True;" +
                                               "database=project291; " + // Database
                                               "connection timeout=30"); // Timeout in seconds
-            */
+
 
 
             // Initialize the connection
@@ -65,13 +65,14 @@ namespace CMPT291_Project
                                               "connection timeout=30"); // Timeout in seconds
             */
 
-            myConnection = new SqlConnection("user id=admin3;" + // Username
+            /* 
+             myConnection = new SqlConnection("user id=admin3;" + // Username
                                              "password=admin;" + // Password
                                              "server=DESKTOP-6QG008O;" + // Server name
                                              "TrustServerCertificate=True;" +
                                              "database=project291; " + // Database
                                              "connection timeout=30"); // Timeout in seconds
-
+            */
             try
             {
                 myConnection.Open(); // Open the connection
@@ -878,11 +879,11 @@ namespace CMPT291_Project
                                 "WHERE M.movieName = @MovieName";
                 */
 
-                
+
                 string query = "SELECT M.movieID, M.movieName, M.MovieType, M.DistFee, M.NumCopies, A.firstName, A.lastName " +
                               "FROM Movie M, Actor A, ActorAppearedIn AM " +
                               "WHERE movieName = @MovieName and M.movieID = AM.movieId and A.actorID = AM.actorID";
-                
+
 
                 using (SqlCommand cmnd = new SqlCommand(query, myConnection))
                 {
@@ -896,7 +897,7 @@ namespace CMPT291_Project
 
 
                         Moviedata.Fill(movieresults);
-                        
+
                         // Remove duplicates by movieID
                         DataView distinctMovies = new DataView(movieresults);
                         distinctMovies.Sort = "movieID";  // Sorting to group by movieID
@@ -923,7 +924,7 @@ namespace CMPT291_Project
 
                         reader.Close();
 
-                        
+
 
                         // Error check to ensure movie exists
                         if (movieresults.Rows.Count == 0)
@@ -1049,6 +1050,72 @@ namespace CMPT291_Project
         private void MovieActorDataView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        /////////////////////
+        //     Report 4    //
+        /////////////////////
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void reportButton4_Click_1(object sender, EventArgs e)
+        {
+            string selectedGenre = dropdownReport4.Text.Trim(); 
+
+            if (string.IsNullOrEmpty(selectedGenre))
+            {
+                MessageBox.Show("Please select a genre before generating the report.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string query = @"
+        SELECT 
+            M.movieName, 
+            (SELECT COUNT(PO.orderID) 
+             FROM PlacedOrder PO 
+             WHERE PO.movieID = M.movieID) AS TotalRentals
+        FROM 
+            Movie M
+        WHERE 
+            M.movieID IN (SELECT movieID FROM PlacedOrder)
+            AND M.MovieType = @selectedGenre
+        ORDER BY 
+            TotalRentals DESC";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+                    cmd.Parameters.AddWithValue("@selectedGenre", selectedGenre);
+
+                    // Load results into a DataTable
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable results = new DataTable();
+                        adapter.Fill(results);
+
+                        // Bind results to the DataGridView
+                        ReportDataGrid.DataSource = results;
+
+                        // Check if results are empty
+                        if (results.Rows.Count == 0)
+                        {
+                            MessageBox.Show("No movies found for the selected genre.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            ReportDataGrid.Visible = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
