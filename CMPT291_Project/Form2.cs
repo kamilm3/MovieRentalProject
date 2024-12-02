@@ -1141,8 +1141,6 @@ namespace CMPT291_Project
             COUNT(PO.orderID) AS TotalOrders
         FROM 
             PlacedOrder PO
-        WHERE 
-            PO.employeeID IS NOT NULL
         GROUP BY 
             PO.employeeID
         ORDER BY 
