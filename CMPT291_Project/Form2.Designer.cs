@@ -163,6 +163,8 @@ namespace CMPT291_Project
             button1 = new Button();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             sqlCommand2 = new Microsoft.Data.SqlClient.SqlCommand();
+            radioButton_report5 = new RadioButton();
+            radioButton2_report5 = new RadioButton();
             DashboardTabs.SuspendLayout();
             tabPage1.SuspendLayout();
             AddCustBox.SuspendLayout();
@@ -1440,6 +1442,8 @@ namespace CMPT291_Project
             // tabPage4
             // 
             tabPage4.BackColor = Color.FromArgb(192, 255, 192);
+            tabPage4.Controls.Add(radioButton2_report5);
+            tabPage4.Controls.Add(radioButton_report5);
             tabPage4.Controls.Add(dropdownReport4);
             tabPage4.Controls.Add(label13);
             tabPage4.Controls.Add(MonthLabel);
@@ -1582,6 +1586,7 @@ namespace CMPT291_Project
             reportButton5.TabIndex = 6;
             reportButton5.Text = "# of Orders by Employee";
             reportButton5.UseVisualStyleBackColor = true;
+            reportButton5.Click += reportButton5_Click;
             // 
             // textBox5
             // 
@@ -1646,6 +1651,28 @@ namespace CMPT291_Project
             // 
             sqlCommand2.CommandTimeout = 30;
             sqlCommand2.EnableOptimizedParameterBinding = false;
+            // 
+            // radioButton_report5
+            // 
+            radioButton_report5.AutoSize = true;
+            radioButton_report5.Location = new Point(282, 321);
+            radioButton_report5.Name = "radioButton_report5";
+            radioButton_report5.Size = new Size(52, 19);
+            radioButton_report5.TabIndex = 13;
+            radioButton_report5.TabStop = true;
+            radioButton_report5.Text = "Most";
+            radioButton_report5.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2_report5
+            // 
+            radioButton2_report5.AutoSize = true;
+            radioButton2_report5.Location = new Point(340, 321);
+            radioButton2_report5.Name = "radioButton2_report5";
+            radioButton2_report5.Size = new Size(52, 19);
+            radioButton2_report5.TabIndex = 14;
+            radioButton2_report5.TabStop = true;
+            radioButton2_report5.Text = "Least";
+            radioButton2_report5.UseVisualStyleBackColor = true;
             // 
             // Form2
             // 
@@ -1827,5 +1854,7 @@ namespace CMPT291_Project
         private Label label13;
         private ComboBox comboBox2;
         private ComboBox dropdownReport4;
+        private RadioButton radioButton2_report5;
+        private RadioButton radioButton_report5;
     }
 }

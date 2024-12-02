@@ -1063,7 +1063,7 @@ namespace CMPT291_Project
 
         private void reportButton4_Click_1(object sender, EventArgs e)
         {
-            string selectedGenre = dropdownReport4.Text.Trim(); 
+            string selectedGenre = dropdownReport4.Text.Trim();
 
             if (string.IsNullOrEmpty(selectedGenre))
             {
@@ -1104,6 +1104,67 @@ namespace CMPT291_Project
                         if (results.Rows.Count == 0)
                         {
                             MessageBox.Show("No movies found for the selected genre.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            ReportDataGrid.Visible = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /////////////////////
+        //     Report 5    //
+        /////////////////////
+        private void reportButton5_Click(object sender, EventArgs e)
+        {
+            // Validate if one of the radio buttons is selected
+            if (!radioButton_report5.Checked && !radioButton2_report5.Checked)
+            {
+                MessageBox.Show("Please select an order type: Most or Least.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Determine the sorting order based on the selected radio button
+            string sortOrder = radioButton_report5.Checked ? "DESC" : "ASC";
+
+            string query = $@"
+        SELECT 
+            (SELECT CONCAT(firstName, ' ', lastName) 
+             FROM Employee 
+             WHERE Employee.employeeID = PO.employeeID) AS EmployeeName,
+            COUNT(PO.orderID) AS TotalOrders
+        FROM 
+            PlacedOrder PO
+        WHERE 
+            PO.employeeID IS NOT NULL
+        GROUP BY 
+            PO.employeeID
+        ORDER BY 
+            TotalOrders {sortOrder}"; // Sorting based on radio button
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+                    // Load results into a DataTable
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable results = new DataTable();
+                        adapter.Fill(results);
+
+                        // Bind results to the DataGridView
+                        ReportDataGrid.DataSource = results;
+
+                        // Check if results are empty
+                        if (results.Rows.Count == 0)
+                        {
+                            MessageBox.Show("No orders found for employees.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
