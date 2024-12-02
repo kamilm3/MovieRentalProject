@@ -561,14 +561,14 @@ namespace CMPT291_Project
 
             try
             {
-                // Check if a row is selected in the DataGridView
+                // Check if a row is selected in the MovieActorDataView
                 if (MovieActorDataView.SelectedRows.Count > 0)
                 {
                     // Get the first selected row
                     DataGridViewRow selectedRow = MovieActorDataView.SelectedRows[0];
 
                     // Access the movieID of a specific column in the selected row
-                    int movieId = Convert.ToInt32(selectedRow.Cells["movieID"].Value);  // Assuming movieID is an integer
+                    int movieId = Convert.ToInt32(selectedRow.Cells["movieID"].Value); 
 
                     // Retrieve actorID based on first and last name
                     string actorIdQuery = "SELECT actorID FROM Actor WHERE firstName = @FirstName AND lastName = @LastName";
@@ -854,14 +854,12 @@ namespace CMPT291_Project
             }
         }
 
-        private void SearchMovieButton_Click(object sender, EventArgs e)
+       private void SearchMovieButton_Click(object sender, EventArgs e)
         {
             ModifyMovieBox.Visible = false;
             AddMovieBox.Visible = false;
             AssignActorBox.Visible = false;
             MovieDataViewPanel.Visible = true;
-            // SearchMoviePanel.Visible = false;
-            //MovieDataView.Visible = true;
 
             string moviename = SearchMovieText?.Text.Trim();
 
@@ -873,35 +871,25 @@ namespace CMPT291_Project
 
             try
             {
+                // Query to get movie details
+                string query1 = "SELECT movieID, movieName, MovieType, DistFee, NumCopies " +
+                                 "FROM Movie " +
+                                 "WHERE movieName = @MovieName";
 
-                // Search for the Movie
+                // Query to get actors for the movie
+                string query2 = "SELECT A.firstName, A.lastName " +
+                                "FROM Actor A, ActorAppearedIn AM " +
+                                "WHERE AM.movieId = (SELECT movieID FROM Movie WHERE movieName = @MovieName) " +
+                                "AND A.actorID = AM.actorID";
 
-
-                /*
-                string query = "SELECT M.movieID, M.movieName, M.MovieType, M.DistFee, M.NumCopies, A.firstName, A.lastName " +
-                                "FROM Movie M " +
-                                "JOIN ActorAppearedIn MA ON M.movieID = MA.movieID " +
-                                "JOIN Actor A ON MA.actorID = A.actorID " +
-                                "WHERE M.movieName = @MovieName";
-                */
-
-
-                string query = "SELECT M.movieID, M.movieName, M.MovieType, M.DistFee, M.NumCopies, A.firstName, A.lastName " +
-                              "FROM Movie M, Actor A, ActorAppearedIn AM " +
-                              "WHERE movieName = @MovieName and M.movieID = AM.movieId and A.actorID = AM.actorID";
-
-
-                using (SqlCommand cmnd = new SqlCommand(query, myConnection))
+                using (SqlCommand cmnd = new SqlCommand(query1, myConnection))
                 {
                     cmnd.Parameters.AddWithValue("@MovieName", moviename);
-
 
                     // Load results into the data table
                     using (SqlDataAdapter Moviedata = new SqlDataAdapter(cmnd))
                     {
                         DataTable movieresults = new DataTable();
-
-
                         Moviedata.Fill(movieresults);
 
                         // Remove duplicates by movieID
@@ -909,28 +897,8 @@ namespace CMPT291_Project
                         distinctMovies.Sort = "movieID";  // Sorting to group by movieID
                         DataTable uniqueMovies = distinctMovies.ToTable(true, "movieID", "movieName", "MovieType", "DistFee", "NumCopies");
 
-                        // Set the unique data as the DataSource
+                        // Set the unique data as the DataSource for MovieDataView
                         MovieDataView.DataSource = uniqueMovies;
-
-                        //MovieDataView.Columns["firstName"].Visible = false;
-                        //MovieDataView.Columns["lastName"].Visible = false;
-
-                        actorList.Items.Clear();
-
-                        SqlDataReader reader = cmnd.ExecuteReader();
-
-                        while (reader.Read())
-                        {
-                            // Concatenate firstName and lastName with a space between them
-                            string fullName = reader["firstName"].ToString() + " " + reader["lastName"].ToString();
-
-                            // Add the full name to the actor list
-                            actorList.Items.Add(fullName);
-                        }
-
-                        reader.Close();
-
-
 
                         // Error check to ensure movie exists
                         if (movieresults.Rows.Count == 0)
@@ -943,18 +911,37 @@ namespace CMPT291_Project
                         }
                     }
                 }
+
+                // Clear existing items from actor list box
+                actorList.Items.Clear();
+
+                using (SqlCommand actorCmnd = new SqlCommand(query2, myConnection))
+                {
+                    actorCmnd.Parameters.AddWithValue("@MovieName", moviename);
+
+                    SqlDataReader reader = actorCmnd.ExecuteReader();
+
+                    // Read actors and add to the actor list box
+                    while (reader.Read())
+                    {
+                        string fullName = reader["firstName"].ToString() + " " + reader["lastName"].ToString();
+                        actorList.Items.Add(fullName);
+                    }
+
+                    reader.Close();
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        
+        /////////////////////
+        //     Report 3    //
+        /////////////////////
 
-            /////////////////////
-            //     Report 3    //
-            /////////////////////
 
-
-        }
+    }
 
         private void MovieDataView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
