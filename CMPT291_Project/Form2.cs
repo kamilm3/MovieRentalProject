@@ -45,14 +45,14 @@ namespace CMPT291_Project
                                   "connection timeout=30"); // Timeout in seconds
             */
 
-
+            /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                               "password=admin;" + // Password
                                               "server=Kamil\\MSSQLSERVER03;" + // Server name
                                               "TrustServerCertificate=True;" +
                                               "database=project291; " + // Database
                                               "connection timeout=30"); // Timeout in seconds
-
+            */
 
 
             // Initialize the connection
@@ -65,14 +65,14 @@ namespace CMPT291_Project
                                               "connection timeout=30"); // Timeout in seconds
             */
 
-            /* 
+            
              myConnection = new SqlConnection("user id=admin3;" + // Username
                                              "password=admin;" + // Password
                                              "server=DESKTOP-6QG008O;" + // Server name
                                              "TrustServerCertificate=True;" +
                                              "database=project291; " + // Database
                                              "connection timeout=30"); // Timeout in seconds
-            */
+            
             try
             {
                 myConnection.Open(); // Open the connection
@@ -559,63 +559,69 @@ namespace CMPT291_Project
                 return;
             }
 
-
             try
             {
-
                 // Check if a row is selected in the DataGridView
-                if (dataGridView1.SelectedRows.Count > 0)
+                if (MovieActorDataView.SelectedRows.Count > 0)
                 {
                     // Get the first selected row
-                    DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                    DataGridViewRow selectedRow = MovieActorDataView.SelectedRows[0];
 
                     // Access the movieID of a specific column in the selected row
-                    var movieId = selectedRow.Cells["movieID"].Value;
-                }
+                    int movieId = Convert.ToInt32(selectedRow.Cells["movieID"].Value);  // Assuming movieID is an integer
 
+                    // Retrieve actorID based on first and last name
+                    string actorIdQuery = "SELECT actorID FROM Actor WHERE firstName = @FirstName AND lastName = @LastName";
+                    int actorId = 0;
+
+                    using (SqlCommand cmd = new SqlCommand(actorIdQuery, myConnection))
+                    {
+                        cmd.Parameters.AddWithValue("@FirstName", actorFirstName);
+                        cmd.Parameters.AddWithValue("@LastName", actorLastName);
+
+                        // Execute the query and get the actor ID
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            actorId = Convert.ToInt32(result);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Actor not found in the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+
+                    // Insert into ActorAppearedIn table to associate the actor with the movie
+                    string query1 = "INSERT INTO ActorAppearedIn (actorID, movieID) VALUES (@ActorId, @MovieId)";
+
+                    using (SqlCommand cmnd = new SqlCommand(query1, myConnection))
+                    {
+                        cmnd.Parameters.AddWithValue("@ActorId", actorId);
+                        cmnd.Parameters.AddWithValue("@MovieId", movieId);
+
+                        // Execute the query
+                        int rowsAffected = cmnd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Actor successfully assigned to the movie!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Could not assign actor to movie.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
                 else
                 {
-                    MessageBox.Show("No row selected. Please select a row.");
+                    MessageBox.Show("No row selected. Please select a row.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                //string query1 = "INSERT INTO ActorAppearedIn (actorID, movieID" + "VALUES(@ActorId, @MovieId");
-                /*           
-
-                 using (SqlCommand cmnd = new SqlCommand(query1, myConnection))
-                 {
-                     cmnd.Parameters.AddWithValue("@FirstName", actorFirstName);
-                     cmnd.Parameters.AddWithValue("@LastName", actorLastName);
-
-
-                     // Execute the query
-                     int rowsAffected = cmnd.ExecuteNonQuery();
-
-                     if (rowsAffected > 0)
-                     {
-                         MessageBox.Show("Movie modified successfully!", "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                     }
-                     else
-                     {
-                         MessageBox.Show("Could not assign actor to movie.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                     }
-                 }
-
-
-                 /* string query = "SELECT M.movieID, A.actorID " +
-                                  "FROM Movie M, Actor A, ActorAppearedIn MA " +
-                                  "WHERE M.movieID = ";
-
-                  //string query2 = 
-                 */
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occured: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
-            MessageBox.Show("Actor successfully assigned to the movie!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ShowGroupBox(GroupBox targetGroupBox)

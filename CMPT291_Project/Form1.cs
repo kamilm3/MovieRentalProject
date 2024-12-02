@@ -30,14 +30,14 @@ namespace CMPT291_Project
                                   "connection timeout=30"); // Timeout in seconds
             */
 
-            
+            /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
                                   "server=Kamil\\MSSQLSERVER03;" + // Server name
                                   "TrustServerCertificate=True;" +
                                   "database=project291; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
-            
+            */
 
 
             // Initialize the connection
@@ -50,14 +50,14 @@ namespace CMPT291_Project
                                               "connection timeout=30"); // Timeout in seconds
             */
 
-            /*
+            
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                              "password=admin;" + // Password
                                              "server=DESKTOP-6QG008O;" + // Server name
                                              "TrustServerCertificate=True;" +
                                              "database=project291; " + // Database
                                              "connection timeout=30"); // Timeout in seconds
-            */
+            
 
             try
             {
