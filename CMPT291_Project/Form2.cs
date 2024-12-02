@@ -35,7 +35,7 @@ namespace CMPT291_Project
         public Form2()
         {
             InitializeComponent();
-            /*
+            
 
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
@@ -43,7 +43,7 @@ namespace CMPT291_Project
                                   "TrustServerCertificate=True;" +
                                   "database=Project_291; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
-            */
+            
 
             /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
@@ -65,14 +65,14 @@ namespace CMPT291_Project
                                               "connection timeout=30"); // Timeout in seconds
             */
 
-            
+            /*
              myConnection = new SqlConnection("user id=admin3;" + // Username
                                              "password=admin;" + // Password
                                              "server=DESKTOP-6QG008O;" + // Server name
                                              "TrustServerCertificate=True;" +
                                              "database=project291; " + // Database
                                              "connection timeout=30"); // Timeout in seconds
-            
+            */
             try
             {
                 myConnection.Open(); // Open the connection
@@ -728,54 +728,84 @@ namespace CMPT291_Project
             string ageInput = textBox5.Text;
             string selectedMovieType = comboBox1.Text;
 
-            if (string.IsNullOrEmpty(actorFName) || string.IsNullOrEmpty(ageInput) || string.IsNullOrEmpty(selectedMovieType) || !int.TryParse(ageInput, out int actorAge))
+
+            if (string.IsNullOrEmpty(actorFName) || string.IsNullOrEmpty(ageInput) || string.IsNullOrEmpty(selectedMovieType))
             {
                 MessageBox.Show("Please fill in all the parameters", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            else if (!int.TryParse(ageInput, out int value))
+            {
+                MessageBox.Show("Please enter numbers only for Age", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
             try
             {
-                // Query to check first name, last name, and email
-                string query2 = "select firstName, lastName, DATEDIFF(yy, DateofBirth, GETDATE()) " +
-                    "from Actor " +
-                    "where firstName = @actorFName and (DATEDIFF(yy, DateofBirth, GETDATE())) > @actorAge " +
-                    "and actorID in " +
-                    "(select T1.actorID from ActorAppearedIn as T1, Actor as T2, Movie as T3 " +
-                    "where T1.actorID = T2.actorID and T1.movieID = T3.movieID and MovieType = @selectedMovieType)";
+                int actorAge = Convert.ToInt32(textBox5.Text);
+
+                // Query to check if data exists (if data is empty or not)
+                string query2 = "select count(*) " +
+                    "from Movie as M, ActorAppearedIn as A " +
+                    "where M.movieID = A.movieID and MovieType = @selectedMovieType and A.movieID in " +
+                        "(select A2.movieID " +
+                        "from ActorAppearedIn as A2, Actor as A3 " +
+                        "where A2.actorID = A3.actorID and A3.firstName = @actorFName " +
+                        "and (DATEDIFF(yy, A3.DateofBirth, GETDATE())) = @actorAge)";
 
 
                 // Create SQL command
                 using (SqlCommand command = new SqlCommand(query2, myConnection))
                 {
+                    
                     command.Parameters.AddWithValue("@actorFName", actorFName);
                     command.Parameters.AddWithValue("@actorAge", actorAge);
                     command.Parameters.AddWithValue("@selectedMovieType", selectedMovieType);
 
-                    object result = command.ExecuteScalar();
+                    int result = (int)command.ExecuteScalar();
 
-                    // if statement will be exceuted if Customer exists in the database
-                    if (result != null && int.TryParse(result.ToString(), out int count) && count > 0)
+                    //if statement is executed if it passes condition
+                    if (result > 0)
                     {
-                        // Retrieve additional data if necessary
-                        DataTable dt = new DataTable();
-                        sd.Fill(dt); // Assuming 'sd' is a SqlDataAdapter
-                        ReportDataGrid.DataSource = dt;
+                        
+
+                        string query3 = "select movieName as Movie " +
+                        "from Movie as M, ActorAppearedIn as A " +
+                        "where M.movieID = A.movieID and MovieType = @selectedMovieType and A.movieID in " +
+                            "(select A2.movieID " +
+                            "from ActorAppearedIn as A2, Actor as A3 " +
+                            "where A2.actorID = A3.actorID and A3.firstName = @actorFName " +
+                            "and (DATEDIFF(yy, A3.DateofBirth, GETDATE())) = @actorAge)";
+
+                        // executes query 3 and redeclare variables on command1
+                        SqlCommand command1 = new SqlCommand(query3, myConnection);
+                        command1.Parameters.AddWithValue("@actorFName", actorFName);
+                        command1.Parameters.AddWithValue("@actorAge", actorAge);
+                        command1.Parameters.AddWithValue("@selectedMovieType", selectedMovieType);
+
+                        //creates table and displays data
+                        SqlDataAdapter sd = new SqlDataAdapter(command1);
+                        DataTable dt1 = new DataTable();
+                        sd.Fill(dt1);
+                        ReportDataGrid.DataSource = dt1;
                     }
                     else
                     {
-                        // Customer does not exist in database
-                        MessageBox.Show("Customer does not exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        string message = actorFName + " does not exist in database or has no movie of selected genre";
+                        MessageBox.Show(message);
                     }
                 }
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
+
+    
 
         /////////////////////
         //     Report 2    //
