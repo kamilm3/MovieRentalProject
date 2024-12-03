@@ -1122,7 +1122,7 @@ namespace CMPT291_Project
                         // Error check to ensure customer exists
                         if (results.Rows.Count == 0)
                         {
-                            MessageBox.Show("No movie found with the provided details.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("No movie found with the provided details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {

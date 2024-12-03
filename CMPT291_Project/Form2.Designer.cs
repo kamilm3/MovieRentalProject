@@ -30,7 +30,7 @@ namespace CMPT291_Project
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label1 = new Label();
             DashboardTabs = new TabControl();
             tabPage1 = new TabPage();
@@ -117,6 +117,7 @@ namespace CMPT291_Project
             TypeAddLabel = new Label();
             NameAddLabel = new Label();
             MovieDataViewPanel = new Panel();
+            MovieDataView = new DataGridView();
             ModifyMovieBox = new GroupBox();
             label12 = new Label();
             actorList = new ListBox();
@@ -132,7 +133,6 @@ namespace CMPT291_Project
             FeeMofLabel = new Label();
             TypeModLabel = new Label();
             NameModLabel = new Label();
-            MovieDataView = new DataGridView();
             tabPage3 = new TabPage();
             dataGridView1 = new DataGridView();
             label7 = new Label();
@@ -178,8 +178,8 @@ namespace CMPT291_Project
             ((System.ComponentModel.ISupportInitialize)MovieActorDataView).BeginInit();
             AddMovieBox.SuspendLayout();
             MovieDataViewPanel.SuspendLayout();
-            ModifyMovieBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MovieDataView).BeginInit();
+            ModifyMovieBox.SuspendLayout();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabPage4.SuspendLayout();
@@ -541,14 +541,14 @@ namespace CMPT291_Project
             ModifyCustDataView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ModifyCustDataView.BackgroundColor = Color.White;
             ModifyCustDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            ModifyCustDataView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            ModifyCustDataView.DefaultCellStyle = dataGridViewCellStyle1;
             ModifyCustDataView.Dock = DockStyle.Right;
             ModifyCustDataView.GridColor = Color.LightGray;
             ModifyCustDataView.Location = new Point(-534, 0);
@@ -1140,6 +1140,18 @@ namespace CMPT291_Project
             MovieDataViewPanel.TabIndex = 8;
             MovieDataViewPanel.Visible = false;
             // 
+            // MovieDataView
+            // 
+            MovieDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            MovieDataView.Location = new Point(39, 21);
+            MovieDataView.Name = "MovieDataView";
+            MovieDataView.RowHeadersWidth = 51;
+            MovieDataView.Size = new Size(897, 475);
+            MovieDataView.TabIndex = 0;
+            MovieDataView.Visible = false;
+            MovieDataView.CellClick += MovieDataView_CellClick;
+            MovieDataView.CellContentClick += MovieDataView_CellContentClick;
+            // 
             // ModifyMovieBox
             // 
             ModifyMovieBox.BackColor = Color.White;
@@ -1300,18 +1312,6 @@ namespace CMPT291_Project
             NameModLabel.Size = new Size(133, 28);
             NameModLabel.TabIndex = 0;
             NameModLabel.Text = "Movie Name:";
-            // 
-            // MovieDataView
-            // 
-            MovieDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            MovieDataView.Location = new Point(39, 21);
-            MovieDataView.Name = "MovieDataView";
-            MovieDataView.RowHeadersWidth = 51;
-            MovieDataView.Size = new Size(897, 475);
-            MovieDataView.TabIndex = 0;
-            MovieDataView.Visible = false;
-            MovieDataView.CellClick += MovieDataView_CellClick;
-            MovieDataView.CellContentClick += MovieDataView_CellContentClick;
             // 
             // tabPage3
             // 
@@ -1664,7 +1664,7 @@ namespace CMPT291_Project
             button3.Name = "button3";
             button3.Size = new Size(248, 43);
             button3.TabIndex = 4;
-            button3.Text = "Actor with Most Appearance";
+            button3.Text = "Actors with Most Appearance";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -1729,9 +1729,9 @@ namespace CMPT291_Project
             AddMovieBox.ResumeLayout(false);
             AddMovieBox.PerformLayout();
             MovieDataViewPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)MovieDataView).EndInit();
             ModifyMovieBox.ResumeLayout(false);
             ModifyMovieBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)MovieDataView).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

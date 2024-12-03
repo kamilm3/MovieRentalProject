@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Teres\\OneDrive\\Desktop\\cmpt291_proj_final\\CMPT291_Project\\CMPT291_Project.csproj": {}
+    "C:\\Users\\Teres\\source\\repos\\CMPT291Project\\cmpt291_final_project\\CMPT291_Project\\CMPT291_Project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Teres\\OneDrive\\Desktop\\cmpt291_proj_final\\CMPT291_Project\\CMPT291_Project.csproj": {
+    "C:\\Users\\Teres\\source\\repos\\CMPT291Project\\cmpt291_final_project\\CMPT291_Project\\CMPT291_Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Teres\\OneDrive\\Desktop\\cmpt291_proj_final\\CMPT291_Project\\CMPT291_Project.csproj",
+        "projectUniqueName": "C:\\Users\\Teres\\source\\repos\\CMPT291Project\\cmpt291_final_project\\CMPT291_Project\\CMPT291_Project.csproj",
         "projectName": "CMPT291_Project",
-        "projectPath": "C:\\Users\\Teres\\OneDrive\\Desktop\\cmpt291_proj_final\\CMPT291_Project\\CMPT291_Project.csproj",
+        "projectPath": "C:\\Users\\Teres\\source\\repos\\CMPT291Project\\cmpt291_final_project\\CMPT291_Project\\CMPT291_Project.csproj",
         "packagesPath": "C:\\Users\\Teres\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Teres\\OneDrive\\Desktop\\cmpt291_proj_final\\CMPT291_Project\\obj\\",
+        "outputPath": "C:\\Users\\Teres\\source\\repos\\CMPT291Project\\cmpt291_final_project\\CMPT291_Project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
