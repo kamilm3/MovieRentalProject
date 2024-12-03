@@ -1567,6 +1567,7 @@ namespace CMPT291_Project
             ReportDataGrid.RowHeadersWidth = 51;
             ReportDataGrid.Size = new Size(531, 512);
             ReportDataGrid.TabIndex = 8;
+            ReportDataGrid.CellClick += ReportDataGrid_CellClick;
             // 
             // label8
             // 

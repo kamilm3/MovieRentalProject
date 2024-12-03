@@ -1005,7 +1005,49 @@ namespace CMPT291_Project
                 return;
             }
 
+            string query = @"
+                SELECT A.actorID, A.firstName, A.lastName, COUNT(M.movieID) as MovieCount
+                FROM Actor as A, Movie as M, ActorAppearedIn as AM
+                WHERE M.MovieType = @Genre AND A.actorID = AM.actorID AND M.movieID = AM.movieID
+                GROUP BY A.actorID, A.firstName, A.lastName
+                ORDER BY MovieCount DESC";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                {
+                    // Add parameter for month range
+                    cmd.Parameters.AddWithValue("@Genre", genre);
+
+                    // Load results into the data table
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable results = new DataTable();
+                        adapter.Fill(results);
+
+                        // Bind results to the data view
+                        ReportDataGrid.DataSource = results;
+
+                        // Check if results are empty
+                        if (results.Rows.Count == 0)
+                        {
+                            MessageBox.Show("No actor found within the provided range.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            ReportDataGrid.Visible = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+    
+
+    
 
         private void MovieDataView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1250,6 +1292,11 @@ namespace CMPT291_Project
         }
 
         private void dropdownReport4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ReportDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
