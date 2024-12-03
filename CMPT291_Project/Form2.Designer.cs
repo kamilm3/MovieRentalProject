@@ -117,7 +117,6 @@ namespace CMPT291_Project
             TypeAddLabel = new Label();
             NameAddLabel = new Label();
             MovieDataViewPanel = new Panel();
-            MovieDataView = new DataGridView();
             ModifyMovieBox = new GroupBox();
             label12 = new Label();
             actorList = new ListBox();
@@ -133,6 +132,7 @@ namespace CMPT291_Project
             FeeMofLabel = new Label();
             TypeModLabel = new Label();
             NameModLabel = new Label();
+            MovieDataView = new DataGridView();
             tabPage3 = new TabPage();
             dataGridView1 = new DataGridView();
             label7 = new Label();
@@ -145,6 +145,8 @@ namespace CMPT291_Project
             label5 = new Label();
             button6 = new Button();
             tabPage4 = new TabPage();
+            label14 = new Label();
+            Report3DropDownBox = new ComboBox();
             radioButton2_report5 = new RadioButton();
             radioButton_report5 = new RadioButton();
             dropdownReport4 = new ComboBox();
@@ -176,8 +178,8 @@ namespace CMPT291_Project
             ((System.ComponentModel.ISupportInitialize)MovieActorDataView).BeginInit();
             AddMovieBox.SuspendLayout();
             MovieDataViewPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)MovieDataView).BeginInit();
             ModifyMovieBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)MovieDataView).BeginInit();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabPage4.SuspendLayout();
@@ -808,9 +810,9 @@ namespace CMPT291_Project
             tabPage2.Controls.Add(AssignActorButton);
             tabPage2.Controls.Add(ModifyMovieButton);
             tabPage2.Controls.Add(AddMovieButton);
-            tabPage2.Controls.Add(MovieDataViewPanel);
             tabPage2.Controls.Add(AssignActorBox);
             tabPage2.Controls.Add(AddMovieBox);
+            tabPage2.Controls.Add(MovieDataViewPanel);
             tabPage2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Margin = new Padding(2, 3, 2, 3);
@@ -928,6 +930,7 @@ namespace CMPT291_Project
             // 
             // MovieActorDataView
             // 
+            MovieActorDataView.BackgroundColor = Color.White;
             MovieActorDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             MovieActorDataView.Location = new Point(62, 85);
             MovieActorDataView.Name = "MovieActorDataView";
@@ -1137,17 +1140,6 @@ namespace CMPT291_Project
             MovieDataViewPanel.TabIndex = 8;
             MovieDataViewPanel.Visible = false;
             // 
-            // MovieDataView
-            // 
-            MovieDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            MovieDataView.Location = new Point(39, 21);
-            MovieDataView.Name = "MovieDataView";
-            MovieDataView.RowHeadersWidth = 51;
-            MovieDataView.Size = new Size(897, 475);
-            MovieDataView.TabIndex = 0;
-            MovieDataView.Visible = false;
-            MovieDataView.CellClick += MovieDataView_CellClick;
-            // 
             // ModifyMovieBox
             // 
             ModifyMovieBox.BackColor = Color.White;
@@ -1309,6 +1301,17 @@ namespace CMPT291_Project
             NameModLabel.TabIndex = 0;
             NameModLabel.Text = "Movie Name:";
             // 
+            // MovieDataView
+            // 
+            MovieDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            MovieDataView.Location = new Point(39, 21);
+            MovieDataView.Name = "MovieDataView";
+            MovieDataView.RowHeadersWidth = 51;
+            MovieDataView.Size = new Size(897, 475);
+            MovieDataView.TabIndex = 0;
+            MovieDataView.Visible = false;
+            MovieDataView.CellClick += MovieDataView_CellClick;
+            // 
             // tabPage3
             // 
             tabPage3.BackColor = Color.FromArgb(255, 192, 192);
@@ -1434,6 +1437,8 @@ namespace CMPT291_Project
             // tabPage4
             // 
             tabPage4.BackColor = Color.FromArgb(192, 255, 192);
+            tabPage4.Controls.Add(label14);
+            tabPage4.Controls.Add(Report3DropDownBox);
             tabPage4.Controls.Add(radioButton2_report5);
             tabPage4.Controls.Add(radioButton_report5);
             tabPage4.Controls.Add(dropdownReport4);
@@ -1459,6 +1464,27 @@ namespace CMPT291_Project
             tabPage4.Size = new Size(1318, 516);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Report";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 10F);
+            label14.Location = new Point(322, 202);
+            label14.Name = "label14";
+            label14.Size = new Size(56, 23);
+            label14.TabIndex = 16;
+            label14.Text = "Genre";
+            // 
+            // Report3DropDownBox
+            // 
+            Report3DropDownBox.FormattingEnabled = true;
+            Report3DropDownBox.Items.AddRange(new object[] { "All", "Comedy", "Drama", "Action ", "Foreign" });
+            Report3DropDownBox.Location = new Point(322, 231);
+            Report3DropDownBox.Margin = new Padding(1);
+            Report3DropDownBox.Name = "Report3DropDownBox";
+            Report3DropDownBox.Size = new Size(102, 28);
+            Report3DropDownBox.TabIndex = 15;
+            Report3DropDownBox.SelectedIndexChanged += Report3DropDownBox_SelectedIndexChanged;
             // 
             // radioButton2_report5
             // 
@@ -1493,6 +1519,7 @@ namespace CMPT291_Project
             dropdownReport4.Name = "dropdownReport4";
             dropdownReport4.Size = new Size(102, 28);
             dropdownReport4.TabIndex = 12;
+            dropdownReport4.SelectedIndexChanged += dropdownReport4_SelectedIndexChanged;
             // 
             // label13
             // 
@@ -1629,14 +1656,15 @@ namespace CMPT291_Project
             // 
             // button3
             // 
-            button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button3.Location = new Point(34, 220);
             button3.Margin = new Padding(2, 3, 2, 3);
             button3.Name = "button3";
             button3.Size = new Size(248, 43);
             button3.TabIndex = 4;
-            button3.Text = "Report 3";
+            button3.Text = "Actor with Most Appearance";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // Report2Button
             // 
@@ -1699,9 +1727,9 @@ namespace CMPT291_Project
             AddMovieBox.ResumeLayout(false);
             AddMovieBox.PerformLayout();
             MovieDataViewPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)MovieDataView).EndInit();
             ModifyMovieBox.ResumeLayout(false);
             ModifyMovieBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)MovieDataView).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -1854,5 +1882,7 @@ namespace CMPT291_Project
         private ComboBox dropdownReport4;
         private RadioButton radioButton2_report5;
         private RadioButton radioButton_report5;
+        private Label label14;
+        private ComboBox Report3DropDownBox;
     }
 }

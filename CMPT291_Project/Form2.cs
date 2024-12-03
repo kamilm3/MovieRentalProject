@@ -35,7 +35,7 @@ namespace CMPT291_Project
         public Form2()
         {
             InitializeComponent();
-            
+
             /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
@@ -65,14 +65,14 @@ namespace CMPT291_Project
                                               "connection timeout=30"); // Timeout in seconds
             */
 
-            
-             myConnection = new SqlConnection("user id=admin3;" + // Username
-                                             "password=admin;" + // Password
-                                             "server=DESKTOP-6QG008O;" + // Server name
-                                             "TrustServerCertificate=True;" +
-                                             "database=project291; " + // Database
-                                             "connection timeout=30"); // Timeout in seconds
-            
+
+            myConnection = new SqlConnection("user id=admin3;" + // Username
+                                            "password=admin;" + // Password
+                                            "server=DESKTOP-6QG008O;" + // Server name
+                                            "TrustServerCertificate=True;" +
+                                            "database=project291; " + // Database
+                                            "connection timeout=30"); // Timeout in seconds
+
             try
             {
                 myConnection.Open(); // Open the connection
@@ -588,7 +588,7 @@ namespace CMPT291_Project
                     DataGridViewRow selectedRow = MovieActorDataView.SelectedRows[0];
 
                     // Access the movieID of a specific column in the selected row
-                    int movieId = Convert.ToInt32(selectedRow.Cells["movieID"].Value); 
+                    int movieId = Convert.ToInt32(selectedRow.Cells["movieID"].Value);
 
                     // Retrieve actorID based on first and last name
                     string actorIdQuery = "SELECT actorID FROM Actor WHERE firstName = @FirstName AND lastName = @LastName";
@@ -779,7 +779,7 @@ namespace CMPT291_Project
                 // Create SQL command
                 using (SqlCommand command = new SqlCommand(query2, myConnection))
                 {
-                    
+
                     command.Parameters.AddWithValue("@actorFName", actorFName);
                     command.Parameters.AddWithValue("@actorAge", actorAge);
                     command.Parameters.AddWithValue("@selectedMovieType", selectedMovieType);
@@ -789,7 +789,7 @@ namespace CMPT291_Project
                     //if statement is executed if it passes condition
                     if (result > 0)
                     {
-                        
+
 
                         string query3 = "select movieName as Movie " +
                         "from Movie as M, ActorAppearedIn as A " +
@@ -825,7 +825,7 @@ namespace CMPT291_Project
 
         }
 
-    
+
 
         /////////////////////
         //     Report 2    //
@@ -904,7 +904,7 @@ namespace CMPT291_Project
             }
         }
 
-       private void SearchMovieButton_Click(object sender, EventArgs e)
+        private void SearchMovieButton_Click(object sender, EventArgs e)
         {
             ModifyMovieBox.Visible = false;
             AddMovieBox.Visible = false;
@@ -985,13 +985,27 @@ namespace CMPT291_Project
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        
-        /////////////////////
-        //     Report 3    //
-        /////////////////////
+
+            /////////////////////
+            //     Report 3    //
+            /////////////////////
 
 
-    }
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string genre = Report3DropDownBox.Text.Trim();
+
+            // Validate if the user selected a genre
+            if (string.IsNullOrEmpty(genre))
+            {
+                MessageBox.Show("Please select a genre or 'All' before generating the report.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+        }
 
         private void MovieDataView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1055,7 +1069,7 @@ namespace CMPT291_Project
                         // Error check to ensure customer exists
                         if (results.Rows.Count == 0)
                         {
-                            MessageBox.Show("No customer found with the provided details.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("No movie found with the provided details.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
@@ -1228,6 +1242,16 @@ namespace CMPT291_Project
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Report3DropDownBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dropdownReport4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
