@@ -727,7 +727,6 @@ namespace CMPT291_Project
                         {
                             
                             SqlCommand myCommand2 = new SqlCommand("select count(*) from MovieQueue as R2, Customer as R3 where R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and QueuePosition = 1", myConnection);
-                            MessageBox.Show("Passed myCommand2");
                             int availability = (int)myCommand2.ExecuteScalar();
 
                             if (availability > 0)
@@ -782,8 +781,8 @@ namespace CMPT291_Project
             sd.Fill(dt);
             dataGridView1.DataSource = dt;
             dataGridView1.Visible = true;
-            updateQueue.ExecuteNonQuery();
             
+            updateMovieQueue();
 
             string message = movie + " has been rented to " + fName;
             MessageBox.Show(message);
@@ -796,19 +795,32 @@ namespace CMPT291_Project
             string emailAddress = textBox3.Text;
 
             SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '" + @fName + "'AND lastName= '" + @lName + "' AND Email= '" + @emailAddress + "'", myConnection);
-
             int custID = (int)myCommand.ExecuteScalar();
 
-            SqlCommand myCommand2 = new SqlCommand("select movieName from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and QueuePosition = 1", myConnection);
+            //SqlCommand myCommand2 = new SqlCommand("select movieName from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "'", myConnection);
 
-            string movie = (string)myCommand2.ExecuteScalar();
 
-            SqlCommand updateQueue = new SqlCommand("delete from MovieQueue where customerID = '" + custID + "' and QueuePosition = 1", myConnection);
-            SqlDataAdapter sd = new SqlDataAdapter(updateQueue);
-            DataTable dt = new DataTable();
-            sd.Fill(dt);
-            dataGridView1.DataSource = dt;
-            dataGridView1.Visible = true;
+            SqlCommand myCommand2 = new SqlCommand("select count(*) from MovieQueue as R2, Customer as R3 where R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and QueuePosition = 1", myConnection);
+            int availability = (int)myCommand2.ExecuteScalar();
+
+            if (availability > 0)
+            {
+                button2.Visible = true;
+                button2.BackColor = Color.Blue;
+                button2.ForeColor = Color.White;
+                SqlCommand myCommand3 = new SqlCommand("select count(*) from MovieQueue as R2, Customer as R3 where R2.customerID = R3.customerID and R3.customerID = '" + custID + "'", myConnection);
+
+                SqlDataAdapter sd = new SqlDataAdapter(myCommand3);
+                DataTable dt = new DataTable();
+                sd.Fill(dt);
+                dataGridView1.DataSource = dt;
+                dataGridView1.Visible = true;
+            }
+            else
+            {
+                label15.Visible = true;
+            }
+
         }
         // *********************************
         //            Report Tab
