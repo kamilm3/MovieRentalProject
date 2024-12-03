@@ -1388,9 +1388,9 @@ namespace CMPT291_Project
             label3.Location = new Point(65, 79);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(80, 20);
+            label3.Size = new Size(84, 20);
             label3.TabIndex = 10;
-            label3.Text = "First Name";
+            label3.Text = "First Name ";
             // 
             // label2
             // 
@@ -1437,7 +1437,7 @@ namespace CMPT291_Project
             // 
             // tabPage4
             // 
-            tabPage4.BackColor = Color.FromArgb(192, 255, 192);
+            tabPage4.BackColor = Color.White;
             tabPage4.Controls.Add(label14);
             tabPage4.Controls.Add(Report3DropDownBox);
             tabPage4.Controls.Add(radioButton2_report5);
@@ -1469,8 +1469,9 @@ namespace CMPT291_Project
             // label14
             // 
             label14.AutoSize = true;
+            label14.BackColor = Color.FromArgb(255, 128, 255);
             label14.Font = new Font("Segoe UI", 10F);
-            label14.Location = new Point(322, 202);
+            label14.Location = new Point(344, 212);
             label14.Name = "label14";
             label14.Size = new Size(56, 23);
             label14.TabIndex = 16;
@@ -1478,9 +1479,10 @@ namespace CMPT291_Project
             // 
             // Report3DropDownBox
             // 
+            Report3DropDownBox.BackColor = Color.FromArgb(255, 128, 255);
             Report3DropDownBox.FormattingEnabled = true;
             Report3DropDownBox.Items.AddRange(new object[] { "All", "Comedy", "Drama", "Action ", "Foreign" });
-            Report3DropDownBox.Location = new Point(322, 231);
+            Report3DropDownBox.Location = new Point(344, 241);
             Report3DropDownBox.Margin = new Padding(1);
             Report3DropDownBox.Name = "Report3DropDownBox";
             Report3DropDownBox.Size = new Size(102, 28);
@@ -1490,32 +1492,38 @@ namespace CMPT291_Project
             // radioButton2_report5
             // 
             radioButton2_report5.AutoSize = true;
-            radioButton2_report5.Location = new Point(389, 428);
+            radioButton2_report5.BackColor = Color.Yellow;
+            radioButton2_report5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            radioButton2_report5.Location = new Point(421, 438);
             radioButton2_report5.Margin = new Padding(3, 4, 3, 4);
             radioButton2_report5.Name = "radioButton2_report5";
-            radioButton2_report5.Size = new Size(64, 24);
+            radioButton2_report5.Size = new Size(70, 27);
             radioButton2_report5.TabIndex = 14;
             radioButton2_report5.TabStop = true;
             radioButton2_report5.Text = "Least";
-            radioButton2_report5.UseVisualStyleBackColor = true;
+            radioButton2_report5.UseVisualStyleBackColor = false;
             // 
             // radioButton_report5
             // 
             radioButton_report5.AutoSize = true;
-            radioButton_report5.Location = new Point(322, 428);
+            radioButton_report5.BackColor = Color.Yellow;
+            radioButton_report5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            radioButton_report5.Location = new Point(344, 438);
             radioButton_report5.Margin = new Padding(3, 4, 3, 4);
             radioButton_report5.Name = "radioButton_report5";
-            radioButton_report5.Size = new Size(63, 24);
+            radioButton_report5.Size = new Size(69, 27);
             radioButton_report5.TabIndex = 13;
             radioButton_report5.TabStop = true;
             radioButton_report5.Text = "Most";
-            radioButton_report5.UseVisualStyleBackColor = true;
+            radioButton_report5.UseVisualStyleBackColor = false;
             // 
             // dropdownReport4
             // 
+            dropdownReport4.BackColor = Color.Lime;
+            dropdownReport4.ForeColor = Color.Black;
             dropdownReport4.FormattingEnabled = true;
             dropdownReport4.Items.AddRange(new object[] { "All", "Comedy", "Drama", "Action ", "Foreign" });
-            dropdownReport4.Location = new Point(322, 329);
+            dropdownReport4.Location = new Point(344, 339);
             dropdownReport4.Margin = new Padding(3, 4, 3, 4);
             dropdownReport4.Name = "dropdownReport4";
             dropdownReport4.Size = new Size(102, 28);
@@ -1525,8 +1533,9 @@ namespace CMPT291_Project
             // label13
             // 
             label13.AutoSize = true;
+            label13.BackColor = Color.Lime;
             label13.Font = new Font("Segoe UI", 10F);
-            label13.Location = new Point(322, 300);
+            label13.Location = new Point(344, 310);
             label13.Name = "label13";
             label13.Size = new Size(56, 23);
             label13.TabIndex = 11;
@@ -1536,8 +1545,9 @@ namespace CMPT291_Project
             // MonthLabel
             // 
             MonthLabel.AutoSize = true;
+            MonthLabel.BackColor = Color.Cyan;
             MonthLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            MonthLabel.Location = new Point(322, 109);
+            MonthLabel.Location = new Point(344, 119);
             MonthLabel.Name = "MonthLabel";
             MonthLabel.Size = new Size(114, 23);
             MonthLabel.TabIndex = 10;
@@ -1545,13 +1555,15 @@ namespace CMPT291_Project
             // 
             // MonthText
             // 
+            MonthText.BackColor = Color.Cyan;
             MonthText.ForeColor = Color.DarkGray;
-            MonthText.Location = new Point(322, 136);
+            MonthText.Location = new Point(344, 146);
             MonthText.Margin = new Padding(3, 4, 3, 4);
             MonthText.Name = "MonthText";
             MonthText.Size = new Size(102, 27);
             MonthText.TabIndex = 9;
             MonthText.Text = "Ex. 3";
+            MonthText.TextChanged += MonthText_TextChanged;
             MonthText.Enter += MonthText_Enter;
             MonthText.Leave += MonthText_Leave;
             // 
@@ -1573,9 +1585,10 @@ namespace CMPT291_Project
             // label8
             // 
             label8.AutoSize = true;
+            label8.BackColor = Color.FromArgb(255, 192, 128);
             label8.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Black;
-            label8.Location = new Point(322, 19);
+            label8.Location = new Point(23, 19);
             label8.Margin = new Padding(1, 0, 1, 0);
             label8.Name = "label8";
             label8.Size = new Size(158, 23);
@@ -1585,20 +1598,23 @@ namespace CMPT291_Project
             // label10
             // 
             label10.AutoSize = true;
+            label10.BackColor = Color.FromArgb(255, 192, 128);
             label10.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Black;
-            label10.Location = new Point(645, 19);
+            label10.Location = new Point(344, 22);
             label10.Margin = new Padding(1, 0, 1, 0);
             label10.Name = "label10";
-            label10.Size = new Size(96, 23);
+            label10.Size = new Size(56, 23);
             label10.TabIndex = 6;
-            label10.Text = "Movie Type";
+            label10.Text = "Genre";
+            label10.Click += label10_Click;
             // 
             // comboBox1
             // 
+            comboBox1.BackColor = Color.FromArgb(255, 192, 128);
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Comedy", "Drama", "Action ", "Foreign" });
-            comboBox1.Location = new Point(638, 47);
+            comboBox1.Location = new Point(344, 46);
             comboBox1.Margin = new Padding(1);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(102, 28);
@@ -1607,18 +1623,21 @@ namespace CMPT291_Project
             // label9
             // 
             label9.AutoSize = true;
+            label9.BackColor = Color.FromArgb(255, 192, 128);
             label9.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Black;
-            label9.Location = new Point(517, 19);
+            label9.Location = new Point(207, 22);
             label9.Margin = new Padding(1, 0, 1, 0);
             label9.Name = "label9";
-            label9.Size = new Size(57, 23);
+            label9.Size = new Size(40, 23);
             label9.TabIndex = 5;
-            label9.Text = "> Age";
+            label9.Text = "Age";
+            label9.Click += label9_Click;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(322, 47);
+            textBox4.BackColor = Color.FromArgb(255, 192, 128);
+            textBox4.Location = new Point(23, 47);
             textBox4.Margin = new Padding(1);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(146, 27);
@@ -1626,70 +1645,76 @@ namespace CMPT291_Project
             // 
             // reportButton5
             // 
+            reportButton5.BackColor = Color.Yellow;
             reportButton5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            reportButton5.Location = new Point(34, 416);
+            reportButton5.Location = new Point(508, 428);
             reportButton5.Margin = new Padding(2, 3, 2, 3);
             reportButton5.Name = "reportButton5";
             reportButton5.Size = new Size(248, 43);
             reportButton5.TabIndex = 6;
             reportButton5.Text = "# of Orders by Employee";
-            reportButton5.UseVisualStyleBackColor = true;
+            reportButton5.UseVisualStyleBackColor = false;
             reportButton5.Click += reportButton5_Click;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(517, 45);
+            textBox5.BackColor = Color.FromArgb(255, 192, 128);
+            textBox5.Location = new Point(207, 48);
             textBox5.Margin = new Padding(1);
             textBox5.Name = "textBox5";
-            textBox5.Size = new Size(70, 27);
+            textBox5.Size = new Size(106, 27);
             textBox5.TabIndex = 4;
             // 
             // reportButton4
             // 
+            reportButton4.BackColor = Color.Lime;
             reportButton4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            reportButton4.Location = new Point(34, 317);
+            reportButton4.Location = new Point(508, 329);
             reportButton4.Margin = new Padding(2, 3, 2, 3);
             reportButton4.Name = "reportButton4";
             reportButton4.Size = new Size(248, 43);
             reportButton4.TabIndex = 5;
             reportButton4.Text = "Best Selling Movies";
-            reportButton4.UseVisualStyleBackColor = true;
+            reportButton4.UseVisualStyleBackColor = false;
             reportButton4.Click += reportButton4_Click_1;
             // 
             // button3
             // 
+            button3.BackColor = Color.FromArgb(255, 128, 255);
             button3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(34, 220);
+            button3.Location = new Point(508, 232);
             button3.Margin = new Padding(2, 3, 2, 3);
             button3.Name = "button3";
             button3.Size = new Size(248, 43);
             button3.TabIndex = 4;
             button3.Text = "Actors with Most Appearance";
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
             // Report2Button
             // 
+            Report2Button.BackColor = Color.Cyan;
             Report2Button.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Report2Button.Location = new Point(34, 125);
+            Report2Button.Location = new Point(508, 137);
             Report2Button.Margin = new Padding(2, 3, 2, 3);
             Report2Button.Name = "Report2Button";
             Report2Button.Size = new Size(248, 43);
             Report2Button.TabIndex = 3;
             Report2Button.Text = "Customer Sales Report";
-            Report2Button.UseVisualStyleBackColor = true;
+            Report2Button.UseVisualStyleBackColor = false;
             Report2Button.Click += Report2Button_Click;
             // 
             // button1
             // 
+            button1.BackColor = Color.FromArgb(255, 192, 128);
             button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(34, 35);
+            button1.Location = new Point(508, 47);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
             button1.Size = new Size(248, 43);
             button1.TabIndex = 2;
-            button1.Text = "Report 1";
-            button1.UseVisualStyleBackColor = true;
+            button1.Text = "Display Movie";
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // sqlCommand1
