@@ -929,7 +929,7 @@ namespace CMPT291_Project
                 // Query to get actors for the movie
                 string query2 = "SELECT A.firstName, A.lastName " +
                                 "FROM Actor A, ActorAppearedIn AM " +
-                                "WHERE AM.movieId = (SELECT movieID FROM Movie WHERE movieName = @MovieName) " +
+                                "WHERE AM.movieId IN (SELECT movieID FROM Movie WHERE movieName = @MovieName) " +
                                 "AND A.actorID = AM.actorID";
 
                 using (SqlCommand cmnd = new SqlCommand(query1, myConnection))
