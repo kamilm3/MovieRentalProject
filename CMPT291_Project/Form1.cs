@@ -22,13 +22,14 @@ namespace CMPT291_Project
         {
             InitializeComponent();
             
+            /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
                                   "server=LAPTOP-6TEGHEN2;" + // Server name
                                   "TrustServerCertificate=True;" +
                                   "database=Project_291; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
-            
+            */
 
             /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
@@ -50,14 +51,14 @@ namespace CMPT291_Project
                                               "connection timeout=30"); // Timeout in seconds
             */
 
-            /*
+            
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                              "password=admin;" + // Password
                                              "server=DESKTOP-6QG008O;" + // Server name
                                              "TrustServerCertificate=True;" +
                                              "database=project291; " + // Database
                                              "connection timeout=30"); // Timeout in seconds
-            */
+            
 
             try
             {

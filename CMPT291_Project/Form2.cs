@@ -36,14 +36,14 @@ namespace CMPT291_Project
         {
             InitializeComponent();
             
-
+            /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
                                   "server=LAPTOP-6TEGHEN2;" + // Server name
                                   "TrustServerCertificate=True;" +
                                   "database=Project_291; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
-            
+            */
 
             /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
@@ -65,14 +65,14 @@ namespace CMPT291_Project
                                               "connection timeout=30"); // Timeout in seconds
             */
 
-            /*
+            
              myConnection = new SqlConnection("user id=admin3;" + // Username
                                              "password=admin;" + // Password
                                              "server=DESKTOP-6QG008O;" + // Server name
                                              "TrustServerCertificate=True;" +
                                              "database=project291; " + // Database
                                              "connection timeout=30"); // Timeout in seconds
-            */
+            
             try
             {
                 myConnection.Open(); // Open the connection
@@ -490,8 +490,9 @@ namespace CMPT291_Project
         {
             string movieId = MovieIDText?.Text.Trim();
 
+            // Confirm delete action
             DialogResult confirm_delete = MessageBox.Show("Are you sure you want to delete this movie? This action cannot be undone.",
-                                                           "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                                                            "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (confirm_delete != DialogResult.Yes)
             {
@@ -500,20 +501,40 @@ namespace CMPT291_Project
 
             try
             {
-                string query = "DELETE FROM Movie WHERE movieID = @MovieId";
+                // First, delete from the ActorAppearedIn table to avoid foreign key constraint issues
+                string deleteActorAppearedInQuery = "DELETE FROM ActorAppearedIn WHERE movieID = @MovieId";
 
-                using (SqlCommand cmnd = new SqlCommand(query, myConnection))
+                using (SqlCommand cmnd = new SqlCommand(deleteActorAppearedInQuery, myConnection))
                 {
                     cmnd.Parameters.AddWithValue("@MovieId", movieId);
 
-                    // Execute
-                    int rowsAffected = cmnd.ExecuteNonQuery();
+                    // Execute deletion
+                    int actorAppearedInRowsAffected = cmnd.ExecuteNonQuery();
 
-                    if (rowsAffected > 0)
+                    if (actorAppearedInRowsAffected > 0)
+                    {
+                        Console.WriteLine("Related actor appearances deleted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No related actor appearances found to delete.");
+                    }
+                }
+
+                // Now, delete the movie from the Movie table
+                string deleteMovieQuery = "DELETE FROM Movie WHERE movieID = @MovieId";
+
+                using (SqlCommand cmnd = new SqlCommand(deleteMovieQuery, myConnection))
+                {
+                    cmnd.Parameters.AddWithValue("@MovieId", movieId);
+
+                    // Execute deletion
+                    int movieRowsAffected = cmnd.ExecuteNonQuery();
+
+                    if (movieRowsAffected > 0)
                     {
                         MessageBox.Show("Movie deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
                     else
                     {
                         MessageBox.Show("Movie deletion failed. Please check the ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -522,9 +543,8 @@ namespace CMPT291_Project
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occured: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
 

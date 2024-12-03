@@ -95,6 +95,17 @@ namespace CMPT291_Project
             AssignActorButton = new Button();
             ModifyMovieButton = new Button();
             AddMovieButton = new Button();
+            AssignActorBox = new GroupBox();
+            ActorMovieSearchButton = new Button();
+            MovieActorDataView = new DataGridView();
+            label11 = new Label();
+            label6 = new Label();
+            ActorLastAssignText = new TextBox();
+            ActorFirstAssignText = new TextBox();
+            AssignButton = new Button();
+            MovieAssignText = new TextBox();
+            ActorAssignLabel = new Label();
+            MovieAssignLabel = new Label();
             AddMovieBox = new GroupBox();
             MovieAddButton = new Button();
             TypeAddComboBox = new ComboBox();
@@ -122,17 +133,6 @@ namespace CMPT291_Project
             FeeMofLabel = new Label();
             TypeModLabel = new Label();
             NameModLabel = new Label();
-            AssignActorBox = new GroupBox();
-            ActorMovieSearchButton = new Button();
-            MovieActorDataView = new DataGridView();
-            label11 = new Label();
-            label6 = new Label();
-            ActorLastAssignText = new TextBox();
-            ActorFirstAssignText = new TextBox();
-            AssignButton = new Button();
-            MovieAssignText = new TextBox();
-            ActorAssignLabel = new Label();
-            MovieAssignLabel = new Label();
             tabPage3 = new TabPage();
             dataGridView1 = new DataGridView();
             label7 = new Label();
@@ -172,12 +172,12 @@ namespace CMPT291_Project
             ModifyCustBox.SuspendLayout();
             tabPage2.SuspendLayout();
             SearchMoviePanel.SuspendLayout();
+            AssignActorBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)MovieActorDataView).BeginInit();
             AddMovieBox.SuspendLayout();
             MovieDataViewPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MovieDataView).BeginInit();
             ModifyMovieBox.SuspendLayout();
-            AssignActorBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)MovieActorDataView).BeginInit();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabPage4.SuspendLayout();
@@ -808,9 +808,9 @@ namespace CMPT291_Project
             tabPage2.Controls.Add(AssignActorButton);
             tabPage2.Controls.Add(ModifyMovieButton);
             tabPage2.Controls.Add(AddMovieButton);
+            tabPage2.Controls.Add(MovieDataViewPanel);
             tabPage2.Controls.Add(AssignActorBox);
             tabPage2.Controls.Add(AddMovieBox);
-            tabPage2.Controls.Add(MovieDataViewPanel);
             tabPage2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Margin = new Padding(2, 3, 2, 3);
@@ -893,6 +893,131 @@ namespace CMPT291_Project
             AddMovieButton.Text = "Add New Movie";
             AddMovieButton.UseVisualStyleBackColor = true;
             AddMovieButton.Click += AddMovieButton_Click;
+            // 
+            // AssignActorBox
+            // 
+            AssignActorBox.BackColor = Color.White;
+            AssignActorBox.Controls.Add(ActorMovieSearchButton);
+            AssignActorBox.Controls.Add(MovieActorDataView);
+            AssignActorBox.Controls.Add(label11);
+            AssignActorBox.Controls.Add(label6);
+            AssignActorBox.Controls.Add(ActorLastAssignText);
+            AssignActorBox.Controls.Add(ActorFirstAssignText);
+            AssignActorBox.Controls.Add(AssignButton);
+            AssignActorBox.Controls.Add(MovieAssignText);
+            AssignActorBox.Controls.Add(ActorAssignLabel);
+            AssignActorBox.Controls.Add(MovieAssignLabel);
+            AssignActorBox.Location = new Point(376, 0);
+            AssignActorBox.Margin = new Padding(2, 4, 2, 4);
+            AssignActorBox.Name = "AssignActorBox";
+            AssignActorBox.Padding = new Padding(2, 4, 2, 4);
+            AssignActorBox.Size = new Size(942, 517);
+            AssignActorBox.TabIndex = 6;
+            AssignActorBox.TabStop = false;
+            AssignActorBox.Visible = false;
+            // 
+            // ActorMovieSearchButton
+            // 
+            ActorMovieSearchButton.Location = new Point(587, 37);
+            ActorMovieSearchButton.Name = "ActorMovieSearchButton";
+            ActorMovieSearchButton.Size = new Size(94, 37);
+            ActorMovieSearchButton.TabIndex = 14;
+            ActorMovieSearchButton.Text = "Search";
+            ActorMovieSearchButton.UseVisualStyleBackColor = true;
+            ActorMovieSearchButton.Click += ActorMovieSearchButton_Click;
+            // 
+            // MovieActorDataView
+            // 
+            MovieActorDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            MovieActorDataView.Location = new Point(62, 85);
+            MovieActorDataView.Name = "MovieActorDataView";
+            MovieActorDataView.RowHeadersWidth = 51;
+            MovieActorDataView.Size = new Size(570, 203);
+            MovieActorDataView.TabIndex = 13;
+            MovieActorDataView.CellClick += MovieActorDataView_CellClick;
+            MovieActorDataView.CellContentClick += MovieActorDataView_CellContentClick;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.Location = new Point(474, 363);
+            label11.Name = "label11";
+            label11.Size = new Size(91, 23);
+            label11.TabIndex = 12;
+            label11.Text = "Last Name";
+            label11.Visible = false;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(257, 363);
+            label6.Name = "label6";
+            label6.Size = new Size(93, 23);
+            label6.TabIndex = 11;
+            label6.Text = "First Name";
+            label6.Visible = false;
+            // 
+            // ActorLastAssignText
+            // 
+            ActorLastAssignText.Location = new Point(474, 319);
+            ActorLastAssignText.Margin = new Padding(2, 4, 2, 4);
+            ActorLastAssignText.Name = "ActorLastAssignText";
+            ActorLastAssignText.Size = new Size(163, 34);
+            ActorLastAssignText.TabIndex = 10;
+            ActorLastAssignText.Visible = false;
+            // 
+            // ActorFirstAssignText
+            // 
+            ActorFirstAssignText.Location = new Point(257, 319);
+            ActorFirstAssignText.Margin = new Padding(2, 4, 2, 4);
+            ActorFirstAssignText.Name = "ActorFirstAssignText";
+            ActorFirstAssignText.Size = new Size(163, 34);
+            ActorFirstAssignText.TabIndex = 9;
+            ActorFirstAssignText.Visible = false;
+            // 
+            // AssignButton
+            // 
+            AssignButton.Location = new Point(257, 447);
+            AssignButton.Margin = new Padding(2, 4, 2, 4);
+            AssignButton.Name = "AssignButton";
+            AssignButton.Size = new Size(138, 52);
+            AssignButton.TabIndex = 8;
+            AssignButton.Text = "Assign Actor";
+            AssignButton.UseVisualStyleBackColor = true;
+            AssignButton.Visible = false;
+            AssignButton.Click += AssignButton_Click;
+            // 
+            // MovieAssignText
+            // 
+            MovieAssignText.Location = new Point(257, 40);
+            MovieAssignText.Margin = new Padding(2, 4, 2, 4);
+            MovieAssignText.Name = "MovieAssignText";
+            MovieAssignText.Size = new Size(301, 34);
+            MovieAssignText.TabIndex = 4;
+            // 
+            // ActorAssignLabel
+            // 
+            ActorAssignLabel.AutoSize = true;
+            ActorAssignLabel.Location = new Point(62, 319);
+            ActorAssignLabel.Margin = new Padding(2, 0, 2, 0);
+            ActorAssignLabel.Name = "ActorAssignLabel";
+            ActorAssignLabel.Size = new Size(125, 28);
+            ActorAssignLabel.TabIndex = 1;
+            ActorAssignLabel.Text = "Actor Name:";
+            ActorAssignLabel.Visible = false;
+            // 
+            // MovieAssignLabel
+            // 
+            MovieAssignLabel.AutoSize = true;
+            MovieAssignLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            MovieAssignLabel.Location = new Point(62, 44);
+            MovieAssignLabel.Margin = new Padding(2, 0, 2, 0);
+            MovieAssignLabel.Name = "MovieAssignLabel";
+            MovieAssignLabel.Size = new Size(133, 28);
+            MovieAssignLabel.TabIndex = 0;
+            MovieAssignLabel.Text = "Movie Name:";
             // 
             // AddMovieBox
             // 
@@ -1004,8 +1129,8 @@ namespace CMPT291_Project
             // MovieDataViewPanel
             // 
             MovieDataViewPanel.BackColor = Color.White;
-            MovieDataViewPanel.Controls.Add(MovieDataView);
             MovieDataViewPanel.Controls.Add(ModifyMovieBox);
+            MovieDataViewPanel.Controls.Add(MovieDataView);
             MovieDataViewPanel.Location = new Point(350, 0);
             MovieDataViewPanel.Name = "MovieDataViewPanel";
             MovieDataViewPanel.Size = new Size(963, 515);
@@ -1183,131 +1308,6 @@ namespace CMPT291_Project
             NameModLabel.Size = new Size(133, 28);
             NameModLabel.TabIndex = 0;
             NameModLabel.Text = "Movie Name:";
-            // 
-            // AssignActorBox
-            // 
-            AssignActorBox.BackColor = Color.White;
-            AssignActorBox.Controls.Add(ActorMovieSearchButton);
-            AssignActorBox.Controls.Add(MovieActorDataView);
-            AssignActorBox.Controls.Add(label11);
-            AssignActorBox.Controls.Add(label6);
-            AssignActorBox.Controls.Add(ActorLastAssignText);
-            AssignActorBox.Controls.Add(ActorFirstAssignText);
-            AssignActorBox.Controls.Add(AssignButton);
-            AssignActorBox.Controls.Add(MovieAssignText);
-            AssignActorBox.Controls.Add(ActorAssignLabel);
-            AssignActorBox.Controls.Add(MovieAssignLabel);
-            AssignActorBox.Location = new Point(376, 0);
-            AssignActorBox.Margin = new Padding(2, 4, 2, 4);
-            AssignActorBox.Name = "AssignActorBox";
-            AssignActorBox.Padding = new Padding(2, 4, 2, 4);
-            AssignActorBox.Size = new Size(942, 517);
-            AssignActorBox.TabIndex = 6;
-            AssignActorBox.TabStop = false;
-            AssignActorBox.Visible = false;
-            // 
-            // ActorMovieSearchButton
-            // 
-            ActorMovieSearchButton.Location = new Point(587, 37);
-            ActorMovieSearchButton.Name = "ActorMovieSearchButton";
-            ActorMovieSearchButton.Size = new Size(94, 37);
-            ActorMovieSearchButton.TabIndex = 14;
-            ActorMovieSearchButton.Text = "Search";
-            ActorMovieSearchButton.UseVisualStyleBackColor = true;
-            ActorMovieSearchButton.Click += ActorMovieSearchButton_Click;
-            // 
-            // MovieActorDataView
-            // 
-            MovieActorDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            MovieActorDataView.Location = new Point(62, 85);
-            MovieActorDataView.Name = "MovieActorDataView";
-            MovieActorDataView.RowHeadersWidth = 51;
-            MovieActorDataView.Size = new Size(570, 203);
-            MovieActorDataView.TabIndex = 13;
-            MovieActorDataView.CellClick += MovieActorDataView_CellClick;
-            MovieActorDataView.CellContentClick += MovieActorDataView_CellContentClick;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(474, 363);
-            label11.Name = "label11";
-            label11.Size = new Size(91, 23);
-            label11.TabIndex = 12;
-            label11.Text = "Last Name";
-            label11.Visible = false;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(257, 363);
-            label6.Name = "label6";
-            label6.Size = new Size(93, 23);
-            label6.TabIndex = 11;
-            label6.Text = "First Name";
-            label6.Visible = false;
-            // 
-            // ActorLastAssignText
-            // 
-            ActorLastAssignText.Location = new Point(474, 319);
-            ActorLastAssignText.Margin = new Padding(2, 4, 2, 4);
-            ActorLastAssignText.Name = "ActorLastAssignText";
-            ActorLastAssignText.Size = new Size(163, 34);
-            ActorLastAssignText.TabIndex = 10;
-            ActorLastAssignText.Visible = false;
-            // 
-            // ActorFirstAssignText
-            // 
-            ActorFirstAssignText.Location = new Point(257, 319);
-            ActorFirstAssignText.Margin = new Padding(2, 4, 2, 4);
-            ActorFirstAssignText.Name = "ActorFirstAssignText";
-            ActorFirstAssignText.Size = new Size(163, 34);
-            ActorFirstAssignText.TabIndex = 9;
-            ActorFirstAssignText.Visible = false;
-            // 
-            // AssignButton
-            // 
-            AssignButton.Location = new Point(257, 447);
-            AssignButton.Margin = new Padding(2, 4, 2, 4);
-            AssignButton.Name = "AssignButton";
-            AssignButton.Size = new Size(138, 52);
-            AssignButton.TabIndex = 8;
-            AssignButton.Text = "Assign Actor";
-            AssignButton.UseVisualStyleBackColor = true;
-            AssignButton.Visible = false;
-            AssignButton.Click += AssignButton_Click;
-            // 
-            // MovieAssignText
-            // 
-            MovieAssignText.Location = new Point(257, 40);
-            MovieAssignText.Margin = new Padding(2, 4, 2, 4);
-            MovieAssignText.Name = "MovieAssignText";
-            MovieAssignText.Size = new Size(301, 34);
-            MovieAssignText.TabIndex = 4;
-            // 
-            // ActorAssignLabel
-            // 
-            ActorAssignLabel.AutoSize = true;
-            ActorAssignLabel.Location = new Point(62, 319);
-            ActorAssignLabel.Margin = new Padding(2, 0, 2, 0);
-            ActorAssignLabel.Name = "ActorAssignLabel";
-            ActorAssignLabel.Size = new Size(125, 28);
-            ActorAssignLabel.TabIndex = 1;
-            ActorAssignLabel.Text = "Actor Name:";
-            ActorAssignLabel.Visible = false;
-            // 
-            // MovieAssignLabel
-            // 
-            MovieAssignLabel.AutoSize = true;
-            MovieAssignLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            MovieAssignLabel.Location = new Point(62, 44);
-            MovieAssignLabel.Margin = new Padding(2, 0, 2, 0);
-            MovieAssignLabel.Name = "MovieAssignLabel";
-            MovieAssignLabel.Size = new Size(133, 28);
-            MovieAssignLabel.TabIndex = 0;
-            MovieAssignLabel.Text = "Movie Name:";
             // 
             // tabPage3
             // 
@@ -1693,15 +1693,15 @@ namespace CMPT291_Project
             tabPage2.ResumeLayout(false);
             SearchMoviePanel.ResumeLayout(false);
             SearchMoviePanel.PerformLayout();
+            AssignActorBox.ResumeLayout(false);
+            AssignActorBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)MovieActorDataView).EndInit();
             AddMovieBox.ResumeLayout(false);
             AddMovieBox.PerformLayout();
             MovieDataViewPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)MovieDataView).EndInit();
             ModifyMovieBox.ResumeLayout(false);
             ModifyMovieBox.PerformLayout();
-            AssignActorBox.ResumeLayout(false);
-            AssignActorBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)MovieActorDataView).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
