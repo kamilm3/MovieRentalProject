@@ -1042,7 +1042,7 @@ namespace CMPT291_Project
                         // Check if results are empty
                         if (results.Rows.Count == 0)
                         {
-                            MessageBox.Show("No actor found within the provided range.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("No actor found for the selected genre.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
