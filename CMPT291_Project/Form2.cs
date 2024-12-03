@@ -78,6 +78,8 @@ namespace CMPT291_Project
                 myConnection.Open(); // Open the connection
                 myCommand = new SqlCommand();
                 myCommand.Connection = myConnection; // Link the command to the connection
+
+                
             }
             catch (Exception e)
             {
@@ -715,12 +717,39 @@ namespace CMPT291_Project
                         label2.Visible = true;
                         label2.Text = fName + "'s Movie Queue";
 
-                        //MessageBox.Show("Testing successful");
+
+                        if (dataGridView1.Rows.Count == 1)
+                        {
+                            string message = fName + " has no movies in their queue";
+                            MessageBox.Show(message);
+                        }
+                        else
+                        {
+                            
+                            SqlCommand myCommand2 = new SqlCommand("select count(*) from MovieQueue as R2, Customer as R3 where R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and QueuePosition = 1", myConnection);
+                            MessageBox.Show("Passed myCommand2");
+                            int availability = (int)myCommand2.ExecuteScalar();
+
+                            if (availability > 0)
+                            {
+                                button2.Visible = true;
+                                button2.BackColor = Color.Blue;
+                                button2.ForeColor = Color.White;
+                            }
+                            else
+                            {
+                                label15.Visible = true;
+                            }
+                            
+                        }
+
+
                     }
                     else
                     {
                         // Customer does not exist in database
-                        MessageBox.Show("Customer does not exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        string message = fName + " does not exist in database";
+                        MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -731,10 +760,56 @@ namespace CMPT291_Project
             }
 
 
-
-
         }
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            string fName = textBox1.Text;
+            string lName = textBox2.Text;
+            string emailAddress = textBox3.Text;
 
+            SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '" + @fName + "'AND lastName= '" + @lName + "' AND Email= '" + @emailAddress + "'", myConnection);
+
+            int custID = (int)myCommand.ExecuteScalar();
+            
+            SqlCommand myCommand2 = new SqlCommand("select movieName from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and QueuePosition = 1", myConnection);
+
+
+            string movie = (string)myCommand2.ExecuteScalar();
+
+            SqlCommand updateQueue = new SqlCommand("delete from MovieQueue where customerID = '" + custID + "' and QueuePosition = 1", myConnection);
+            SqlDataAdapter sd = new SqlDataAdapter(updateQueue);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            dataGridView1.DataSource = dt;
+            dataGridView1.Visible = true;
+            updateQueue.ExecuteNonQuery();
+            
+
+            string message = movie + " has been rented to " + fName;
+            MessageBox.Show(message);
+            
+        }
+        void updateMovieQueue()
+        {
+            string fName = textBox1.Text;
+            string lName = textBox2.Text;
+            string emailAddress = textBox3.Text;
+
+            SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '" + @fName + "'AND lastName= '" + @lName + "' AND Email= '" + @emailAddress + "'", myConnection);
+
+            int custID = (int)myCommand.ExecuteScalar();
+
+            SqlCommand myCommand2 = new SqlCommand("select movieName from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and QueuePosition = 1", myConnection);
+
+            string movie = (string)myCommand2.ExecuteScalar();
+
+            SqlCommand updateQueue = new SqlCommand("delete from MovieQueue where customerID = '" + custID + "' and QueuePosition = 1", myConnection);
+            SqlDataAdapter sd = new SqlDataAdapter(updateQueue);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            dataGridView1.DataSource = dt;
+            dataGridView1.Visible = true;
+        }
         // *********************************
         //            Report Tab
         // *********************************
@@ -813,7 +888,7 @@ namespace CMPT291_Project
                     }
                     else
                     {
-                        string message = actorFName + " does not exist in database or has no movie of selected genre";
+                        string message = actorFName + " does not exist in database";
                         MessageBox.Show(message);
                     }
                 }
@@ -1331,6 +1406,18 @@ namespace CMPT291_Project
         {
 
         }
+
+        private void FirstNameSearchLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ModifyCustDataView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+
     }
 }
 

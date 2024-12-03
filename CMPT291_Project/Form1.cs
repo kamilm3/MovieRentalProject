@@ -120,6 +120,8 @@ namespace CMPT291_Project
                         Form2 homeScreen = new Form2();
                         homeScreen.Show();
                         this.Hide();
+
+
                     }
                     else
                     {

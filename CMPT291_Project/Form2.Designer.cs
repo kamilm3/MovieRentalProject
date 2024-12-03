@@ -134,6 +134,8 @@ namespace CMPT291_Project
             TypeModLabel = new Label();
             NameModLabel = new Label();
             tabPage3 = new TabPage();
+            label15 = new Label();
+            button2 = new Button();
             dataGridView1 = new DataGridView();
             label7 = new Label();
             textBox3 = new TextBox();
@@ -456,7 +458,7 @@ namespace CMPT291_Project
             // EmailSearchLabel
             // 
             EmailSearchLabel.AutoSize = true;
-            EmailSearchLabel.Location = new Point(22, 384);
+            EmailSearchLabel.Location = new Point(9, 380);
             EmailSearchLabel.Margin = new Padding(2, 0, 2, 0);
             EmailSearchLabel.Name = "EmailSearchLabel";
             EmailSearchLabel.Size = new Size(65, 28);
@@ -467,7 +469,7 @@ namespace CMPT291_Project
             // LastNameSearchLabel
             // 
             LastNameSearchLabel.AutoSize = true;
-            LastNameSearchLabel.Location = new Point(22, 309);
+            LastNameSearchLabel.Location = new Point(9, 308);
             LastNameSearchLabel.Margin = new Padding(2, 0, 2, 0);
             LastNameSearchLabel.Name = "LastNameSearchLabel";
             LastNameSearchLabel.Size = new Size(113, 28);
@@ -478,13 +480,14 @@ namespace CMPT291_Project
             // FirstNameSearchLabel
             // 
             FirstNameSearchLabel.AutoSize = true;
-            FirstNameSearchLabel.Location = new Point(22, 235);
+            FirstNameSearchLabel.Location = new Point(9, 234);
             FirstNameSearchLabel.Margin = new Padding(2, 0, 2, 0);
             FirstNameSearchLabel.Name = "FirstNameSearchLabel";
             FirstNameSearchLabel.Size = new Size(115, 28);
             FirstNameSearchLabel.TabIndex = 7;
             FirstNameSearchLabel.Text = "First Name:";
             FirstNameSearchLabel.Visible = false;
+            FirstNameSearchLabel.Click += FirstNameSearchLabel_Click;
             // 
             // EmailSearchText
             // 
@@ -560,6 +563,7 @@ namespace CMPT291_Project
             ModifyCustDataView.TabIndex = 11;
             ModifyCustDataView.Visible = false;
             ModifyCustDataView.CellClick += ModifyCustDataViewCellClick;
+            ModifyCustDataView.CellContentClick += ModifyCustDataView_CellContentClick;
             // 
             // ModifyCustBox
             // 
@@ -1316,6 +1320,8 @@ namespace CMPT291_Project
             // tabPage3
             // 
             tabPage3.BackColor = Color.FromArgb(255, 192, 192);
+            tabPage3.Controls.Add(label15);
+            tabPage3.Controls.Add(button2);
             tabPage3.Controls.Add(dataGridView1);
             tabPage3.Controls.Add(label7);
             tabPage3.Controls.Add(textBox3);
@@ -1333,6 +1339,34 @@ namespace CMPT291_Project
             tabPage3.Size = new Size(1318, 516);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Rental Management";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.BackColor = Color.White;
+            label15.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label15.ForeColor = Color.Red;
+            label15.Location = new Point(791, 368);
+            label15.Name = "label15";
+            label15.Size = new Size(336, 112);
+            label15.TabIndex = 19;
+            label15.Text = "*Cannot rent any movies to customer\r\nbecause they currently have a movie \r\nrented out.\r\n(There is no QueuePosition = 1)";
+            label15.Visible = false;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.White;
+            button2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.ForeColor = Color.Black;
+            button2.Location = new Point(520, 388);
+            button2.Margin = new Padding(2, 4, 2, 4);
+            button2.Name = "button2";
+            button2.Size = new Size(248, 43);
+            button2.TabIndex = 18;
+            button2.Text = "Rent Movie ";
+            button2.UseVisualStyleBackColor = false;
+            button2.Visible = false;
+            button2.Click += button2_Click_1;
             // 
             // dataGridView1
             // 
@@ -1911,5 +1945,7 @@ namespace CMPT291_Project
         private RadioButton radioButton_report5;
         private Label label14;
         private ComboBox Report3DropDownBox;
+        private Button button2;
+        private Label label15;
     }
 }
