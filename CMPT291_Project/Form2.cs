@@ -1008,16 +1008,27 @@ namespace CMPT291_Project
             string query = @"
                 SELECT A.actorID, A.firstName, A.lastName, COUNT(M.movieID) as MovieCount
                 FROM Actor as A, Movie as M, ActorAppearedIn as AM
-                WHERE M.MovieType = @Genre AND A.actorID = AM.actorID AND M.movieID = AM.movieID
-                GROUP BY A.actorID, A.firstName, A.lastName
-                ORDER BY MovieCount DESC";
+                WHERE A.actorID = AM.actorID AND M.movieID = AM.movieID";
+
+            // Add genre filter if a specific genre is selected
+            if (!genre.Equals("All", StringComparison.OrdinalIgnoreCase))
+            {
+                query += " AND M.MovieType = @Genre";
+            }
+
+            query += " GROUP BY A.actorID, A.firstName, A.lastName";
+            query += " ORDER BY MovieCount DESC";
 
             try
             {
                 using (SqlCommand cmd = new SqlCommand(query, myConnection))
                 {
-                    // Add parameter for month range
-                    cmd.Parameters.AddWithValue("@Genre", genre);
+                    // Add parameter for Genre
+                    if (!genre.Equals("All", StringComparison.OrdinalIgnoreCase))
+                    {
+                        cmd.Parameters.AddWithValue("@Genre", genre);
+
+                    }
 
                     // Load results into the data table
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
@@ -1045,9 +1056,9 @@ namespace CMPT291_Project
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    
 
-    
+
+
 
         private void MovieDataView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1297,6 +1308,11 @@ namespace CMPT291_Project
         }
 
         private void ReportDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void MovieDataView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -30,7 +30,7 @@ namespace CMPT291_Project
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label1 = new Label();
             DashboardTabs = new TabControl();
             tabPage1 = new TabPage();
@@ -541,14 +541,14 @@ namespace CMPT291_Project
             ModifyCustDataView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ModifyCustDataView.BackgroundColor = Color.White;
             ModifyCustDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = Color.LightGray;
-            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            ModifyCustDataView.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightGray;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            ModifyCustDataView.DefaultCellStyle = dataGridViewCellStyle2;
             ModifyCustDataView.Dock = DockStyle.Right;
             ModifyCustDataView.GridColor = Color.LightGray;
             ModifyCustDataView.Location = new Point(-534, 0);
@@ -1132,8 +1132,8 @@ namespace CMPT291_Project
             // MovieDataViewPanel
             // 
             MovieDataViewPanel.BackColor = Color.White;
-            MovieDataViewPanel.Controls.Add(ModifyMovieBox);
             MovieDataViewPanel.Controls.Add(MovieDataView);
+            MovieDataViewPanel.Controls.Add(ModifyMovieBox);
             MovieDataViewPanel.Location = new Point(350, 0);
             MovieDataViewPanel.Name = "MovieDataViewPanel";
             MovieDataViewPanel.Size = new Size(963, 515);
@@ -1311,6 +1311,7 @@ namespace CMPT291_Project
             MovieDataView.TabIndex = 0;
             MovieDataView.Visible = false;
             MovieDataView.CellClick += MovieDataView_CellClick;
+            MovieDataView.CellContentClick += MovieDataView_CellContentClick;
             // 
             // tabPage3
             // 
