@@ -31,14 +31,14 @@ namespace CMPT291_Project
                                   "connection timeout=30"); // Timeout in seconds
             */
 
-            /*
+            
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
                                   "server=Kamil\\MSSQLSERVER03;" + // Server name
                                   "TrustServerCertificate=True;" +
                                   "database=project291; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
-            */
+            
 
 
             // Initialize the connection
@@ -51,14 +51,14 @@ namespace CMPT291_Project
                                               "connection timeout=30"); // Timeout in seconds
             */
 
-            
+            /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                              "password=admin;" + // Password
                                              "server=DESKTOP-6QG008O;" + // Server name
                                              "TrustServerCertificate=True;" +
                                              "database=project291; " + // Database
                                              "connection timeout=30"); // Timeout in seconds
-            
+            */
 
             try
             {
@@ -95,12 +95,14 @@ namespace CMPT291_Project
             {
                 // SQL query to decrypt and check the password
                 string query = @"
-                    SELECT CASE 
-                               WHEN CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('lemon', Password)) = @password 
-                               THEN 1 ELSE 0 
-                           END AS IsValid
-                    FROM UsernamePassword
-                    WHERE Username = @username";
+                    SELECT ISNULL((
+                        SELECT CASE 
+                                   WHEN CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('lemon', Password)) = @password 
+                                   THEN 1 ELSE 0 
+                               END
+                        FROM UsernamePassword
+                        WHERE Username = @username
+                    ), 0) AS IsValid";
 
                 // Create SQL command
                 using (SqlCommand command = new SqlCommand(query, myConnection))
