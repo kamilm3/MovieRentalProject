@@ -65,14 +65,14 @@ namespace CMPT291_Project
                                               "connection timeout=30"); // Timeout in seconds
             */
 
-            /*
+            
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                             "password=admin;" + // Password
                                             "server=DESKTOP-6QG008O;" + // Server name
                                             "TrustServerCertificate=True;" +
                                             "database=project291; " + // Database
                                             "connection timeout=30"); // Timeout in seconds
-            */
+            
             try
             {
                 myConnection.Open(); // Open the connection
@@ -439,8 +439,6 @@ namespace CMPT291_Project
                 return;
             }
 
-            // NEED TO ADD IN DATABASE FUNCTIONALITY HERE
-
             // Add Movie
             try
             {
@@ -475,7 +473,6 @@ namespace CMPT291_Project
             }
 
 
-            //MessageBox.Show("Movie added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
@@ -491,11 +488,10 @@ namespace CMPT291_Project
             if (string.IsNullOrEmpty(movieId) || string.IsNullOrEmpty(moviename) || string.IsNullOrEmpty(movietype) || string.IsNullOrEmpty(distfee) ||
                 string.IsNullOrEmpty(numcopies))
             {
-                MessageBox.Show("All fields must be filled in to update the customer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("All fields must be filled in to update the movie.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // NEED TO ADD IN DATABASE FUNCTIONALITY HERE
 
             try
             {
@@ -531,8 +527,6 @@ namespace CMPT291_Project
             }
 
 
-
-            // MessageBox.Show("Movie updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
@@ -551,7 +545,7 @@ namespace CMPT291_Project
 
             try
             {
-                // First, delete from the ActorAppearedIn table to avoid foreign key constraint issues
+                // Delete from the ActorAppearedIn table to avoid foreign key constraint issues
                 string deleteActorAppearedInQuery = "DELETE FROM ActorAppearedIn WHERE movieID = @MovieId";
 
                 using (SqlCommand cmnd = new SqlCommand(deleteActorAppearedInQuery, myConnection))
@@ -657,7 +651,7 @@ namespace CMPT291_Project
                         }
                         else
                         {
-                            MessageBox.Show("Actor not found in the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Actor not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                     }
@@ -1155,8 +1149,6 @@ namespace CMPT291_Project
             //     Report 3    //
             /////////////////////
 
-
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -1223,8 +1215,6 @@ namespace CMPT291_Project
         }
 
 
-
-
         private void MovieDataView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) // Ensure the row selected is not the header
@@ -1284,7 +1274,7 @@ namespace CMPT291_Project
 
                         MovieActorDataView.DataSource = results;
 
-                        // Error check to ensure customer exists
+                        // Error check to ensure movie exists
                         if (results.Rows.Count == 0)
                         {
                             MessageBox.Show("No movie found with the provided details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
