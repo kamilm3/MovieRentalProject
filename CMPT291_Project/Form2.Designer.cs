@@ -1346,7 +1346,7 @@ namespace CMPT291_Project
             label15.BackColor = Color.White;
             label15.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.Red;
-            label15.Location = new Point(791, 368);
+            label15.Location = new Point(917, 79);
             label15.Name = "label15";
             label15.Size = new Size(336, 112);
             label15.TabIndex = 19;
@@ -1375,7 +1375,7 @@ namespace CMPT291_Project
             dataGridView1.Margin = new Padding(2, 4, 2, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(607, 285);
+            dataGridView1.Size = new Size(376, 285);
             dataGridView1.TabIndex = 17;
             dataGridView1.Visible = false;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
