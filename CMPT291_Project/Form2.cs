@@ -36,7 +36,7 @@ namespace CMPT291_Project
         {
             InitializeComponent();
 
-            /*
+            
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
                                   "server=LAPTOP-6TEGHEN2;" + // Server name
@@ -44,7 +44,7 @@ namespace CMPT291_Project
                                   "database=Project_291; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
             
-            */
+            
             /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                               "password=admin;" + // Password
@@ -768,6 +768,7 @@ namespace CMPT291_Project
 
                         if (dataGridView1.Rows.Count == 1)
                         {
+                            label15.Visible = false;
                             string message = fName + " has no movies in their queue";
                             MessageBox.Show(message);
                         }
@@ -796,7 +797,7 @@ namespace CMPT291_Project
                     else
                     {
                         // Customer does not exist in database
-                        string message = fName + " does not exist in database";
+                        string message = fName + " " + lName + " does not exist in database";
                         MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
