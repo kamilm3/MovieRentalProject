@@ -756,7 +756,7 @@ namespace CMPT291_Project
 
                         int custID = (int)myCommand.ExecuteScalar();
 
-                        SqlCommand myCommand1 = new SqlCommand("select movieName, QueuePosition from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "'", myConnection);
+                        SqlCommand myCommand1 = new SqlCommand("select movieName as MovieName, QueuePosition from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "'", myConnection);
                         SqlDataAdapter sd = new SqlDataAdapter(myCommand1);
                         DataTable dt = new DataTable();
                         sd.Fill(dt);
@@ -774,7 +774,7 @@ namespace CMPT291_Project
                         else
                         {
                             
-                            SqlCommand myCommand2 = new SqlCommand("select count(*) from MovieQueue as R2, Customer as R3 where R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and QueuePosition = 1", myConnection);
+                            SqlCommand myCommand2 = new SqlCommand("select count(*) from MovieQueue as R2, Customer as R3 where R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and R2.QueuePosition = 1", myConnection);
                             int availability = (int)myCommand2.ExecuteScalar();
 
                             if (availability > 0)
@@ -818,7 +818,7 @@ namespace CMPT291_Project
 
             int custID = (int)myCommand.ExecuteScalar();
             
-            SqlCommand myCommand2 = new SqlCommand("select movieName from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and QueuePosition = 1", myConnection);
+            SqlCommand myCommand2 = new SqlCommand("select movieName from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and R2.QueuePosition = 1", myConnection);
 
 
             string movie = (string)myCommand2.ExecuteScalar();
@@ -830,11 +830,12 @@ namespace CMPT291_Project
             dataGridView1.DataSource = dt;
             dataGridView1.Visible = true;
             
+            
+
+            string message = movie + " has been rented to " + fName + " " + lName;
+            MessageBox.Show(message);
             updateMovieQueue();
 
-            string message = movie + " has been rented to " + fName;
-            MessageBox.Show(message);
-            
         }
         void updateMovieQueue()
         {
@@ -848,7 +849,7 @@ namespace CMPT291_Project
             //SqlCommand myCommand2 = new SqlCommand("select movieName from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "'", myConnection);
 
 
-            SqlCommand myCommand2 = new SqlCommand("select count(*) from MovieQueue as R2, Customer as R3 where R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and QueuePosition = 1", myConnection);
+            SqlCommand myCommand2 = new SqlCommand("select count(*) from MovieQueue as R2, Customer as R3 where R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and R2.QueuePosition = 1", myConnection);
             int availability = (int)myCommand2.ExecuteScalar();
 
             if (availability > 0)
@@ -867,6 +868,7 @@ namespace CMPT291_Project
             else
             {
                 label15.Visible = true;
+
             }
 
         }
