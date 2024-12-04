@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\angel\\OneDrive - MacEwan University\\CMPT_291\\CMPT291_Rental_Final\\CMPT291_Project\\CMPT291_Project.csproj": {}
+    "C:\\Users\\angel\\OneDrive - MacEwan University\\CMPT_291\\CMPT291_X01L_Project\\CMPT291_Project\\CMPT291_Project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\angel\\OneDrive - MacEwan University\\CMPT_291\\CMPT291_Rental_Final\\CMPT291_Project\\CMPT291_Project.csproj": {
+    "C:\\Users\\angel\\OneDrive - MacEwan University\\CMPT_291\\CMPT291_X01L_Project\\CMPT291_Project\\CMPT291_Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\angel\\OneDrive - MacEwan University\\CMPT_291\\CMPT291_Rental_Final\\CMPT291_Project\\CMPT291_Project.csproj",
+        "projectUniqueName": "C:\\Users\\angel\\OneDrive - MacEwan University\\CMPT_291\\CMPT291_X01L_Project\\CMPT291_Project\\CMPT291_Project.csproj",
         "projectName": "CMPT291_Project",
-        "projectPath": "C:\\Users\\angel\\OneDrive - MacEwan University\\CMPT_291\\CMPT291_Rental_Final\\CMPT291_Project\\CMPT291_Project.csproj",
+        "projectPath": "C:\\Users\\angel\\OneDrive - MacEwan University\\CMPT_291\\CMPT291_X01L_Project\\CMPT291_Project\\CMPT291_Project.csproj",
         "packagesPath": "C:\\Users\\angel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\angel\\OneDrive - MacEwan University\\CMPT_291\\CMPT291_Rental_Final\\CMPT291_Project\\obj\\",
+        "outputPath": "C:\\Users\\angel\\OneDrive - MacEwan University\\CMPT_291\\CMPT291_X01L_Project\\CMPT291_Project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\angel\\AppData\\Roaming\\NuGet\\NuGet.Config",

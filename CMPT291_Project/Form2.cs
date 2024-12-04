@@ -36,14 +36,14 @@ namespace CMPT291_Project
         {
             InitializeComponent();
 
-            /*
+            
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
                                   "server=LAPTOP-6TEGHEN2;" + // Server name
                                   "TrustServerCertificate=True;" +
                                   "database=Project_291; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
-            */
+            
 
             /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
@@ -773,7 +773,7 @@ namespace CMPT291_Project
                         }
                         else
                         {
-                            
+
                             SqlCommand myCommand2 = new SqlCommand("select count(*) from MovieQueue as R2, Customer as R3 where R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and R2.QueuePosition = 1", myConnection);
                             int availability = (int)myCommand2.ExecuteScalar();
 
@@ -782,14 +782,15 @@ namespace CMPT291_Project
                                 button2.Visible = true;
                                 button2.BackColor = Color.Blue;
                                 button2.ForeColor = Color.White;
+                                label15.Visible = false;
                             }
                             else
                             {
                                 label15.Visible = true;
+                                button2.Visible = false;
                             }
-                            
-                        }
 
+                        }
 
                     }
                     else
@@ -810,31 +811,39 @@ namespace CMPT291_Project
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
+
+
             string fName = textBox1.Text;
             string lName = textBox2.Text;
             string emailAddress = textBox3.Text;
-
             SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '" + @fName + "'AND lastName= '" + @lName + "' AND Email= '" + @emailAddress + "'", myConnection);
 
             int custID = (int)myCommand.ExecuteScalar();
-            
-            SqlCommand myCommand2 = new SqlCommand("select movieName from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and R2.QueuePosition = 1", myConnection);
+
+            //retrieves movie name before deletion
+            SqlCommand myCommand1 = new SqlCommand("select movieName as MovieName, QueuePosition from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "'and R2.QueuePosition = 1", myConnection);
+            string movie = (string)myCommand1.ExecuteScalar();
+
+            // string query to delete row from MovieQueue
+            string deleteQuery = "DELETE FROM MovieQueue WHERE customerID = @custID and QueuePosition = 1";
+
+            using (SqlCommand command = new SqlCommand(deleteQuery, myConnection))
+            {
+                command.Parameters.AddWithValue("@custID", custID);
+
+                //execute delete query
+                int deletedQuery = command.ExecuteNonQuery();
 
 
-            string movie = (string)myCommand2.ExecuteScalar();
+                // displays message that movie has been rented out to customer
+                string message = movie + " has been rented to " + fName + " " + lName;
+                MessageBox.Show(message);
 
-            SqlCommand updateQueue = new SqlCommand("delete from MovieQueue where customerID = '" + custID + "' and QueuePosition = 1", myConnection);
-            SqlDataAdapter sd = new SqlDataAdapter(updateQueue);
-            DataTable dt = new DataTable();
-            sd.Fill(dt);
-            dataGridView1.DataSource = dt;
-            dataGridView1.Visible = true;
-            
-            
-
-            string message = movie + " has been rented to " + fName + " " + lName;
-            MessageBox.Show(message);
+            }
+            // calls updateMovieQueue to show updated data
             updateMovieQueue();
+
+
 
         }
         void updateMovieQueue()
@@ -842,36 +851,52 @@ namespace CMPT291_Project
             string fName = textBox1.Text;
             string lName = textBox2.Text;
             string emailAddress = textBox3.Text;
+            button2.Visible = false;
 
             SqlCommand myCommand = new SqlCommand("select customerID from Customer where firstName = '" + @fName + "'AND lastName= '" + @lName + "' AND Email= '" + @emailAddress + "'", myConnection);
+
             int custID = (int)myCommand.ExecuteScalar();
 
-            //SqlCommand myCommand2 = new SqlCommand("select movieName from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "'", myConnection);
+            SqlCommand myCommand1 = new SqlCommand("select movieName as MovieName, QueuePosition from Movie as R1, MovieQueue as R2, Customer as R3 where R1.movieID = R2.movieID and R2.customerID = R3.customerID and R3.customerID = '" + custID + "'", myConnection);
+            SqlDataAdapter sd = new SqlDataAdapter(myCommand1);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            dataGridView1.DataSource = dt;
+            dataGridView1.Visible = true;
+            label2.Visible = true;
+            label2.Text = fName + "'s Movie Queue";
 
 
-            SqlCommand myCommand2 = new SqlCommand("select count(*) from MovieQueue as R2, Customer as R3 where R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and R2.QueuePosition = 1", myConnection);
-            int availability = (int)myCommand2.ExecuteScalar();
-
-            if (availability > 0)
+            if (dataGridView1.Rows.Count == 1)
             {
-                button2.Visible = true;
-                button2.BackColor = Color.Blue;
-                button2.ForeColor = Color.White;
-                SqlCommand myCommand3 = new SqlCommand("select count(*) from MovieQueue as R2, Customer as R3 where R2.customerID = R3.customerID and R3.customerID = '" + custID + "'", myConnection);
 
-                SqlDataAdapter sd = new SqlDataAdapter(myCommand3);
-                DataTable dt = new DataTable();
-                sd.Fill(dt);
-                dataGridView1.DataSource = dt;
-                dataGridView1.Visible = true;
+                string message = fName + " has no movies in their queue";
+                MessageBox.Show(message);
             }
             else
             {
-                label15.Visible = true;
+
+                SqlCommand myCommand2 = new SqlCommand("select count(*) from MovieQueue as R2, Customer as R3 where R2.customerID = R3.customerID and R3.customerID = '" + custID + "' and R2.QueuePosition = 1", myConnection);
+                int availability = (int)myCommand2.ExecuteScalar();
+
+                if (availability > 0)
+                {
+                    button2.Visible = true;
+                    button2.BackColor = Color.Blue;
+                    button2.ForeColor = Color.White;
+                    label15.Visible = false;
+                }
+                else
+                {
+                    label15.Visible = true;
+                    button2.Visible = false;
+                }
 
             }
 
         }
+
+
         // *********************************
         //            Report Tab
         // *********************************
@@ -950,8 +975,10 @@ namespace CMPT291_Project
                     }
                     else
                     {
-                        string message = actorFName + " does not exist in database";
-                        MessageBox.Show(message);
+                        string message = "Actor does not exist in database or actor does not have a movie of selected genre, " + selectedMovieType;
+
+                        MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
                     }
                 }
             }
