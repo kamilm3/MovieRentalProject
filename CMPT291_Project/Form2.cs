@@ -605,6 +605,7 @@ namespace CMPT291_Project
             label6.Visible = false;
             label11.Visible = false;
             AssignButton.Visible = false;
+            MovieActorDataView.Visible = false;
 
         }
 
@@ -1281,7 +1282,7 @@ namespace CMPT291_Project
                         }
                         else
                         {
-                            ModifyCustDataView.Visible = true;
+                            MovieActorDataView.Visible = true;
                         }
                     }
                 }
