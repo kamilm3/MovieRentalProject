@@ -36,14 +36,14 @@ namespace CMPT291_Project
         {
             InitializeComponent();
 
-
+            /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
                                   "server=LAPTOP-6TEGHEN2;" + // Server name
                                   "TrustServerCertificate=True;" +
                                   "database=Project_291; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
-
+            */
 
             /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
@@ -129,10 +129,13 @@ namespace CMPT291_Project
             string zip = ZipCustText.Text.Trim();
             string accountNumber = AccountCustText.Text.Trim();
             string creditCard = CreditCustText.Text.Trim();
+            string phoneNum = PhoneNumAddBox.Text.Trim();
+            string phoneType = PhoneTypeAddBox.Text.Trim();
 
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(address) ||
                 string.IsNullOrEmpty(city) || string.IsNullOrEmpty(state) || string.IsNullOrEmpty(zip) ||
-                string.IsNullOrEmpty(email) || string.IsNullOrEmpty(accountNumber) || string.IsNullOrEmpty(creditCard))
+                string.IsNullOrEmpty(email) || string.IsNullOrEmpty(accountNumber) || string.IsNullOrEmpty(creditCard) ||
+                string.IsNullOrEmpty(phoneNum) || string.IsNullOrEmpty(phoneType))
             {
                 MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -140,33 +143,50 @@ namespace CMPT291_Project
 
             try
             {
+                int customerId;
+
                 // Add customer
-                string query = "INSERT INTO Customer (firstName, lastName, cusAddress, cusCity, cusState, cusZipCode, Email, AccountNumber, CreditCard) " +
-                               "VALUES (@FirstName, @LastName, @Address, @City, @State, @Zip, @Email, @AccountNumber, @CreditCard)";
+                string query = "insert into Customer (firstName, lastName, cusAddress, cusCity, cusState, cusZipCode, Email, AccountNumber, CreditCard) " +
+                               // output the customer id
+                               "output inserted.customerID " +
+                               "values (@FirstName, @LastName, @Address, @City, @State, @Zip, @Email, @AccountNumber, @CreditCard)";
 
-                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                using (SqlCommand customerCmd = new SqlCommand(query, myConnection))
                 {
-                    cmd.Parameters.AddWithValue("@FirstName", firstName);
-                    cmd.Parameters.AddWithValue("@LastName", lastName);
-                    cmd.Parameters.AddWithValue("@Address", address);
-                    cmd.Parameters.AddWithValue("@City", city);
-                    cmd.Parameters.AddWithValue("@State", state);
-                    cmd.Parameters.AddWithValue("@Zip", zip);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@AccountNumber", accountNumber);
-                    cmd.Parameters.AddWithValue("@CreditCard", creditCard);
+                    customerCmd.Parameters.AddWithValue("@FirstName", firstName);
+                    customerCmd.Parameters.AddWithValue("@LastName", lastName);
+                    customerCmd.Parameters.AddWithValue("@Address", address);
+                    customerCmd.Parameters.AddWithValue("@City", city);
+                    customerCmd.Parameters.AddWithValue("@State", state);
+                    customerCmd.Parameters.AddWithValue("@Zip", zip);
+                    customerCmd.Parameters.AddWithValue("@Email", email);
+                    customerCmd.Parameters.AddWithValue("@AccountNumber", accountNumber);
+                    customerCmd.Parameters.AddWithValue("@CreditCard", creditCard);
 
-                    int rowsAffected = cmd.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Customer added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Customer addition failed. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    // Get customerID of inserted customer
+                    customerId = (int)customerCmd.ExecuteScalar();
                 }
+
+                 // Add phone number
+                 string phoneQuery = "insert into CustomerPhone (customerID, PhoneType, Number) values (@CustomerID, @PhoneType, @Number)";
+
+                 using (SqlCommand phoneCmd = new SqlCommand(phoneQuery, myConnection))
+                 {
+                     phoneCmd.Parameters.AddWithValue("@CustomerID", customerId);
+                     phoneCmd.Parameters.AddWithValue("@PhoneType", phoneType);
+                     phoneCmd.Parameters.AddWithValue("@Number", phoneNum);
+
+                     int phoneRowsAffected = phoneCmd.ExecuteNonQuery();
+
+                     if (phoneRowsAffected > 0)
+                     {
+                         MessageBox.Show("Customer and phone details added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                     }
+                     else
+                     {
+                         MessageBox.Show("Phone details addition failed. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                     }
+                 }
             }
             catch (Exception ex)
             {
@@ -187,10 +207,13 @@ namespace CMPT291_Project
             string email = EmailModText.Text.Trim();
             string accountNumber = AccountModText.Text.Trim();
             string creditCard = CreditModText.Text.Trim();
+            string phoneNum = PhoneNumUpBox.Text.Trim();
+            string phoneType = PhoneTypeUpBox.Text.Trim();
 
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(address) ||
                 string.IsNullOrEmpty(city) || string.IsNullOrEmpty(state) || string.IsNullOrEmpty(zip) ||
-                string.IsNullOrEmpty(email) || string.IsNullOrEmpty(accountNumber) || string.IsNullOrEmpty(creditCard))
+                string.IsNullOrEmpty(email) || string.IsNullOrEmpty(accountNumber) || string.IsNullOrEmpty(creditCard) ||
+                string.IsNullOrEmpty(phoneNum) || string.IsNullOrEmpty(phoneType))
             {
                 MessageBox.Show("All fields must be filled in to update the customer.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -199,29 +222,47 @@ namespace CMPT291_Project
             try
             {
                 // Update customer
-                string query = "UPDATE Customer SET firstName = @FirstName, lastName = @LastName, cusAddress = @Address, " +
+                string query = "update Customer set firstName = @FirstName, lastName = @LastName, cusAddress = @Address, " +
                                "cusCity = @City, cusState = @State, cusZipCode = @Zip, Email = @Email, AccountNumber = @AccountNumber, CreditCard = @CreditCard " +
-                               "WHERE customerID = @CustomerID";
+                               "where customerID = @CustomerID";
 
-                using (SqlCommand cmd = new SqlCommand(query, myConnection))
+                using (SqlCommand customerCmd = new SqlCommand(query, myConnection))
                 {
-                    cmd.Parameters.AddWithValue("@FirstName", firstName);
-                    cmd.Parameters.AddWithValue("@LastName", lastName);
-                    cmd.Parameters.AddWithValue("@Address", address);
-                    cmd.Parameters.AddWithValue("@City", city);
-                    cmd.Parameters.AddWithValue("@State", state);
-                    cmd.Parameters.AddWithValue("@Zip", zip);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@AccountNumber", accountNumber);
-                    cmd.Parameters.AddWithValue("@CustomerID", customerID);
-                    cmd.Parameters.AddWithValue("@CreditCard", creditCard);
+                    customerCmd.Parameters.AddWithValue("@FirstName", firstName);
+                    customerCmd.Parameters.AddWithValue("@LastName", lastName);
+                    customerCmd.Parameters.AddWithValue("@Address", address);
+                    customerCmd.Parameters.AddWithValue("@City", city);
+                    customerCmd.Parameters.AddWithValue("@State", state);
+                    customerCmd.Parameters.AddWithValue("@Zip", zip);
+                    customerCmd.Parameters.AddWithValue("@Email", email);
+                    customerCmd.Parameters.AddWithValue("@AccountNumber", accountNumber);
+                    customerCmd.Parameters.AddWithValue("@CreditCard", creditCard);
+                    customerCmd.Parameters.AddWithValue("@CustomerID", customerID);
 
-                    // Execute the query
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = customerCmd.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Customer updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Update phone table
+                        string phoneQuery = "update CustomerPhone set PhoneType = @PhoneType, Number = @Number where customerID = @CustomerID";
+
+                        using (SqlCommand phoneCmd = new SqlCommand(phoneQuery, myConnection))
+                        {
+                            phoneCmd.Parameters.AddWithValue("@PhoneType", phoneType);
+                            phoneCmd.Parameters.AddWithValue("@Number", phoneNum);
+                            phoneCmd.Parameters.AddWithValue("@CustomerID", customerID);
+
+                            int phoneRowsAffected = phoneCmd.ExecuteNonQuery();
+
+                            if (phoneRowsAffected > 0)
+                            {
+                                MessageBox.Show("Customer and phone details updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Phone details update failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
                     }
                     else
                     {
@@ -288,11 +329,14 @@ namespace CMPT291_Project
 
             try
             {
-                // Search for the customer
-                string query = "SELECT customerID as [Customer ID], firstName as [First Name], lastName as [Last Name], Email, cusAddress, " +
-                               "cusCity, cusState, cusZipCode, AccountNumber, CreditCard " +
-                               "FROM Customer " +
-                               "WHERE firstName = @FirstName AND lastName = @LastName AND Email = @Email";
+                // Search for the customer and phone details
+                string query = "select c.customerID as [Customer ID], c.firstName as [First Name], c.lastName as [Last Name], c.Email, " +
+                               "c.cusAddress, c.cusCity, c.cusState, c.cusZipCode, c.AccountNumber, c.CreditCard, " +
+                               "cp.PhoneType, cp.Number " +
+                               "from Customer c " +
+                               // Left join will retrieve all customers, even if they have no phone number attached
+                               "left join CustomerPhone cp ON c.customerID = cp.customerID " +
+                               "where c.firstName = @FirstName AND c.lastName = @LastName AND c.Email = @Email";
 
                 using (SqlCommand cmd = new SqlCommand(query, myConnection))
                 {
@@ -314,6 +358,8 @@ namespace CMPT291_Project
                         ModifyCustDataView.Columns["cusZipCode"].Visible = false;
                         ModifyCustDataView.Columns["AccountNumber"].Visible = false;
                         ModifyCustDataView.Columns["CreditCard"].Visible = false;
+                        ModifyCustDataView.Columns["PhoneType"].Visible = false;
+                        ModifyCustDataView.Columns["Number"].Visible = false;
 
                         // Error check to ensure customer exists
                         if (results.Rows.Count == 0)
@@ -349,6 +395,8 @@ namespace CMPT291_Project
                 ZipModText.Text = selectedRow.Cells["cusZipCode"].Value?.ToString();
                 AccountModText.Text = selectedRow.Cells["AccountNumber"].Value?.ToString();
                 CreditModText.Text = selectedRow.Cells["CreditCard"].Value?.ToString();
+                PhoneTypeUpBox.Text = selectedRow.Cells["PhoneType"].Value?.ToString();
+                PhoneNumUpBox.Text = selectedRow.Cells["Number"].Value?.ToString();
 
                 ModifyCustDataView.Visible = false;
                 ModifyCustBox.Visible = true;
