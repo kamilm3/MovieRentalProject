@@ -25,15 +25,15 @@ INSERT INTO Movie (movieName, MovieType, DistFee, NumCopies) VALUES
 
 -- Insert test data into Customer
 INSERT INTO Customer (firstName, lastName, cusAddress, cusCity, cusState, cusZipCode, Email, AccountNumber, AccountCreationDate, CreditCard) VALUES
-('John', 'Doe', '123 Elm St', 'Springfield', 'IL', '62704', 'john.doe@example.com', 1001, GETDATE(), 1234567812345678),
-('Jane', 'Smith', '456 Oak St', 'Springfield', 'IL', '62704', 'jane.smith@example.com', 1002, GETDATE(), 2345678923456789),
-('Alice', 'Johnson', '789 Walnut St', 'Chicago', 'IL', '60605', 'alice.johnson@example.com', 1003, GETDATE(), 3456789034567890),
-('Bob', 'Brown', '321 Maple St', 'Chicago', 'IL', '60605', 'bob.brown@example.com', 1004, GETDATE(), 4567890145678901),
-('Charlie', 'Parker', '567 Elmwood Ave', 'Peoria', 'IL', '61602', 'charlie.parker@example.com', 1005, GETDATE(), 5678901256789012),
-('Diana', 'Prince', '123 Paradise Island', 'Metropolis', 'NY', '10001', 'diana.prince@example.com', 1006, GETDATE(), 6789012367890123),
-('Bruce', 'Wayne', '100 Gotham Lane', 'Gotham', 'NY', '10002', 'bruce.wayne@example.com', 1007, GETDATE(), 7890123478901234),
-('Clark', 'Kent', '742 Evergreen Terrace', 'Smallville', 'KS', '67524', 'clark.kent@example.com', 1008, GETDATE(), 8901234589012345),
-('Natasha', 'Romanoff', '22 Black Widow St', 'Springfield', 'IL', '62704', 'natasha.romanoff@example.com', 1009, GETDATE(), 9012345690123456);
+('John', 'Doe', '123 Elm St', 'Edmonton', 'AB', '62704', 'john.doe@example.com', 1001, GETDATE(), 1234567812345678),
+('Jane', 'Smith', '456 Oak St', 'Kelowna', 'BC', '62704', 'jane.smith@example.com', 1002, GETDATE(), 2345678923456789),
+('Alice', 'Johnson', '789 Walnut St', 'Calgary', 'AB', '60605', 'alice.johnson@example.com', 1003, GETDATE(), 3456789034567890),
+('Bob', 'Brown', '321 Maple St', 'Victoria', 'BC', '60605', 'bob.brown@example.com', 1004, GETDATE(), 4567890145678901),
+('Charlie', 'Parker', '567 Elmwood Ave', 'Victoria', 'BC', '61602', 'charlie.parker@example.com', 1005, GETDATE(), 5678901256789012),
+('Diana', 'Prince', '123 Paradise Island', 'Edmonton', 'AB', '10001', 'diana.prince@example.com', 1006, GETDATE(), 6789012367890123),
+('Bruce', 'Wayne', '100 Gotham Lane', 'Gotham', 'AB', '10002', 'bruce.wayne@example.com', 1007, GETDATE(), 7890123478901234),
+('Clark', 'Kent', '742 Evergreen Terrace', 'Smallville', 'BC', '67524', 'clark.kent@example.com', 1008, GETDATE(), 8901234589012345),
+('Natasha', 'Romanoff', '22 Black Widow St', 'Springfield', 'ON', '62704', 'natasha.romanoff@example.com', 1009, GETDATE(), 9012345690123456);
 
 -- Insert test data into Employee
 INSERT INTO Employee (SSN, firstName, lastName, empAddress, empCity, empState, empZipCode, StartDate) VALUES
@@ -71,7 +71,12 @@ INSERT INTO CustomerPhone (customerID, PhoneType, Number) VALUES
 (1, 'Mobile', '555-123-4567'),
 (2, 'Home', '555-987-6543'),
 (3, 'Mobile', '555-333-4444'),
-(4, 'Home', '555-444-5555');
+(4, 'Home', '555-444-6666'),
+(5, 'Mobile', '555-123-7777'),
+(6, 'Home', '555-987-8888'),
+(7, 'Mobile', '555-333-9999'),
+(8, 'Home', '555-444-0000'),
+(9, 'Mobile', '555-123-1111');
 
 -- Insert test data into EmployeePhone
 INSERT INTO EmployeePhone (employeeID, PhoneType, Number) VALUES
