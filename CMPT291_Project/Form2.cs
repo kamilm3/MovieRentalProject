@@ -11,6 +11,7 @@ using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
@@ -59,7 +60,7 @@ namespace CMPT291_Project
             /*
             myConnection = new SqlConnection("user id=Memoh;" + // Username
                                               "password=memoh4321;" + // Password
-                                              "server=DESKTOP-H6FU9US\\MSSQLSERVER01;" + // Server name
+                                              "server=Memoh;" + // Server name
                                               "TrustServerCertificate=True;" +
                                               "database=project291; " + // Database
                                               "connection timeout=30"); // Timeout in seconds
@@ -290,8 +291,16 @@ namespace CMPT291_Project
 
             try
             {
+                // Delete phone for customer
+                string deletePhonesQuery = "delete from CustomerPhone where customerID = @CustomerID";
+                using (SqlCommand deletePhonesCmd = new SqlCommand(deletePhonesQuery, myConnection))
+                {
+                    deletePhonesCmd.Parameters.AddWithValue("@CustomerID", customerID);
+
+                    deletePhonesCmd.ExecuteNonQuery();
+                }
                 // Delete customer
-                string query = "DELETE FROM Customer WHERE customerID = @CustomerID";
+                string query = "delete from Customer where customerID = @CustomerID";
 
                 using (SqlCommand cmd = new SqlCommand(query, myConnection))
                 {
@@ -301,6 +310,7 @@ namespace CMPT291_Project
 
                     if (rowsAffected > 0)
                     {
+                        ModifyCustBox.Visible = false;
                         MessageBox.Show("Customer deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
